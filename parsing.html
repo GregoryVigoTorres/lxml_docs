@@ -1,0 +1,1136 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parsing XML and HTML with lxml &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Parsing XML and HTML with lxml</a><ul>
+<li><a class="reference internal" href="#parsers">Parsers</a><ul>
+<li><a class="reference internal" href="#parser-options">Parser options</a></li>
+<li><a class="reference internal" href="#error-log">Error log</a></li>
+<li><a class="reference internal" href="#parsing-html">Parsing HTML</a></li>
+<li><a class="reference internal" href="#doctype-information">Doctype information</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-target-parser-interface">The target parser interface</a></li>
+<li><a class="reference internal" href="#the-feed-parser-interface">The feed parser interface</a></li>
+<li><a class="reference internal" href="#incremental-event-parsing">Incremental event parsing</a><ul>
+<li><a class="reference internal" href="#event-types">Event types</a></li>
+<li><a class="reference internal" href="#modifying-the-tree">Modifying the tree</a></li>
+<li><a class="reference internal" href="#selective-tag-events">Selective tag events</a></li>
+<li><a class="reference internal" href="#comments-and-pis">Comments and PIs</a></li>
+<li><a class="reference internal" href="#events-with-custom-targets">Events with custom targets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iterparse-and-iterwalk">iterparse and iterwalk</a><ul>
+<li><a class="reference internal" href="#iterwalk">iterwalk</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-unicode-strings">Python unicode strings</a><ul>
+<li><a class="reference internal" href="#serialising-to-unicode-strings">Serialising to Unicode strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Parsing XML and HTML with lxml</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/parsing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parsing-xml-and-html-with-lxml">
+<h1><a class="toc-backref" href="#id1">Parsing XML and HTML with lxml</a><a class="headerlink" href="#parsing-xml-and-html-with-lxml" title="Permalink to this headline">¶</a></h1>
+<p>lxml provides a very simple and powerful API for parsing XML and HTML.  It
+supports one-step parsing as well as step-by-step parsing using an
+event-driven API (currently only for XML).</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#parsing-xml-and-html-with-lxml" id="id1">Parsing XML and HTML with lxml</a><ul>
+<li><a class="reference internal" href="#parsers" id="id2">Parsers</a><ul>
+<li><a class="reference internal" href="#parser-options" id="id3">Parser options</a></li>
+<li><a class="reference internal" href="#error-log" id="id4">Error log</a></li>
+<li><a class="reference internal" href="#parsing-html" id="id5">Parsing HTML</a></li>
+<li><a class="reference internal" href="#doctype-information" id="id6">Doctype information</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-target-parser-interface" id="id7">The target parser interface</a></li>
+<li><a class="reference internal" href="#the-feed-parser-interface" id="id8">The feed parser interface</a></li>
+<li><a class="reference internal" href="#incremental-event-parsing" id="id9">Incremental event parsing</a><ul>
+<li><a class="reference internal" href="#event-types" id="id10">Event types</a></li>
+<li><a class="reference internal" href="#modifying-the-tree" id="id11">Modifying the tree</a></li>
+<li><a class="reference internal" href="#selective-tag-events" id="id12">Selective tag events</a></li>
+<li><a class="reference internal" href="#comments-and-pis" id="id13">Comments and PIs</a></li>
+<li><a class="reference internal" href="#events-with-custom-targets" id="id14">Events with custom targets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iterparse-and-iterwalk" id="id15">iterparse and iterwalk</a><ul>
+<li><a class="reference internal" href="#iterwalk" id="id16">iterwalk</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-unicode-strings" id="id17">Python unicode strings</a><ul>
+<li><a class="reference internal" href="#serialising-to-unicode-strings" id="id18">Serialising to Unicode strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The usual setup procedure:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+</pre></div>
+</div>
+<p>The following examples also use StringIO or BytesIO to show how to parse
+from files and file-like objects.  Both are available in the <code class="docutils literal"><span class="pre">io</span></code> module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span><span class="p">,</span> <span class="n">BytesIO</span>
+</pre></div>
+</div>
+<div class="section" id="parsers">
+<h2><a class="toc-backref" href="#id2">Parsers</a><a class="headerlink" href="#parsers" title="Permalink to this headline">¶</a></h2>
+<p>Parsers are represented by parser objects.  There is support for parsing both
+XML and (broken) HTML.  Note that XHTML is best parsed as XML, parsing it with
+the HTML parser can lead to unexpected results.  Here is a simple example for
+parsing XML from an in-memory string:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&lt;a xmlns=&quot;test&quot;&gt;&lt;b xmlns=&quot;test&quot;/&gt;&lt;/a&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;a xmlns=&quot;test&quot;&gt;&lt;b xmlns=&quot;test&quot;/&gt;&lt;/a&gt;&#39;</span>
+</pre></div>
+</div>
+<p>To read from a file or file-like object, you can use the <code class="docutils literal"><span class="pre">parse()</span></code> function,
+which returns an <code class="docutils literal"><span class="pre">ElementTree</span></code> object:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">())</span>
+<span class="go">b&#39;&lt;a xmlns=&quot;test&quot;&gt;&lt;b xmlns=&quot;test&quot;/&gt;&lt;/a&gt;&#39;</span>
+</pre></div>
+</div>
+<p>Note how the <code class="docutils literal"><span class="pre">parse()</span></code> function reads from a file-like object here.  If
+parsing is done from a real file, it is more common (and also somewhat more
+efficient) to pass a filename:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;doc/test.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>lxml can parse from a local file, an HTTP URL or an FTP URL.  It also
+auto-detects and reads gzip-compressed XML files (.gz).</p>
+<p>If you want to parse from memory and still provide a base URL for the document
+(e.g. to support relative paths in an XInclude), you can pass the <code class="docutils literal"><span class="pre">base_url</span></code>
+keyword argument:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://where.it/is/from.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="parser-options">
+<h3><a class="toc-backref" href="#id3">Parser options</a><a class="headerlink" href="#parser-options" title="Permalink to this headline">¶</a></h3>
+<p>The parsers accept a number of setup options as keyword arguments.  The above
+example is easily extended to clean up namespaces during parsing:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">ns_clean</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span>   <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">parser</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">())</span>
+<span class="go">b&#39;&lt;a xmlns=&quot;test&quot;&gt;&lt;b/&gt;&lt;/a&gt;&#39;</span>
+</pre></div>
+</div>
+<p>The keyword arguments in the constructor are mainly based on the libxml2
+parser configuration.  A DTD will also be loaded if validation or attribute
+default values are requested.</p>
+<p>Available boolean keyword arguments:</p>
+<ul class="simple">
+<li>attribute_defaults - read the DTD (if referenced by the document) and add
+the default attributes from it</li>
+<li>dtd_validation - validate while parsing (if a DTD was referenced)</li>
+<li>load_dtd - load and parse the DTD while parsing (no validation is performed)</li>
+<li>no_network - prevent network access when looking up external
+documents (on by default)</li>
+<li>ns_clean - try to clean up redundant namespace declarations</li>
+<li>recover - try hard to parse through broken XML</li>
+<li>remove_blank_text - discard blank text nodes between tags, also known as
+ignorable whitespace.  This is best used together with a DTD or schema
+(which tells data and noise apart), otherwise a heuristic will be applied.</li>
+<li>remove_comments - discard comments</li>
+<li>remove_pis - discard processing instructions</li>
+<li>strip_cdata - replace CDATA sections by normal text content (on by
+default)</li>
+<li>resolve_entities - replace entities by their text value (on by
+default)</li>
+<li>huge_tree - disable security restrictions and support very deep trees
+and very long text content (only affects libxml2 2.7+)</li>
+<li>compact - use compact storage for short text content (on by default)</li>
+<li>collect_ids - collect XML IDs in a hash table while parsing (on by default).
+Disabling this can substantially speed up parsing of documents with many
+different IDs if the hash lookup is not used afterwards.</li>
+</ul>
+<p>Other keyword arguments:</p>
+<ul class="simple">
+<li>encoding - override the document encoding</li>
+<li>target - a parser target object that will receive the parse events
+(see <a class="reference internal" href="#the-target-parser-interface">The target parser interface</a>)</li>
+<li>schema   - an XMLSchema to validate against (see <a class="reference external" href="validation.html#xmlschema">validation</a>)</li>
+</ul>
+</div>
+<div class="section" id="error-log">
+<h3><a class="toc-backref" href="#id4">Error log</a><a class="headerlink" href="#error-log" title="Permalink to this headline">¶</a></h3>
+<p>Parsers have an <code class="docutils literal"><span class="pre">error_log</span></code> property that lists the errors and
+warnings of the last parser run:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">error_log</span><span class="p">))</span>
+<span class="go">0</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;root&gt;</span><span class="se">\n</span><span class="s2">&lt;/b&gt;&quot;</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>  
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">lxml.etree.XMLSyntaxError</span>: <span class="n">Opening and ending tag mismatch: root line 1 and b, line 2, column 5...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">error_log</span><span class="p">))</span>
+<span class="go">1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">error_log</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="go">Opening and ending tag mismatch: root line 1 and b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">line</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">column</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>Each entry in the log has the following properties:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">message</span></code>: the message text</li>
+<li><code class="docutils literal"><span class="pre">domain</span></code>: the domain ID (see the lxml.etree.ErrorDomains class)</li>
+<li><code class="docutils literal"><span class="pre">type</span></code>: the message type ID (see the lxml.etree.ErrorTypes class)</li>
+<li><code class="docutils literal"><span class="pre">level</span></code>: the log level ID (see the lxml.etree.ErrorLevels class)</li>
+<li><code class="docutils literal"><span class="pre">line</span></code>: the line at which the message originated (if applicable)</li>
+<li><code class="docutils literal"><span class="pre">column</span></code>: the character column at which the message originated (if applicable)</li>
+<li><code class="docutils literal"><span class="pre">filename</span></code>: the name of the file in which the message originated (if applicable)</li>
+</ul>
+<p>For convenience, there are also three properties that provide readable
+names for the ID values:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">domain_name</span></code></li>
+<li><code class="docutils literal"><span class="pre">type_name</span></code></li>
+<li><code class="docutils literal"><span class="pre">level_name</span></code></li>
+</ul>
+<p>To filter for a specific kind of message, use the different
+<code class="docutils literal"><span class="pre">filter_*()</span></code> methods on the error log (see the
+lxml.etree._ListErrorLog class).</p>
+</div>
+<div class="section" id="parsing-html">
+<h3><a class="toc-backref" href="#id5">Parsing HTML</a><a class="headerlink" href="#parsing-html" title="Permalink to this headline">¶</a></h3>
+<p>HTML parsing is similarly simple.  The parsers have a <code class="docutils literal"><span class="pre">recover</span></code>
+keyword argument that the HTMLParser sets by default.  It lets libxml2
+try its best to return a valid HTML tree with all content it can
+manage to parse.  It will not raise an exception on parser errors.
+You should use libxml2 version 2.6.21 or newer to take advantage of
+this feature.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">broken_html</span> <span class="o">=</span> <span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;test&lt;body&gt;&lt;h1&gt;page title&lt;/h3&gt;&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTMLParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span>   <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">broken_html</span><span class="p">),</span> <span class="n">parser</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">(),</span>
+<span class="gp">... </span>                        <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">&lt;html&gt;</span>
+<span class="go">  &lt;head&gt;</span>
+<span class="go">    &lt;title&gt;test&lt;/title&gt;</span>
+<span class="go">  &lt;/head&gt;</span>
+<span class="go">  &lt;body&gt;</span>
+<span class="go">    &lt;h1&gt;page title&lt;/h1&gt;</span>
+<span class="go">  &lt;/body&gt;</span>
+<span class="go">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Lxml has an HTML function, similar to the XML shortcut known from
+ElementTree:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">broken_html</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">&lt;html&gt;</span>
+<span class="go">  &lt;head&gt;</span>
+<span class="go">    &lt;title&gt;test&lt;/title&gt;</span>
+<span class="go">  &lt;/head&gt;</span>
+<span class="go">  &lt;body&gt;</span>
+<span class="go">    &lt;h1&gt;page title&lt;/h1&gt;</span>
+<span class="go">  &lt;/body&gt;</span>
+<span class="go">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>The support for parsing broken HTML depends entirely on libxml2&#8217;s recovery
+algorithm.  It is <em>not</em> the fault of lxml if you find documents that are so
+heavily broken that the parser cannot handle them.  There is also no guarantee
+that the resulting tree will contain all data from the original document.  The
+parser may have to drop seriously broken parts when struggling to keep
+parsing.  Especially misplaced meta tags can suffer from this, which may lead
+to encoding problems.</p>
+<p>Note that the result is a valid HTML tree, but it may not be a
+well-formed XML tree.  For example, XML forbids double hyphens in
+comments, which the HTML parser will happily accept in recovery mode.
+Therefore, if your goal is to serialise an HTML document as an
+XML/XHTML document after parsing, you may have to apply some manual
+preprocessing first.</p>
+<p>Also note that the HTML parser is meant to parse HTML documents.  For
+XHTML documents, use the XML parser, which is namespace aware.</p>
+</div>
+<div class="section" id="doctype-information">
+<h3><a class="toc-backref" href="#id6">Doctype information</a><a class="headerlink" href="#doctype-information" title="Permalink to this headline">¶</a></h3>
+<p>The use of the libxml2 parsers makes some additional information available at
+the API level.  Currently, ElementTree objects can access the DOCTYPE
+information provided by a parsed document, as well as the XML version and the
+original encoding.  Since lxml 3.5, the doctype references are mutable.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pub_id</span>  <span class="o">=</span> <span class="s2">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doctype_string</span> <span class="o">=</span> <span class="s1">&#39;&lt;!DOCTYPE html PUBLIC &quot;</span><span class="si">%s</span><span class="s1">&quot; &quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">sys_url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xml_header</span> <span class="o">=</span> <span class="s1">&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;ascii&quot;?&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xhtml</span> <span class="o">=</span> <span class="n">xml_header</span> <span class="o">+</span> <span class="n">doctype_string</span> <span class="o">+</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xhtml</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docinfo</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">docinfo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">docinfo</span><span class="o">.</span><span class="n">public_id</span><span class="p">)</span>
+<span class="go">-//W3C//DTD XHTML 1.0 Transitional//EN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">docinfo</span><span class="o">.</span><span class="n">system_url</span><span class="p">)</span>
+<span class="go">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docinfo</span><span class="o">.</span><span class="n">doctype</span> <span class="o">==</span> <span class="n">doctype_string</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">docinfo</span><span class="o">.</span><span class="n">xml_version</span><span class="p">)</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">docinfo</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+<span class="go">ascii</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docinfo</span><span class="o">.</span><span class="n">system_url</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">docinfo</span><span class="o">.</span><span class="n">public_id</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+<span class="go">&lt;!DOCTYPE html&gt;</span>
+<span class="go">&lt;html&gt;&lt;body/&gt;&lt;/html&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-target-parser-interface">
+<h2><a class="toc-backref" href="#id7">The target parser interface</a><a class="headerlink" href="#the-target-parser-interface" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://effbot.org/elementtree/elementtree-xmlparser.htm">As in ElementTree</a>, and similar to a SAX event handler, you can pass
+a target object to the parser:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">EchoTarget</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;start </span><span class="si">%s</span><span class="s2"> </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrib</span><span class="p">)))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;end </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tag</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;data </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;comment </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">text</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;closed!&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">EchoTarget</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;element&gt;some&lt;!--comment--&gt;text&lt;/element&gt;&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">parser</span><span class="p">)</span>
+<span class="go">start element {}</span>
+<span class="go">data u&#39;some&#39;</span>
+<span class="go">comment comment</span>
+<span class="go">data u&#39;text&#39;</span>
+<span class="go">end element</span>
+<span class="go">close</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">closed!</span>
+</pre></div>
+</div>
+<p>It is important for the <code class="docutils literal"><span class="pre">.close()</span></code> method to reset the parser target
+to a usable state, so that you can reuse the parser as often as you
+like:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;element&gt;some&lt;!--comment--&gt;text&lt;/element&gt;&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">parser</span><span class="p">)</span>
+<span class="go">start element {}</span>
+<span class="go">data u&#39;some&#39;</span>
+<span class="go">comment comment</span>
+<span class="go">data u&#39;text&#39;</span>
+<span class="go">end element</span>
+<span class="go">close</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">closed!</span>
+</pre></div>
+</div>
+<p>Starting with lxml 2.3, the <code class="docutils literal"><span class="pre">.close()</span></code> method will also be called in
+the error case.  This diverges from the behaviour of ElementTree, but
+allows target objects to clean up their state in all situations, so
+that the parser can reuse them afterwards.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">CollectorTarget</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;start </span><span class="si">%s</span><span class="s2"> </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrib</span><span class="p">)))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;end </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tag</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;data </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;comment </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">text</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;closed!&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">CollectorTarget</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;element&gt;some&lt;/error&gt;&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">parser</span><span class="p">)</span>        
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">lxml.etree.XMLSyntaxError</span>: <span class="n">Opening and ending tag mismatch...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">events</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="go">start element {}</span>
+<span class="go">data u&#39;some&#39;</span>
+<span class="go">close</span>
+</pre></div>
+</div>
+<p>Note that the parser does <em>not</em> build a tree when using a parser
+target.  The result of the parser run is whatever the target object
+returns from its <code class="docutils literal"><span class="pre">.close()</span></code> method.  If you want to return an XML
+tree here, you have to create it programmatically in the target
+object.  An example for a parser target that builds a tree is the
+<code class="docutils literal"><span class="pre">TreeBuilder</span></code>:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">TreeBuilder</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;element&gt;some&lt;!--comment--&gt;text&lt;/element&gt;&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                   <span class="n">parser</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+<span class="go">element</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="go">comment</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-feed-parser-interface">
+<h2><a class="toc-backref" href="#id8">The feed parser interface</a><a class="headerlink" href="#the-feed-parser-interface" title="Permalink to this headline">¶</a></h2>
+<p>Since lxml 2.0, the parsers have a feed parser interface that is
+compatible to the <a class="reference external" href="http://effbot.org/elementtree/elementtree-xmlparser.htm">ElementTree parsers</a>.  You can use it to feed data
+into the parser in a controlled step-by-step way.</p>
+<p>In lxml.etree, you can use both interfaces to a parser at the same
+time: the <code class="docutils literal"><span class="pre">parse()</span></code> or <code class="docutils literal"><span class="pre">XML()</span></code> functions, and the feed parser
+interface.  Both are independent and will not conflict (except if used
+in conjunction with a parser target object as described above).</p>
+<p>To start parsing with a feed parser, just call its <code class="docutils literal"><span class="pre">feed()</span></code> method
+to feed it some data.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;&lt;?xml versio&#39;</span><span class="p">,</span> <span class="s1">&#39;n=&quot;1.0&quot;?&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&lt;roo&#39;</span><span class="p">,</span> <span class="s1">&#39;t&gt;&lt;a&#39;</span><span class="p">,</span> <span class="s1">&#39;/&gt;&lt;/root&gt;&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When you are done parsing, you <strong>must</strong> call the <code class="docutils literal"><span class="pre">close()</span></code> method to
+retrieve the root Element of the parse result document, and to unlock the
+parser:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+<span class="go">root</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+<span class="go">a</span>
+</pre></div>
+</div>
+<p>If you do not call <code class="docutils literal"><span class="pre">close()</span></code>, the parser will stay locked and
+subsequent feeds will keep appending data, usually resulting in a non
+well-formed document and an unexpected parser error.  So make sure you
+always close the parser after use, also in the exception case.</p>
+<p>Another way of achieving the same step-by-step parsing is by writing your own
+file-like object that returns a chunk of data on each <code class="docutils literal"><span class="pre">read()</span></code> call.  Where
+the feed parser interface allows you to actively pass data chunks into the
+parser, a file-like object passively responds to <code class="docutils literal"><span class="pre">read()</span></code> requests of the
+parser itself.  Depending on the data source, either way may be more natural.</p>
+<p>Note that the feed parser has its own error log called
+<code class="docutils literal"><span class="pre">feed_error_log</span></code>.  Errors in the feed parser do not show up in the
+normal <code class="docutils literal"><span class="pre">error_log</span></code> and vice versa.</p>
+<p>You can also combine the feed parser interface with the target parser:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">EchoTarget</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s2">&quot;&lt;eleme&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s2">&quot;nt&gt;some text&lt;/elem&quot;</span><span class="p">)</span>
+<span class="go">start element {}</span>
+<span class="go">data u&#39;some text&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s2">&quot;ent&gt;&quot;</span><span class="p">)</span>
+<span class="go">end element</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="go">close</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">closed!</span>
+</pre></div>
+</div>
+<p>Again, this prevents the automatic creation of an XML tree and leaves
+all the event handling to the target object.  The <code class="docutils literal"><span class="pre">close()</span></code> method
+of the parser forwards the return value of the target&#8217;s <code class="docutils literal"><span class="pre">close()</span></code>
+method.</p>
+</div>
+<div class="section" id="incremental-event-parsing">
+<h2><a class="toc-backref" href="#id9">Incremental event parsing</a><a class="headerlink" href="#incremental-event-parsing" title="Permalink to this headline">¶</a></h2>
+<p>In Python 3.4, the <code class="docutils literal"><span class="pre">xml.etree.ElementTree</span></code> package gained an extension
+to the feed parser interface that is implemented by the <code class="docutils literal"><span class="pre">XMLPullParser</span></code>
+class.  It additionally allows processing parse events after each
+incremental parsing step, by calling the <code class="docutils literal"><span class="pre">.read_events()</span></code> method and
+iterating over the result.  This is most useful for non-blocking execution
+environments where data chunks arrive one after the other and should be
+processed as far as possible in each step.</p>
+<p>The same feature is available in lxml 3.3.  The basic usage is as follows:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">events</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">))</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;some text&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="go">start: root</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>    <span class="c1"># well, no more events, as before ...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;child&gt;&lt;a /&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="go">start: child</span>
+<span class="go">start: a</span>
+<span class="go">end: a</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;/child&gt;&lt;/roo&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="go">end: child</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;t&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="go">end: root</span>
+</pre></div>
+</div>
+<p>Just like the normal feed parser, the <code class="docutils literal"><span class="pre">XMLPullParser</span></code> builds a tree in
+memory (and you should always call the <code class="docutils literal"><span class="pre">.close()</span></code> method when done with
+parsing):</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;root&gt;some text&lt;child&gt;&lt;a/&gt;&lt;/child&gt;&lt;/root&gt;&#39;</span>
+</pre></div>
+</div>
+<p>However, since the parser provides incremental access to that tree,
+you can explicitly delete content that you no longer need once you
+have processed it.  Read the section on <a class="reference internal" href="#modifying-the-tree">Modifying the tree</a> below
+to see what you can do here and what kind of modifications you should
+avoid.</p>
+<p>In lxml, it is enough to call the <code class="docutils literal"><span class="pre">.read_events()</span></code> method once as
+the iterator it returns can be reused when new events are available.</p>
+<p>Also, as known from other iterators in lxml, you can pass a <code class="docutils literal"><span class="pre">tag</span></code>
+argument that selects which parse events are returned by the
+<code class="docutils literal"><span class="pre">.read_events()</span></code> iterator.</p>
+<div class="section" id="event-types">
+<h3><a class="toc-backref" href="#id10">Event types</a><a class="headerlink" href="#event-types" title="Permalink to this headline">¶</a></h3>
+<p>The parse events are tuples <code class="docutils literal"><span class="pre">(event-type,</span> <span class="pre">object)</span></code>.  The event types
+supported by ElementTree and lxml.etree are the strings &#8216;start&#8217;, &#8216;end&#8217;,
+&#8216;start-ns&#8217; and &#8216;end-ns&#8217;.  The &#8216;start&#8217; and &#8216;end&#8217; events represent opening
+and closing elements.  They are accompanied by the respective Element
+instance.  By default, only &#8216;end&#8217; events are generated, whereas the
+example above requested the generation of both &#8216;start&#8217; and &#8216;end&#8217; events.</p>
+<p>The &#8216;start-ns&#8217; and &#8216;end-ns&#8217; events notify about namespace declarations.
+They do not come with Elements.  Instead, the value of the &#8216;start-ns&#8217;
+event is a tuple <code class="docutils literal"><span class="pre">(prefix,</span> <span class="pre">namespaceURI)</span></code> that designates the beginning
+of a prefix-namespace mapping.  The corresponding <code class="docutils literal"><span class="pre">end-ns</span></code> event does
+not have a value (None).  It is common practice to use a list as namespace
+stack and pop the last entry on the &#8216;end-ns&#8217; event.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_events</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;start-ns&#39;</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">event_types</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;start-ns&quot;</span><span class="p">,</span> <span class="s2">&quot;end-ns&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">event_types</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="go">start: root</span>
+<span class="go">start: element</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;text&lt;/element&gt;&lt;element&gt;text&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="go">end: element</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="go">start-ns: (&#39;&#39;, &#39;http://testns/&#39;)</span>
+<span class="go">start: {http://testns/}empty-element</span>
+<span class="go">end: {http://testns/}empty-element</span>
+<span class="go">end-ns</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;/root&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_events</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="go">end: root</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modifying-the-tree">
+<h3><a class="toc-backref" href="#id11">Modifying the tree</a><a class="headerlink" href="#modifying-the-tree" title="Permalink to this headline">¶</a></h3>
+<p>You can modify the element and its descendants when handling the
+&#8216;end&#8217; event.  To save memory, for example, you can remove subtrees
+that are no longer needed:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;element&gt;&lt;child /&gt;&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="p">)))</span>  <span class="c1"># processing</span>
+<span class="gp">... </span>    <span class="n">elem</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                             <span class="c1"># delete children</span>
+<span class="go">element: 0</span>
+<span class="go">child: 0</span>
+<span class="go">element: 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;&lt;/root&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="p">)))</span>  <span class="c1"># processing</span>
+<span class="gp">... </span>    <span class="n">elem</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                             <span class="c1"># delete children</span>
+<span class="go">{http://testns/}empty-element: 0</span>
+<span class="go">root: 3</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;root/&gt;&#39;</span>
+</pre></div>
+</div>
+<p><strong>WARNING</strong>: During the &#8216;start&#8217; event, any content of the element,
+such as the descendants, following siblings or text, is not yet
+available and should not be accessed.  Only attributes are guaranteed
+to be set.  During the &#8216;end&#8217; event, the element and its descendants
+can be freely modified, but its following siblings should not be
+accessed.  During either of the two events, you <strong>must not</strong> modify or
+move the ancestors (parents) of the current element.  You should also
+avoid moving or discarding the element itself.  The golden rule is: do
+not touch anything that will have to be touched again by the parser
+later on.</p>
+<p>If you have elements with a long list of children in your XML file and want
+to save more memory during parsing, you can clean up the preceding siblings
+of the current element:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">event</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="c1"># ... do something with the element</span>
+<span class="gp">... </span>    <span class="n">element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                 <span class="c1"># clean up children</span>
+<span class="gp">... </span>    <span class="k">while</span> <span class="n">element</span><span class="o">.</span><span class="n">getprevious</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">del</span> <span class="n">element</span><span class="o">.</span><span class="n">getparent</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># clean up preceding siblings</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">while</span></code> loop deletes multiple siblings in a row.  This is only necessary
+if you skipped over some of them using the <code class="docutils literal"><span class="pre">tag</span></code> keyword argument.
+Otherwise, a simple <code class="docutils literal"><span class="pre">if</span></code> should do.  The more selective your tag is,
+however, the more thought you will have to put into finding the right way to
+clean up the elements that were skipped.  Therefore, it is sometimes easier to
+traverse all elements and do the tag selection by hand in the event handler
+code.</p>
+</div>
+<div class="section" id="selective-tag-events">
+<h3><a class="toc-backref" href="#id12">Selective tag events</a><a class="headerlink" href="#selective-tag-events" title="Permalink to this headline">¶</a></h3>
+<p>As an extension over ElementTree, lxml.etree accepts a <code class="docutils literal"><span class="pre">tag</span></code> keyword
+argument just like <code class="docutils literal"><span class="pre">element.iter(tag)</span></code>.  This restricts events to a
+specific tag or namespace:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;element&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;element&gt;&lt;child /&gt;&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;&lt;/root&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">end: element</span>
+<span class="go">end: element</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">event_types</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">event_types</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;{http://testns/}*&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;element&gt;&lt;child /&gt;&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;&lt;/root&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">start: {http://testns/}empty-element</span>
+<span class="go">end: {http://testns/}empty-element</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments-and-pis">
+<h3><a class="toc-backref" href="#id13">Comments and PIs</a><a class="headerlink" href="#comments-and-pis" title="Permalink to this headline">¶</a></h3>
+<p>As an extension over ElementTree, the <code class="docutils literal"><span class="pre">XMLPullParser</span></code> in lxml.etree
+also supports the event types &#8216;comment&#8217; and &#8216;pi&#8217; for the respective
+XML structures.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">event_types</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">,</span> <span class="s2">&quot;pi&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">event_types</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;?some pi ?&gt;&lt;!-- a comment --&gt;&lt;root&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;!-- another comment --&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;element&gt;text&lt;/element&gt;tail&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;/root&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;pi&#39;</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: -</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">-&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span> <span class="c1"># &#39;comment&#39;</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: -</span><span class="si">%s</span><span class="s2">-&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+<span class="go">pi: -some=pi -</span>
+<span class="go">comment: - a comment -</span>
+<span class="go">start: root</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">comment: - another comment -</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">start: {http://testns/}empty-element</span>
+<span class="go">end: {http://testns/}empty-element</span>
+<span class="go">end: root</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+<span class="go">root</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="events-with-custom-targets">
+<h3><a class="toc-backref" href="#id14">Events with custom targets</a><a class="headerlink" href="#events-with-custom-targets" title="Permalink to this headline">¶</a></h3>
+<p>You can combine the pull parser with a parser target.  In that case,
+it is the target&#8217;s responsibility to generate event values.  Whatever
+it returns from its <code class="docutils literal"><span class="pre">.start()</span></code> and <code class="docutils literal"><span class="pre">.end()</span></code> methods will be returned
+by the pull parser as the second item of the parse events tuple.</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Target</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;-&gt; start(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">tag</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s1">&#39;&gt;&gt;START: </span><span class="si">%s</span><span class="s1">&lt;&lt;&#39;</span> <span class="o">%</span> <span class="n">tag</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;-&gt; end(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">tag</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s1">&#39;&gt;&gt;END: </span><span class="si">%s</span><span class="s1">&lt;&lt;&#39;</span> <span class="o">%</span> <span class="n">tag</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;-&gt; close()&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;CLOSED!&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">event_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">event_types</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">Target</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;child1 /&gt;&lt;child2 /&gt;&lt;/root&gt;&#39;</span><span class="p">)</span>
+<span class="go">-&gt; start(root)</span>
+<span class="go">-&gt; start(child1)</span>
+<span class="go">-&gt; end(child1)</span>
+<span class="go">-&gt; start(child2)</span>
+<span class="go">-&gt; end(child2)</span>
+<span class="go">-&gt; end(root)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+<span class="go">start: &gt;&gt;START: root&lt;&lt;</span>
+<span class="go">start: &gt;&gt;START: child1&lt;&lt;</span>
+<span class="go">end: &gt;&gt;END: child1&lt;&lt;</span>
+<span class="go">start: &gt;&gt;START: child2&lt;&lt;</span>
+<span class="go">end: &gt;&gt;END: child2&lt;&lt;</span>
+<span class="go">end: &gt;&gt;END: root&lt;&lt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">())</span>
+<span class="go">-&gt; close()</span>
+<span class="go">CLOSED!</span>
+</pre></div>
+</div>
+<p>As you can see, the event values do not even have to be Element objects.
+The target is generally free to decide how it wants to create an XML tree
+or whatever else it wants to make of the parser callbacks.  In many cases,
+however, you will want to make your custom target inherit from the
+<code class="docutils literal"><span class="pre">TreeBuilder</span></code> class in order to have it build a tree that you can process
+normally.  The <code class="docutils literal"><span class="pre">start()</span></code> and <code class="docutils literal"><span class="pre">.end()</span></code> methods of <code class="docutils literal"><span class="pre">TreeBuilder</span></code> return
+the Element object that was created, so you can override them and modify
+the input or output according to your needs.  Here is an example that
+filters attributes before they are being added to the tree:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">AttributeFilter</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">TreeBuilder</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">attrib</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrib</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="s1">&#39;evil&#39;</span> <span class="ow">in</span> <span class="n">attrib</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">del</span> <span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;evil&#39;</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AttributeFilter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLPullParser</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">AttributeFilter</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="s1">&#39;&lt;root&gt;&lt;child1 test=&quot;123&quot; /&gt;&lt;child2 evil=&quot;YES&quot; /&gt;&lt;/root&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">read_events</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">(</span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">))</span>
+<span class="go">end: child1({&#39;test&#39;: &#39;123&#39;})</span>
+<span class="go">end: child2({})</span>
+<span class="go">end: root({})</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="iterparse-and-iterwalk">
+<h2><a class="toc-backref" href="#id15">iterparse and iterwalk</a><a class="headerlink" href="#iterparse-and-iterwalk" title="Permalink to this headline">¶</a></h2>
+<p>As known from ElementTree, the <code class="docutils literal"><span class="pre">iterparse()</span></code> utility function
+returns an iterator that generates parser events for an XML file (or
+file-like object), while building the tree.  You can think of it as
+a blocking wrapper around the <code class="docutils literal"><span class="pre">XMLPullParser</span></code> that automatically and
+incrementally reads data from the input file for you and provides a
+single iterator for them:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">&lt;root&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;element key=&#39;value&#39;&gt;text&lt;/element&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;element&gt;text&lt;/element&gt;tail</span>
+<span class="gp">... </span><span class="s1">  &lt;empty-element xmlns=&quot;http://testns/&quot; /&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/root&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">iterparse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">end: element</span>
+<span class="go">end: element</span>
+<span class="go">end: {http://testns/}empty-element</span>
+<span class="go">end: root</span>
+</pre></div>
+</div>
+<p>After parsing, the resulting tree is available through the <code class="docutils literal"><span class="pre">root</span></code> property
+of the iterator:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;root&#39;</span>
+</pre></div>
+</div>
+<p>The other event types can be activated with the <code class="docutils literal"><span class="pre">events</span></code> keyword argument:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">iterparse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">start: root</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">start: {http://testns/}empty-element</span>
+<span class="go">end: {http://testns/}empty-element</span>
+<span class="go">end: root</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">iterparse()</span></code> also supports the <code class="docutils literal"><span class="pre">tag</span></code> argument for selective event
+iteration and several other parameters that control the parser setup.
+You can also use it to parse HTML input by passing <code class="docutils literal"><span class="pre">html=True</span></code>.</p>
+<div class="section" id="iterwalk">
+<h3><a class="toc-backref" href="#id16">iterwalk</a><a class="headerlink" href="#iterwalk" title="Permalink to this headline">¶</a></h3>
+<p>A second extension over ElementTree is the <code class="docutils literal"><span class="pre">iterwalk()</span></code> function.
+It behaves exactly like <code class="docutils literal"><span class="pre">iterparse()</span></code>, but works on Elements and
+ElementTrees.  Here is an example for a tree parsed by <code class="docutils literal"><span class="pre">iterparse()</span></code>:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">iterparse</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">f</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">),</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;element&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">root</span>
+</pre></div>
+</div>
+<p>And now we can take the resulting in-memory tree and iterate over it
+using <code class="docutils literal"><span class="pre">iterwalk()</span></code> to get the exact same events without parsing the
+input again:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">iterwalk</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">root</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">),</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;element&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+<span class="go">start: element</span>
+<span class="go">end: element</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="python-unicode-strings">
+<h2><a class="toc-backref" href="#id17">Python unicode strings</a><a class="headerlink" href="#python-unicode-strings" title="Permalink to this headline">¶</a></h2>
+<p>lxml.etree has broader support for Python unicode strings than the ElementTree
+library.  First of all, where ElementTree would raise an exception, the
+parsers in lxml.etree can handle unicode strings straight away.  This is most
+helpful for XML snippets embedded in source code using the <code class="docutils literal"><span class="pre">XML()</span></code>
+function:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span> <span class="sa">u</span><span class="s1">&#39;&lt;test&gt; </span><span class="se">\uf8d1</span><span class="s1"> + </span><span class="se">\uf8d2</span><span class="s1"> &lt;/test&gt;&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>This requires, however, that unicode strings do not specify a conflicting
+encoding themselves and thus lie about their real encoding:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span> <span class="sa">u</span><span class="s1">&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;ASCII&quot;?&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+<span class="gp">... </span>           <span class="sa">u</span><span class="s1">&#39;&lt;test&gt; </span><span class="se">\uf8d1</span><span class="s1"> + </span><span class="se">\uf8d2</span><span class="s1"> &lt;/test&gt;&#39;</span> <span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">ValueError</span>: <span class="n">Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.</span>
+</pre></div>
+</div>
+<p>Similarly, you will get errors when you try the same with HTML data in a
+unicode string that specifies a charset in a meta tag of the header.  You
+should generally avoid converting XML/HTML data to unicode before passing it
+into the parsers.  It is both slower and error prone.</p>
+<div class="section" id="serialising-to-unicode-strings">
+<h3><a class="toc-backref" href="#id18">Serialising to Unicode strings</a><a class="headerlink" href="#serialising-to-unicode-strings" title="Permalink to this headline">¶</a></h3>
+<p>To serialize the result, you would normally use the <code class="docutils literal"><span class="pre">tostring()</span></code>
+module function, which serializes to plain ASCII by default or a
+number of other byte encodings if asked for:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;test&gt; &amp;#63697; + &amp;#63698; &lt;/test&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">,</span> <span class="n">xml_declaration</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="go">b&#39;&lt;test&gt; \xef\xa3\x91 + \xef\xa3\x92 &lt;/test&gt;&#39;</span>
+</pre></div>
+</div>
+<p>As an extension, lxml.etree recognises the name &#8216;unicode&#8217; as an argument
+to the encoding parameter to build a Python unicode representation of a tree:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">u&#39;&lt;test&gt; \uf8d1 + \uf8d2 &lt;/test&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">el</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">u&#39;&lt;test/&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subel</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="s2">&quot;subtest&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">u&#39;&lt;test&gt;&lt;subtest/&gt;&lt;/test&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">u&#39;&lt;test&gt;&lt;subtest/&gt;&lt;/test&gt;&#39;</span>
+</pre></div>
+</div>
+<p>The result of <code class="docutils literal"><span class="pre">tostring(encoding='unicode')</span></code> can be treated like any
+other Python unicode string and then passed back into the parsers.
+However, if you want to save the result to a file or pass it over the
+network, you should use <code class="docutils literal"><span class="pre">write()</span></code> or <code class="docutils literal"><span class="pre">tostring()</span></code> with a byte
+encoding (typically UTF-8) to serialize the XML.  The main reason is
+that unicode strings returned by <code class="docutils literal"><span class="pre">tostring(encoding='unicode')</span></code> are
+not byte streams and they never have an XML declaration to specify
+their encoding.  These strings are most likely not parsable by other
+XML libraries.</p>
+<p>For normal byte encodings, the <code class="docutils literal"><span class="pre">tostring()</span></code> function automatically
+adds a declaration as needed that reflects the encoding of the
+returned string.  This makes it possible for other parsers to
+correctly parse the XML byte stream.  Note that using <code class="docutils literal"><span class="pre">tostring()</span></code>
+with UTF-8 is also considerably faster in most cases.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

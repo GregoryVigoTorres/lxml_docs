@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.tests.test_incremental_xmlfile &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.tests.test_incremental_xmlfile</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.tests.test_incremental_xmlfile</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/tests/test_incremental_xmlfile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-tests-test-incremental-xmlfile">
+<h1>lxml.tests.test_incremental_xmlfile<a class="headerlink" href="#lxml-tests-test-incremental-xmlfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">BytesIOXmlFileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase.test_filelike_close">
+<code class="descname">test_filelike_close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.BytesIOXmlFileTestCase.test_filelike_close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">HtmlFileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_attribute_quoting">
+<code class="descname">test_attribute_quoting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_attribute_quoting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_attribute_quoting_unicode">
+<code class="descname">test_attribute_quoting_unicode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_attribute_quoting_unicode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_method_context_manager_misuse">
+<code class="descname">test_method_context_manager_misuse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_method_context_manager_misuse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_open_namespaced_element">
+<code class="descname">test_open_namespaced_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_open_namespaced_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_unescaped_script">
+<code class="descname">test_unescaped_script</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_unescaped_script" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_unescaped_script_incremental">
+<code class="descname">test_unescaped_script_incremental</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_unescaped_script_incremental" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_void_elements">
+<code class="descname">test_void_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_void_elements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_write_declaration">
+<code class="descname">test_write_declaration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_write_declaration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_write_namespaced_element">
+<code class="descname">test_write_namespaced_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_write_namespaced_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_xml_mode_element_inside_html">
+<code class="descname">test_xml_mode_element_inside_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_xml_mode_element_inside_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_xml_mode_write_inside_html">
+<code class="descname">test_xml_mode_write_inside_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.HtmlFileTestCase.test_xml_mode_write_inside_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">SimpleFileLikeXmlFileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.SimpleFileLike">
+<em class="property">class </em><code class="descname">SimpleFileLike</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.SimpleFileLike" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.SimpleFileLike.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.SimpleFileLike.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase._parse_file">
+<code class="descname">_parse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase._parse_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase._read_file">
+<code class="descname">_read_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase._read_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.test_filelike_close">
+<code class="descname">test_filelike_close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.test_filelike_close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.test_filelike_not_closing">
+<code class="descname">test_filelike_not_closing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.SimpleFileLikeXmlFileTestCase.test_filelike_not_closing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">TempPathXmlFileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase._parse_file">
+<code class="descname">_parse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase._parse_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase._read_file">
+<code class="descname">_read_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase._read_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.test_buffering">
+<code class="descname">test_buffering</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.test_buffering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.test_flush">
+<code class="descname">test_flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempPathXmlFileTestCase.test_flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile.TempXmlFileTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">TempXmlFileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempXmlFileTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile.TempXmlFileTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.TempXmlFileTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">_XmlFileTestCaseBase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._file">
+<code class="descname">_file</code><em class="property"> = None</em><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._parse_file">
+<code class="descname">_parse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._parse_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._read_file">
+<code class="descname">_read_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase._read_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.assertXml">
+<code class="descname">assertXml</code><span class="sig-paren">(</span><em>expected</em>, <em>encoding='utf8'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.assertXml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_anonymous_namespace">
+<code class="descname">test_anonymous_namespace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_anonymous_namespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute">
+<code class="descname">test_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute_extra">
+<code class="descname">test_attribute_extra</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute_extra" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute_extra_duplicate">
+<code class="descname">test_attribute_extra_duplicate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_attribute_extra_duplicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_buffering">
+<code class="descname">test_buffering</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_buffering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_closing_out_of_order_in_error_case">
+<code class="descname">test_closing_out_of_order_in_error_case</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_closing_out_of_order_in_error_case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_comment">
+<code class="descname">test_comment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_comment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_default_namespace">
+<code class="descname">test_default_namespace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_default_namespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element">
+<code class="descname">test_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_nested">
+<code class="descname">test_element_nested</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_nested" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_nested_with_text">
+<code class="descname">test_element_nested_with_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_nested_with_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_write_text">
+<code class="descname">test_element_write_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_element_write_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_encoding">
+<code class="descname">test_encoding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_encoding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_escaping">
+<code class="descname">test_escaping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_escaping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_preceding_text">
+<code class="descname">test_failure_preceding_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_preceding_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_trailing_Element">
+<code class="descname">test_failure_trailing_Element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_trailing_Element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_trailing_text">
+<code class="descname">test_failure_trailing_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_failure_trailing_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_flush">
+<code class="descname">test_flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nested_anonymous">
+<code class="descname">test_namespace_nested_anonymous</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nested_anonymous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nested_nsmap">
+<code class="descname">test_namespace_nested_nsmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nested_nsmap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nsmap">
+<code class="descname">test_namespace_nsmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_namespace_nsmap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_nested_default_namespace">
+<code class="descname">test_nested_default_namespace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_nested_default_namespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_nested_default_namespace_and_other">
+<code class="descname">test_nested_default_namespace_and_other</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_nested_default_namespace_and_other" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_pi">
+<code class="descname">test_pi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_pi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_write_Element">
+<code class="descname">test_write_Element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_write_Element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_write_Element_repeatedly">
+<code class="descname">test_write_Element_repeatedly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile._XmlFileTestCaseBase.test_write_Element_repeatedly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.test_incremental_xmlfile.test_suite">
+<code class="descclassname">lxml.tests.test_incremental_xmlfile.</code><code class="descname">test_suite</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_incremental_xmlfile.test_suite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.html.formfill &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.html.formfill</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.html.formfill</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/html/formfill.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-html-formfill">
+<h1>lxml.html.formfill<a class="headerlink" href="#lxml-html-formfill" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.html.formfill.DefaultErrorCreator">
+<em class="property">class </em><code class="descclassname">lxml.html.formfill.</code><code class="descname">DefaultErrorCreator</code><span class="sig-paren">(</span><em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.block_inside">
+<code class="descname">block_inside</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.block_inside" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.default_message">
+<code class="descname">default_message</code><em class="property"> = 'Invalid'</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.default_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.error_block_class">
+<code class="descname">error_block_class</code><em class="property"> = 'error-block'</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.error_block_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.error_container_tag">
+<code class="descname">error_container_tag</code><em class="property"> = 'div'</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.error_container_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.error_message_class">
+<code class="descname">error_message_class</code><em class="property"> = 'error-message'</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.error_message_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.formfill.DefaultErrorCreator.insert_before">
+<code class="descname">insert_before</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.formfill.DefaultErrorCreator.insert_before" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.html.formfill.FormNotFound">
+<em class="property">class </em><code class="descclassname">lxml.html.formfill.</code><code class="descname">FormNotFound</code><a class="headerlink" href="#lxml.html.formfill.FormNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when no form can be found</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._add_class">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_add_class</code><span class="sig-paren">(</span><em>el</em>, <em>class_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._add_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._check">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_check</code><span class="sig-paren">(</span><em>el</em>, <em>check</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._fill_form">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_fill_form</code><span class="sig-paren">(</span><em>el</em>, <em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._fill_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._fill_multiple">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_fill_multiple</code><span class="sig-paren">(</span><em>input</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._fill_multiple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._fill_single">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_fill_single</code><span class="sig-paren">(</span><em>input</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._fill_single" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._find_elements_for_name">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_find_elements_for_name</code><span class="sig-paren">(</span><em>form</em>, <em>name</em>, <em>error</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._find_elements_for_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._find_form">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_find_form</code><span class="sig-paren">(</span><em>el</em>, <em>form_id=None</em>, <em>form_index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._find_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._find_form_ids">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_find_form_ids</code><span class="sig-paren">(</span><em>el</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._find_form_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._insert_error">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_insert_error</code><span class="sig-paren">(</span><em>el</em>, <em>error</em>, <em>error_class</em>, <em>error_creator</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._insert_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._nons">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_nons</code><span class="sig-paren">(</span><em>tag</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._nons" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._select">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_select</code><span class="sig-paren">(</span><em>el</em>, <em>select</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._select" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._takes_multiple">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_takes_multiple</code><span class="sig-paren">(</span><em>input</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._takes_multiple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill._transform_result">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_transform_result</code><span class="sig-paren">(</span><em>typ</em>, <em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill._transform_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the result back into the input type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.fill_form">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">fill_form</code><span class="sig-paren">(</span><em>el</em>, <em>values</em>, <em>form_id=None</em>, <em>form_index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.fill_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.fill_form_html">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">fill_form_html</code><span class="sig-paren">(</span><em>html</em>, <em>values</em>, <em>form_id=None</em>, <em>form_index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.fill_form_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.fromstring">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">fromstring</code><span class="sig-paren">(</span><em>html</em>, <em>base_url=None</em>, <em>parser=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.fromstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the html, returning a single element/document.</p>
+<p>This tries to minimally parse the chunk of text, without knowing if it
+is a fragment or a document.</p>
+<p>base_url will set the document&#8217;s base_url attribute (and the tree&#8217;s docinfo.URL)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.insert_errors">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">insert_errors</code><span class="sig-paren">(</span><em>el</em>, <em>errors</em>, <em>form_id=None</em>, <em>form_index=None</em>, <em>error_class=&quot;error&quot;</em>, <em>error_creator=default_error_creator</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.insert_errors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.insert_errors_html">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">insert_errors_html</code><span class="sig-paren">(</span><em>html</em>, <em>values</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.insert_errors_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.formfill.tostring">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">tostring</code><span class="sig-paren">(</span><em>doc</em>, <em>pretty_print=False</em>, <em>include_meta_content_type=False</em>, <em>encoding=None</em>, <em>method=&quot;html&quot;</em>, <em>with_tail=True</em>, <em>doctype=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.formfill.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an HTML string representation of the document.</p>
+<p>Note: if include_meta_content_type is true this will create a
+<code class="docutils literal"><span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;Content-Type&quot;</span> <span class="pre">...&gt;</span></code> tag in the head;
+regardless of the value of include_meta_content_type any existing
+<code class="docutils literal"><span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;Content-Type&quot;</span> <span class="pre">...&gt;</span></code> tag will be removed</p>
+<p>The <code class="docutils literal"><span class="pre">encoding</span></code> argument controls the output encoding (defauts to
+ASCII, with &amp;#...; character references for any characters outside
+of ASCII).  Note that you can pass the name <code class="docutils literal"><span class="pre">'unicode'</span></code> as
+<code class="docutils literal"><span class="pre">encoding</span></code> argument to serialise to a Unicode string.</p>
+<p>The <code class="docutils literal"><span class="pre">method</span></code> argument defines the output method.  It defaults to
+&#8216;html&#8217;, but can also be &#8216;xml&#8217; for xhtml output, or &#8216;text&#8217; to
+serialise to plain text without markup.</p>
+<p>To leave out the tail text of the top-level element that is being
+serialised, pass <code class="docutils literal"><span class="pre">with_tail=False</span></code>.</p>
+<p>The <code class="docutils literal"><span class="pre">doctype</span></code> option allows passing in a plain string that will
+be serialised before the XML tree.  Note that passing in non
+well-formed content here will make the XML output non well-formed.
+Also, an existing doctype in the document tree will not be removed
+when serialising an ElementTree instance.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">html</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">fragment_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br/&gt;world!&lt;/p&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<span class="go">b&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">fragment_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;TAIL&lt;/div&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!TAIL&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">with_tail</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">document_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="n">doctype</span><span class="o">=</span><span class="s1">&#39;&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&#39;</span>
+<span class="gp">... </span>                 <span class="s1">&#39; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;&#39;</span><span class="p">))</span>
+<span class="go">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
+<span class="go">&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill.XHTML_NAMESPACE">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">XHTML_NAMESPACE</code><em class="property"> = 'http://www.w3.org/1999/xhtml'</em><a class="headerlink" href="#lxml.html.formfill.XHTML_NAMESPACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>str(object=&#8217;&#8216;) -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to &#8216;strict&#8217;.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._form_name_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_form_name_xpath</code><em class="property"> = descendant-or-self::form[name=$name]|descendant-or-self::x:form[name=$name]</em><a class="headerlink" href="#lxml.html.formfill._form_name_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._forms_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_forms_xpath</code><em class="property"> = descendant-or-self::form|descendant-or-self::x:form</em><a class="headerlink" href="#lxml.html.formfill._forms_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._input_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_input_xpath</code><em class="property"> = descendant-or-self::input|descendant-or-self::select|descendant-or-self::textarea|descendant-or-self::x:input|descendant-or-self::x:select|descendant-or-self::x:textarea</em><a class="headerlink" href="#lxml.html.formfill._input_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._label_for_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_label_for_xpath</code><em class="property"> = //label[&#64;for=$for_id]|//x:label[&#64;for=$for_id]</em><a class="headerlink" href="#lxml.html.formfill._label_for_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._name_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_name_xpath</code><em class="property"> = descendant-or-self::*[&#64;name=$name]</em><a class="headerlink" href="#lxml.html.formfill._name_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill._options_xpath">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">_options_xpath</code><em class="property"> = descendant-or-self::option|descendant-or-self::x:option</em><a class="headerlink" href="#lxml.html.formfill._options_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.formfill.default_error_creator">
+<code class="descclassname">lxml.html.formfill.</code><code class="descname">default_error_creator</code><em class="property"> = &lt;lxml.html.formfill.DefaultErrorCreator object&gt;</em><a class="headerlink" href="#lxml.html.formfill.default_error_creator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

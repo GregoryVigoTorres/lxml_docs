@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml - XML and HTML with Python &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml - XML and HTML with Python</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#support-the-project">Support the project</a></li>
+<li><a class="reference internal" href="#download">Download</a></li>
+<li><a class="reference internal" href="#mailing-list">Mailing list</a></li>
+<li><a class="reference internal" href="#bug-tracker">Bug tracker</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#legal-notice-for-donations">Legal Notice for Donations</a></li>
+<li><a class="reference internal" href="#old-versions">old versions</a></li>
+<li><a class="reference internal" href="#sitemap">Sitemap</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>lxml - XML and HTML with Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-xml-and-html-with-python">
+<h1>lxml - XML and HTML with Python<a class="headerlink" href="#lxml-xml-and-html-with-python" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://thread.gmane.org/gmane.comp.python.lxml.devel/3252/focus=3258">“lxml takes all the pain out of XML.”</a></div>
+<div class="line">Stephan Richter</div>
+<div class="line"><br /></div>
+</div>
+<p><strong>lxml is the most feature-rich and easy-to-use library for processing XML and HTML in the Python language.</strong></p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The lxml XML toolkit is a Pythonic binding for the C libraries
+<a class="reference external" href="http://xmlsoft.org/">libxml2</a> and <a class="reference external" href="http://xmlsoft.org/XSLT/">libxslt</a>.  It is unique in that it combines the speed and
+XML feature completeness of these libraries with the simplicity of a
+native Python API, mostly compatible but superior to the well-known
+<strong>ElementTree</strong> API.  The latest release works with all CPython versions
+from 2.6 to 3.6.  See the <a class="reference external" href="intro.html">introduction</a> for more information about
+background and goals of the lxml project.  Some common questions are
+answered in the <a class="reference external" href="FAQ.html">FAQ</a>.</p>
+</div>
+<div class="section" id="support-the-project">
+<h2>Support the project<a class="headerlink" href="#support-the-project" title="Permalink to this headline">¶</a></h2>
+<p>lxml has been downloaded from the <strong>Python Package Index</strong> more than two million times and is also available directly in many package distributions, e.g. for Linux or MacOS-X.</p>
+<p>Most people who use lxml do so because they like using it. You can show us that you like it by blogging about your experience with it and linking to the project website.</p>
+<p>If you are using lxml for your work and feel like giving a bit of your own benefit back to support the project, consider sending us money through PayPal that we can use for fixing bugs in the software and improving its features and documentation. Please read the Legal Notice below, at the bottom of this page. Thank you for your support.</p>
+<div class="donate-button-container docutils container">
+<div class="donate-button docutils container">
+<a class="reference external" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=R56JE3VCPDA9N">Donate</a></div>
+</div>
+<p>Please <strong>contact Stefan Behnel</strong> for other ways to support the lxml project, as well as commercial consulting, customisations and trainings on lxml and fast Python XML processing.</p>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>The best way to download lxml is to visit <a class="reference external" href="http://pypi.python.org/pypi/lxml/">lxml at the Python Package
+Index</a> (PyPI).  It has the source
+that compiles on various platforms.  The source distribution is signed
+with <a class="reference external" href="pubkey.asc">this key</a>.</p>
+<p>The latest version is 3.7.2, released 2017-01-08,
+<strong>(&#8216;changes for 3.7.2&#8217;_)</strong>.  &#8216;Older versions &lt;#old-versions&gt;&#8217;_
+are listed below.</p>
+<p>Please take a look at the
+<a class="reference external" href="installation.html">installation instructions</a> !</p>
+<p>This complete web site (including the generated API documentation) is
+part of the source distribution, so if you want to download the
+documentation for offline use, take the source archive and copy the
+<code class="docutils literal"><span class="pre">doc/html</span></code> directory out of the source tree, or use the
+&#8216;PDF documentation&#8217;_.</p>
+<p>The latest installable developer sources should usually be available from the
+<a class="reference external" href="http://lxml.de/build/">build server</a>.  It&#8217;s also possible to check out
+the latest development version of lxml from github directly, using a command
+like this (assuming you use hg and have hg-git installed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">hg</span> <span class="n">clone</span> <span class="n">git</span><span class="o">+</span><span class="n">ssh</span><span class="p">:</span><span class="o">//</span><span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">lxml</span><span class="o">/</span><span class="n">lxml</span><span class="o">.</span><span class="n">git</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>Alternatively, if you use git, this should work as well:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">lxml</span><span class="o">/</span><span class="n">lxml</span><span class="o">.</span><span class="n">git</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>You can browse the <a class="reference external" href="https://github.com/lxml/lxml/">source repository</a> and its history through
+the web.  Please read <a class="reference external" href="build.html">how to build lxml from source</a>
+first.  The <a class="reference external" href="https://github.com/lxml/lxml/blob/master/CHANGES.txt">latest CHANGES</a> of the developer version are also
+accessible.  You can check there if a bug you found has been fixed
+or a feature you want has been implemented in the latest trunk version.</p>
+</div>
+<div class="section" id="mailing-list">
+<h2>Mailing list<a class="headerlink" href="#mailing-list" title="Permalink to this headline">¶</a></h2>
+<p>Questions? Suggestions? Code to contribute? We have a <a class="reference external" href="http://lxml.de/mailinglist/">mailing list</a>.</p>
+<p>You can search the archive with <a class="reference external" href="http://blog.gmane.org/gmane.comp.python.lxml.devel">Gmane</a> or <a class="reference external" href="http://www.google.com/webhp?q=site:comments.gmane.org%2Fgmane.comp.python.lxml.devel+">Google</a>.</p>
+</div>
+<div class="section" id="bug-tracker">
+<h2>Bug tracker<a class="headerlink" href="#bug-tracker" title="Permalink to this headline">¶</a></h2>
+<p>lxml uses the <a class="reference external" href="https://launchpad.net/lxml/">launchpad bug tracker</a>.  If you are sure you found a
+bug in lxml, please file a bug report there.  If you are not sure
+whether some unexpected behaviour of lxml is a bug or not, please
+check the documentation and ask on the <a class="reference external" href="http://lxml.de/mailinglist/">mailing list</a> first.  Do not
+forget to search the archive (e.g. with <a class="reference external" href="http://blog.gmane.org/gmane.comp.python.lxml.devel">Gmane</a>)!</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The lxml library is shipped under a <a class="reference external" href="https://github.com/lxml/lxml/blob/master/doc/licenses/BSD.txt">BSD license</a>. libxml2 and libxslt2
+itself are shipped under the <a class="reference external" href="http://www.opensource.org/licenses/mit-license.html">MIT license</a>. There should therefore be no
+obstacle to using lxml in your codebase.</p>
+</div>
+<div class="section" id="legal-notice-for-donations">
+<h2>Legal Notice for Donations<a class="headerlink" href="#legal-notice-for-donations" title="Permalink to this headline">¶</a></h2>
+<p>Any donation that you make to the lxml project is voluntary and
+is not a fee for any services, goods, or advantages.  By making
+a donation to the lxml project, you acknowledge that we have the
+right to use the money you donate in any lawful way and for any
+lawful purpose we see fit and we are not obligated to disclose
+the way and purpose to any party unless required by applicable
+law.  Although lxml is free software, to the best of our knowledge
+the lxml project does not have any tax exempt status.  The lxml
+project is neither a registered non-profit corporation nor a
+registered charity in any country.  Your donation may or may not
+be tax-deductible; please consult your tax advisor in this matter.
+We will not publish or disclose your name and/or e-mail address
+without your consent, unless required by applicable law.  Your
+donation is non-refundable.</p>
+</div>
+<div class="section" id="old-versions">
+<h2>old versions<a class="headerlink" href="#old-versions" title="Permalink to this headline">¶</a></h2>
+<p>see the websites of lxml
+<a class="reference external" href="http://lxml.de/1.3/">1.3</a>,
+<a class="reference external" href="http://lxml.de/2.0/">2.0</a>,
+<a class="reference external" href="http://lxml.de/2.1/">2.1</a>,
+<a class="reference external" href="http://lxml.de/2.2/">2.2</a>,
+<a class="reference external" href="http://lxml.de/2.3/">2.3</a>,
+<a class="reference external" href="http://lxml.de/3.0/">3.0</a>,
+<a class="reference external" href="http://lxml.de/3.1/">3.1</a>,
+<a class="reference external" href="http://lxml.de/3.2/">3.2</a>,
+<a class="reference external" href="http://lxml.de/3.3/">3.3</a>,
+<a class="reference external" href="http://lxml.de/3.4/">3.4</a>,
+<a class="reference external" href="http://lxml.de/3.5/">3.5</a>,
+<a class="reference external" href="http://lxml.de/3.6/">3.6</a></p>
+<ul class="simple">
+<li><a class="reference external" href="changes.html#id1">lxml 3.7.2</a>, released 2017-01-08 (<a class="reference external" href="changes.html#id1">changes for 3.7.2</a>)</li>
+<li><a class="reference external" href="changes.html#id2">lxml 3.7.1</a>, released 2016-12-22 (<a class="reference external" href="changes.html#id2">changes for 3.7.1</a>)</li>
+<li><a class="reference external" href="changes.html#id3">lxml 3.7.0</a>, released 2016-12-10 (<a class="reference external" href="changes.html#id3">changes for 3.7.0</a>)</li>
+<li><a class="reference external" href="changes.html#id4">lxml 3.6.4</a>, released 2016-08-18 (<a class="reference external" href="changes.html#id4">changes for 3.6.4</a>)</li>
+<li><a class="reference external" href="changes.html#id5">lxml 3.6.3</a>, released 2016-08-18 (<a class="reference external" href="changes.html#id5">changes for 3.6.3</a>)</li>
+<li><a class="reference external" href="changes.html#id6">lxml 3.6.2</a>, released 2016-08-18 (<a class="reference external" href="changes.html#id6">changes for 3.6.2</a>)</li>
+<li><a class="reference external" href="changes.html#id7">lxml 3.6.1</a>, released 2016-07-24 (<a class="reference external" href="changes.html#id7">changes for 3.6.1</a>)</li>
+<li><a class="reference external" href="changes.html#id8">lxml 3.6.0</a>, released 2016-03-17 (<a class="reference external" href="changes.html#id8">changes for 3.6.0</a>)</li>
+<li><a class="reference external" href="http://lxml.de/3.6/#old-versions">older releases</a></li>
+</ul>
+</div>
+<div class="section" id="sitemap">
+<h2>Sitemap<a class="headerlink" href="#sitemap" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="sitemap.html">Sitemap</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

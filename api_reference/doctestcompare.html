@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>doctestcompare &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../about.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">doctestcompare</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>doctestcompare</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api_reference/doctestcompare.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../tutorial.html">Tutorial</a>
+            <a href="../docindex.html">Docs</a>
+            <a href="../api_reference.html">API Reference</a>
+            <a href="../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="doctestcompare">
+<h1>doctestcompare<a class="headerlink" href="#doctestcompare" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.doctestcompare.LHTMLOutputChecker">
+<em class="property">class </em><code class="descclassname">lxml.doctestcompare.</code><code class="descname">LHTMLOutputChecker</code><a class="headerlink" href="#lxml.doctestcompare.LHTMLOutputChecker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.doctestcompare.LHTMLOutputChecker.get_default_parser">
+<code class="descname">get_default_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LHTMLOutputChecker.get_default_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.doctestcompare.LXMLOutputChecker">
+<em class="property">class </em><code class="descclassname">lxml.doctestcompare.</code><code class="descname">LXMLOutputChecker</code><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker._looks_like_markup">
+<code class="descname">_looks_like_markup</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker._looks_like_markup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.check_output">
+<code class="descname">check_output</code><span class="sig-paren">(</span><em>want</em>, <em>got</em>, <em>optionflags</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.check_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.collect_diff">
+<code class="descname">collect_diff</code><span class="sig-paren">(</span><em>want</em>, <em>got</em>, <em>html</em>, <em>indent</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.collect_diff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.collect_diff_end_tag">
+<code class="descname">collect_diff_end_tag</code><span class="sig-paren">(</span><em>want</em>, <em>got</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.collect_diff_end_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.collect_diff_tag">
+<code class="descname">collect_diff_tag</code><span class="sig-paren">(</span><em>want</em>, <em>got</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.collect_diff_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.collect_diff_text">
+<code class="descname">collect_diff_text</code><span class="sig-paren">(</span><em>want</em>, <em>got</em>, <em>strip=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.collect_diff_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.compare_docs">
+<code class="descname">compare_docs</code><span class="sig-paren">(</span><em>want</em>, <em>got</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.compare_docs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.empty_tags">
+<code class="descname">empty_tags</code><em class="property"> = ('param', 'img', 'area', 'br', 'basefont', 'input', 'base', 'meta', 'link', 'col')</em><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.empty_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.format_doc">
+<code class="descname">format_doc</code><span class="sig-paren">(</span><em>doc</em>, <em>html</em>, <em>indent</em>, <em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.format_doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.format_end_tag">
+<code class="descname">format_end_tag</code><span class="sig-paren">(</span><em>el</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.format_end_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.format_tag">
+<code class="descname">format_tag</code><span class="sig-paren">(</span><em>el</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.format_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.format_text">
+<code class="descname">format_text</code><span class="sig-paren">(</span><em>text</em>, <em>strip=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.format_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.get_default_parser">
+<code class="descname">get_default_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.get_default_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.get_parser">
+<code class="descname">get_parser</code><span class="sig-paren">(</span><em>want</em>, <em>got</em>, <em>optionflags</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.get_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.html_empty_tag">
+<code class="descname">html_empty_tag</code><span class="sig-paren">(</span><em>el</em>, <em>html=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.html_empty_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.output_difference">
+<code class="descname">output_difference</code><span class="sig-paren">(</span><em>example</em>, <em>got</em>, <em>optionflags</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.output_difference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.tag_compare">
+<code class="descname">tag_compare</code><span class="sig-paren">(</span><em>want</em>, <em>got</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.tag_compare" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare.LXMLOutputChecker.text_compare">
+<code class="descname">text_compare</code><span class="sig-paren">(</span><em>want</em>, <em>got</em>, <em>strip</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.LXMLOutputChecker.text_compare" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.doctestcompare._RestoreChecker">
+<em class="property">class </em><code class="descclassname">lxml.doctestcompare.</code><code class="descname">_RestoreChecker</code><span class="sig-paren">(</span><em>dt_self</em>, <em>old_checker</em>, <em>new_checker</em>, <em>check_func</em>, <em>clone_func</em>, <em>del_module</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.call_super">
+<code class="descname">call_super</code><span class="sig-paren">(</span><em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.call_super" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.install_clone">
+<code class="descname">install_clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.install_clone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.install_dt_self">
+<code class="descname">install_dt_self</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.install_dt_self" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.uninstall_clone">
+<code class="descname">uninstall_clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.uninstall_clone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.uninstall_dt_self">
+<code class="descname">uninstall_dt_self</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.uninstall_dt_self" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.doctestcompare._RestoreChecker.uninstall_module">
+<code class="descname">uninstall_module</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._RestoreChecker.uninstall_module" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare._find_doctest_frame">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">_find_doctest_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare._find_doctest_frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare.html_fromstring">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">html_fromstring</code><span class="sig-paren">(</span><em>html</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.html_fromstring" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare.install">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">install</code><span class="sig-paren">(</span><em>html=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install doctestcompare for all future doctests.</p>
+<p>If html is true, then by default the HTML parser will be used;
+otherwise the XML parser is used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare.norm_whitespace">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">norm_whitespace</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.norm_whitespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare.strip">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">strip</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.strip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.doctestcompare.temp_install">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">temp_install</code><span class="sig-paren">(</span><em>html=False</em>, <em>del_module=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.doctestcompare.temp_install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this <em>inside</em> a doctest to enable this checker for this
+doctest only.</p>
+<p>If html is true, then by default the HTML parser will be used;
+otherwise the XML parser is used.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare.NOPARSE_MARKUP">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">NOPARSE_MARKUP</code><em class="property"> = 8192</em><a class="headerlink" href="#lxml.doctestcompare.NOPARSE_MARKUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>int(x=0) -&gt; integer
+int(x, base=10) -&gt; integer</p>
+<p>Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.</p>
+<p>If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by &#8216;+&#8217; or &#8216;-&#8216; and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+&gt;&gt;&gt; int(&#8216;0b100&#8217;, base=0)
+4</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare.PARSE_HTML">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">PARSE_HTML</code><em class="property"> = 2048</em><a class="headerlink" href="#lxml.doctestcompare.PARSE_HTML" title="Permalink to this definition">¶</a></dt>
+<dd><p>int(x=0) -&gt; integer
+int(x, base=10) -&gt; integer</p>
+<p>Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.</p>
+<p>If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by &#8216;+&#8217; or &#8216;-&#8216; and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+&gt;&gt;&gt; int(&#8216;0b100&#8217;, base=0)
+4</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare.PARSE_XML">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">PARSE_XML</code><em class="property"> = 4096</em><a class="headerlink" href="#lxml.doctestcompare.PARSE_XML" title="Permalink to this definition">¶</a></dt>
+<dd><p>int(x=0) -&gt; integer
+int(x, base=10) -&gt; integer</p>
+<p>Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.</p>
+<p>If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by &#8216;+&#8217; or &#8216;-&#8216; and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+&gt;&gt;&gt; int(&#8216;0b100&#8217;, base=0)
+4</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare._IS_PYTHON_3">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">_IS_PYTHON_3</code><em class="property"> = True</em><a class="headerlink" href="#lxml.doctestcompare._IS_PYTHON_3" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool(x) -&gt; bool</p>
+<p>Returns True when the argument x is true, False otherwise.
+The builtins True and False are the only two instances of the class bool.
+The class bool is a subclass of the class int, and cannot be subclassed.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare._html_parser">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">_html_parser</code><em class="property"> = &lt;lxml.etree.HTMLParser object&gt;</em><a class="headerlink" href="#lxml.doctestcompare._html_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>HTMLParser(self, encoding=None, remove_blank_text=False,                    remove_comments=False, remove_pis=False, strip_cdata=True,                    no_network=True, target=None, schema: XMLSchema =None,                    recover=True, compact=True, collect_ids=True)</p>
+<p>The HTML parser.</p>
+<p>This parser allows reading HTML into a normal XML tree.  By
+default, it can read broken (non well-formed) HTML, depending on
+the capabilities of libxml2.  Use the &#8216;recover&#8217; option to switch
+this off.</p>
+<p>Available boolean keyword arguments:</p>
+<ul class="simple">
+<li>recover            - try hard to parse through broken HTML (default: True)</li>
+<li>no_network         - prevent network access for related files (default: True)</li>
+<li>remove_blank_text  - discard empty text nodes that are ignorable (i.e. not actual text content)</li>
+<li>remove_comments    - discard comments</li>
+<li>remove_pis         - discard processing instructions</li>
+<li>strip_cdata        - replace CDATA sections by normal text content (default: True)</li>
+<li>compact            - save memory for short text content (default: True)</li>
+<li>default_doctype    - add a default doctype even if it is not found in the HTML (default: True)</li>
+<li>collect_ids        - use a hash table of XML IDs for fast access (default: True)</li>
+</ul>
+<p>Other keyword arguments:</p>
+<ul class="simple">
+<li>encoding - override the document encoding</li>
+<li>target   - a parser target object that will receive the parse events</li>
+<li>schema   - an XMLSchema to validate against</li>
+</ul>
+<p>Note that you should avoid sharing parsers between threads for performance
+reasons.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare._norm_whitespace_re">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">_norm_whitespace_re</code><em class="property"> = re.compile('[ \\t\\n][ \\t\\n]+')</em><a class="headerlink" href="#lxml.doctestcompare._norm_whitespace_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.doctestcompare._repr_re">
+<code class="descclassname">lxml.doctestcompare.</code><code class="descname">_repr_re</code><em class="property"> = re.compile('^&lt;[^&gt;]+ (at|object) ')</em><a class="headerlink" href="#lxml.doctestcompare._repr_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

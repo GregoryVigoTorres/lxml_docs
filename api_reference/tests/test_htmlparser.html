@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.tests.test_htmlparser &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.tests.test_htmlparser</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.tests.test_htmlparser</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/tests/test_htmlparser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-tests-test-htmlparser">
+<h1>lxml.tests.test_htmlparser<a class="headerlink" href="#lxml-tests-test-htmlparser" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_htmlparser.</code><code class="descname">HtmlParserTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>HTML parser test cases</p>
+<dl class="attribute">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.broken_html_str">
+<code class="descname">broken_html_str</code><em class="property"> = b'&lt;html&gt;&lt;head&gt;&lt;title&gt;test&lt;body&gt;&lt;h1&gt;page title&lt;/h3&gt;&lt;/p&gt;&lt;/html&gt;'</em><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.broken_html_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.etree">
+<code class="descname">etree</code><em class="property"> = &lt;module 'lxml.etree' from '/home/lemur/LibCode/my_lxml.git/src/lxml/etree.cpython-36m-x86_64-linux-gnu.so'&gt;</em><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.etree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.html_str">
+<code class="descname">html_str</code><em class="property"> = b'&lt;html&gt;&lt;head&gt;&lt;title&gt;test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;page title&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'</em><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.html_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.html_str_pretty">
+<code class="descname">html_str_pretty</code><em class="property"> = b'&lt;html&gt;\n&lt;head&gt;&lt;title&gt;test&lt;/title&gt;&lt;/head&gt;\n&lt;body&gt;&lt;h1&gt;page title&lt;/h1&gt;&lt;/body&gt;\n&lt;/html&gt;\n'</em><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.html_str_pretty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute">
+<code class="descname">test_boolean_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute_round_trip">
+<code class="descname">test_boolean_attribute_round_trip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute_round_trip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute_xml_adds_empty_string">
+<code class="descname">test_boolean_attribute_xml_adds_empty_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_boolean_attribute_xml_adds_empty_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_default_parser_HTML_broken">
+<code class="descname">test_default_parser_HTML_broken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_default_parser_HTML_broken" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html5_doctype">
+<code class="descname">test_html5_doctype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html5_doctype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_colon">
+<code class="descname">test_html_element_name_colon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_colon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_empty">
+<code class="descname">test_html_element_name_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_quote">
+<code class="descname">test_html_element_name_quote</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_quote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_space">
+<code class="descname">test_html_element_name_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_element_name_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser">
+<code class="descname">test_html_feed_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser_chunky">
+<code class="descname">test_html_feed_parser_chunky</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser_chunky" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser_more_tags">
+<code class="descname">test_html_feed_parser_more_tags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_feed_parser_more_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_file_error">
+<code class="descname">test_html_file_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_file_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_fromstring_target_exceptions">
+<code class="descname">test_html_fromstring_target_exceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_fromstring_target_exceptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_ids">
+<code class="descname">test_html_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_ids_no_collect_ids">
+<code class="descname">test_html_ids_no_collect_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_ids_no_collect_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse">
+<code class="descname">test_html_iterparse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_broken">
+<code class="descname">test_html_iterparse_broken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_broken" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_broken_no_recover">
+<code class="descname">test_html_iterparse_broken_no_recover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_broken_no_recover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_file">
+<code class="descname">test_html_iterparse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_start">
+<code class="descname">test_html_iterparse_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_stop_short">
+<code class="descname">test_html_iterparse_stop_short</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_iterparse_stop_short" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_empty">
+<code class="descname">test_html_parser_target_doctype_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_html">
+<code class="descname">test_html_parser_target_doctype_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_html_full">
+<code class="descname">test_html_parser_target_doctype_html_full</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_doctype_html_full" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_exceptions">
+<code class="descname">test_html_parser_target_exceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_exceptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_tag">
+<code class="descname">test_html_parser_target_tag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_parser_target_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_colon">
+<code class="descname">test_html_subelement_name_colon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_colon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_empty">
+<code class="descname">test_html_subelement_name_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_quote">
+<code class="descname">test_html_subelement_name_quote</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_quote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_space">
+<code class="descname">test_html_subelement_name_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_html_subelement_name_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_ietf_decl">
+<code class="descname">test_ietf_decl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_ietf_decl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML">
+<code class="descname">test_module_HTML</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_access">
+<code class="descname">test_module_HTML_access</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_access" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_broken">
+<code class="descname">test_module_HTML_broken</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_broken" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_cdata">
+<code class="descname">test_module_HTML_cdata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_cdata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_pretty_print">
+<code class="descname">test_module_HTML_pretty_print</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_unicode">
+<code class="descname">test_module_HTML_unicode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_HTML_unicode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html">
+<code class="descname">test_module_parse_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_default_doctype">
+<code class="descname">test_module_parse_html_default_doctype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_default_doctype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_error">
+<code class="descname">test_module_parse_html_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_filelike">
+<code class="descname">test_module_parse_html_filelike</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_filelike" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_norecover">
+<code class="descname">test_module_parse_html_norecover</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_module_parse_html_norecover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_parse_encoding_8bit_explicit">
+<code class="descname">test_parse_encoding_8bit_explicit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_parse_encoding_8bit_explicit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_parse_encoding_8bit_override">
+<code class="descname">test_parse_encoding_8bit_override</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_parse_encoding_8bit_override" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_set_decl_html">
+<code class="descname">test_set_decl_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_set_decl_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.test_wide_unicode_xml">
+<code class="descname">test_wide_unicode_xml</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.test_wide_unicode_xml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_htmlparser.HtmlParserTestCase.uhtml_str">
+<code class="descname">uhtml_str</code><em class="property"> = '&lt;html&gt;&lt;head&gt;&lt;title&gt;test Ã¡\uf8d2&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;page Ã¡\uf8d2 title&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;'</em><a class="headerlink" href="#lxml.tests.test_htmlparser.HtmlParserTestCase.uhtml_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.test_htmlparser.test_suite">
+<code class="descclassname">lxml.tests.test_htmlparser.</code><code class="descname">test_suite</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_htmlparser.test_suite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

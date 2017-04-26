@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.tests.test_xmlschema &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.tests.test_xmlschema</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.tests.test_xmlschema</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/tests/test_xmlschema.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-tests-test-xmlschema">
+<h1>lxml.tests.test_xmlschema<a class="headerlink" href="#lxml-tests-test-xmlschema" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_xmlschema.</code><code class="descname">ETreeXMLSchemaResolversTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_ext">
+<code class="descname">resolver_schema_ext</code><em class="property"> = '&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;\n    targetNamespace=&quot;http://codespeak.net/lxml/test/external&quot;&gt;\n    &lt;xsd:complexType name=&quot;AType&quot;&gt;\n      &lt;xsd:sequence&gt;&lt;xsd:element name=&quot;b&quot; type=&quot;xsd:string&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot; /&gt;&lt;/xsd:sequence&gt;\n    &lt;/xsd:complexType&gt;\n&lt;/xsd:schema&gt;'</em><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_int">
+<code class="descname">resolver_schema_int</code><em class="property"> = &lt;_io.BytesIO object&gt;</em><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_int2">
+<code class="descname">resolver_schema_int2</code><em class="property"> = &lt;_io.BytesIO object&gt;</em><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.resolver_schema_int2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.simple_resolver">
+<em class="property">class </em><code class="descname">simple_resolver</code><span class="sig-paren">(</span><em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.simple_resolver" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.simple_resolver.resolve">
+<code class="descname">resolve</code><span class="sig-paren">(</span><em>url</em>, <em>id</em>, <em>context</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.simple_resolver.resolve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_nested_resolvers">
+<code class="descname">test_xmlschema_nested_resolvers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_nested_resolvers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers">
+<code class="descname">test_xmlschema_resolvers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers_noroot">
+<code class="descname">test_xmlschema_resolvers_noroot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers_noroot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers_root">
+<code class="descname">test_xmlschema_resolvers_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaResolversTestCase.test_xmlschema_resolvers_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_xmlschema.</code><code class="descname">ETreeXMLSchemaTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_create_from_partial_doc">
+<code class="descname">test_create_from_partial_doc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_create_from_partial_doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema">
+<code class="descname">test_xmlschema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_comment_error">
+<code class="descname">test_xmlschema_comment_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_comment_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_default_attributes">
+<code class="descname">test_xmlschema_default_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_default_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_elementtree_error">
+<code class="descname">test_xmlschema_elementtree_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_elementtree_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_error_log">
+<code class="descname">test_xmlschema_error_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_error_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_file">
+<code class="descname">test_xmlschema_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_illegal_validation_error">
+<code class="descname">test_xmlschema_illegal_validation_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_illegal_validation_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_import_file">
+<code class="descname">test_xmlschema_import_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_import_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_invalid_schema1">
+<code class="descname">test_xmlschema_invalid_schema1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_invalid_schema1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_invalid_schema2">
+<code class="descname">test_xmlschema_invalid_schema2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_invalid_schema2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_iterparse">
+<code class="descname">test_xmlschema_iterparse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_iterparse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_iterparse_fail">
+<code class="descname">test_xmlschema_iterparse_fail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_iterparse_fail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse">
+<code class="descname">test_xmlschema_parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_default_attributes">
+<code class="descname">test_xmlschema_parse_default_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_default_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_default_attributes_schema_config">
+<code class="descname">test_xmlschema_parse_default_attributes_schema_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_default_attributes_schema_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_fixed_attributes">
+<code class="descname">test_xmlschema_parse_fixed_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_parse_fixed_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_shortcut">
+<code class="descname">test_xmlschema_shortcut</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_shortcut" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_stringio">
+<code class="descname">test_xmlschema_stringio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.ETreeXMLSchemaTestCase.test_xmlschema_stringio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.test_xmlschema.test_suite">
+<code class="descclassname">lxml.tests.test_xmlschema.</code><code class="descname">test_suite</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_xmlschema.test_suite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

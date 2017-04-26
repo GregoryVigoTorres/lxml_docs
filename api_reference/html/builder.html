@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.html.builder &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.html.builder</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.html.builder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/html/builder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-html-builder">
+<h1>lxml.html.builder<a class="headerlink" href="#lxml-html-builder" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lxml.html.builder.CLASS">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">CLASS</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.builder.CLASS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.builder.FOR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FOR</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.builder.FOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.A">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">A</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'a')</em><a class="headerlink" href="#lxml.html.builder.A" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.ABBR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">ABBR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'abbr')</em><a class="headerlink" href="#lxml.html.builder.ABBR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id5"><span class="problematic" id="id6">*</span></a>args, <a href="#id7"><span class="problematic" id="id8">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.ACRONYM">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">ACRONYM</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'acronym')</em><a class="headerlink" href="#lxml.html.builder.ACRONYM" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id9"><span class="problematic" id="id10">*</span></a>args, <a href="#id11"><span class="problematic" id="id12">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.ADDRESS">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">ADDRESS</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'address')</em><a class="headerlink" href="#lxml.html.builder.ADDRESS" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id13"><span class="problematic" id="id14">*</span></a>args, <a href="#id15"><span class="problematic" id="id16">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.APPLET">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">APPLET</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'applet')</em><a class="headerlink" href="#lxml.html.builder.APPLET" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id17"><span class="problematic" id="id18">*</span></a>args, <a href="#id19"><span class="problematic" id="id20">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.AREA">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">AREA</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'area')</em><a class="headerlink" href="#lxml.html.builder.AREA" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id21"><span class="problematic" id="id22">*</span></a>args, <a href="#id23"><span class="problematic" id="id24">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.B">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">B</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'b')</em><a class="headerlink" href="#lxml.html.builder.B" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id25"><span class="problematic" id="id26">*</span></a>args, <a href="#id27"><span class="problematic" id="id28">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BASE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BASE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'base')</em><a class="headerlink" href="#lxml.html.builder.BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id29"><span class="problematic" id="id30">*</span></a>args, <a href="#id31"><span class="problematic" id="id32">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BASEFONT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BASEFONT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'basefont')</em><a class="headerlink" href="#lxml.html.builder.BASEFONT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id33"><span class="problematic" id="id34">*</span></a>args, <a href="#id35"><span class="problematic" id="id36">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BDO">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BDO</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'bdo')</em><a class="headerlink" href="#lxml.html.builder.BDO" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id37"><span class="problematic" id="id38">*</span></a>args, <a href="#id39"><span class="problematic" id="id40">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BIG">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BIG</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'big')</em><a class="headerlink" href="#lxml.html.builder.BIG" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id41"><span class="problematic" id="id42">*</span></a>args, <a href="#id43"><span class="problematic" id="id44">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BLOCKQUOTE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BLOCKQUOTE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'blockquote')</em><a class="headerlink" href="#lxml.html.builder.BLOCKQUOTE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id45"><span class="problematic" id="id46">*</span></a>args, <a href="#id47"><span class="problematic" id="id48">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BODY">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BODY</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'body')</em><a class="headerlink" href="#lxml.html.builder.BODY" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id49"><span class="problematic" id="id50">*</span></a>args, <a href="#id51"><span class="problematic" id="id52">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'br')</em><a class="headerlink" href="#lxml.html.builder.BR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id53"><span class="problematic" id="id54">*</span></a>args, <a href="#id55"><span class="problematic" id="id56">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.BUTTON">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">BUTTON</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'button')</em><a class="headerlink" href="#lxml.html.builder.BUTTON" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id57"><span class="problematic" id="id58">*</span></a>args, <a href="#id59"><span class="problematic" id="id60">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.CAPTION">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">CAPTION</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'caption')</em><a class="headerlink" href="#lxml.html.builder.CAPTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id61"><span class="problematic" id="id62">*</span></a>args, <a href="#id63"><span class="problematic" id="id64">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.CENTER">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">CENTER</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'center')</em><a class="headerlink" href="#lxml.html.builder.CENTER" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id65"><span class="problematic" id="id66">*</span></a>args, <a href="#id67"><span class="problematic" id="id68">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.CITE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">CITE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'cite')</em><a class="headerlink" href="#lxml.html.builder.CITE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id69"><span class="problematic" id="id70">*</span></a>args, <a href="#id71"><span class="problematic" id="id72">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.CODE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">CODE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'code')</em><a class="headerlink" href="#lxml.html.builder.CODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id73"><span class="problematic" id="id74">*</span></a>args, <a href="#id75"><span class="problematic" id="id76">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.COL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">COL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'col')</em><a class="headerlink" href="#lxml.html.builder.COL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id77"><span class="problematic" id="id78">*</span></a>args, <a href="#id79"><span class="problematic" id="id80">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.COLGROUP">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">COLGROUP</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'colgroup')</em><a class="headerlink" href="#lxml.html.builder.COLGROUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id81"><span class="problematic" id="id82">*</span></a>args, <a href="#id83"><span class="problematic" id="id84">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DD">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DD</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'dd')</em><a class="headerlink" href="#lxml.html.builder.DD" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id85"><span class="problematic" id="id86">*</span></a>args, <a href="#id87"><span class="problematic" id="id88">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DEL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DEL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'del')</em><a class="headerlink" href="#lxml.html.builder.DEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id89"><span class="problematic" id="id90">*</span></a>args, <a href="#id91"><span class="problematic" id="id92">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DFN">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DFN</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'dfn')</em><a class="headerlink" href="#lxml.html.builder.DFN" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id93"><span class="problematic" id="id94">*</span></a>args, <a href="#id95"><span class="problematic" id="id96">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DIR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DIR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'dir')</em><a class="headerlink" href="#lxml.html.builder.DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id97"><span class="problematic" id="id98">*</span></a>args, <a href="#id99"><span class="problematic" id="id100">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DIV">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DIV</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'div')</em><a class="headerlink" href="#lxml.html.builder.DIV" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id101"><span class="problematic" id="id102">*</span></a>args, <a href="#id103"><span class="problematic" id="id104">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'dl')</em><a class="headerlink" href="#lxml.html.builder.DL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id105"><span class="problematic" id="id106">*</span></a>args, <a href="#id107"><span class="problematic" id="id108">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.DT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">DT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'dt')</em><a class="headerlink" href="#lxml.html.builder.DT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id109"><span class="problematic" id="id110">*</span></a>args, <a href="#id111"><span class="problematic" id="id112">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.EM">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">EM</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'em')</em><a class="headerlink" href="#lxml.html.builder.EM" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id113"><span class="problematic" id="id114">*</span></a>args, <a href="#id115"><span class="problematic" id="id116">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.FIELDSET">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FIELDSET</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'fieldset')</em><a class="headerlink" href="#lxml.html.builder.FIELDSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id117"><span class="problematic" id="id118">*</span></a>args, <a href="#id119"><span class="problematic" id="id120">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.FONT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FONT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'font')</em><a class="headerlink" href="#lxml.html.builder.FONT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id121"><span class="problematic" id="id122">*</span></a>args, <a href="#id123"><span class="problematic" id="id124">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.FORM">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FORM</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'form')</em><a class="headerlink" href="#lxml.html.builder.FORM" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id125"><span class="problematic" id="id126">*</span></a>args, <a href="#id127"><span class="problematic" id="id128">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.FRAME">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FRAME</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'frame')</em><a class="headerlink" href="#lxml.html.builder.FRAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id129"><span class="problematic" id="id130">*</span></a>args, <a href="#id131"><span class="problematic" id="id132">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.FRAMESET">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">FRAMESET</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'frameset')</em><a class="headerlink" href="#lxml.html.builder.FRAMESET" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id133"><span class="problematic" id="id134">*</span></a>args, <a href="#id135"><span class="problematic" id="id136">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H1">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H1</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h1')</em><a class="headerlink" href="#lxml.html.builder.H1" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id137"><span class="problematic" id="id138">*</span></a>args, <a href="#id139"><span class="problematic" id="id140">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H2">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H2</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h2')</em><a class="headerlink" href="#lxml.html.builder.H2" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id141"><span class="problematic" id="id142">*</span></a>args, <a href="#id143"><span class="problematic" id="id144">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H3">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H3</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h3')</em><a class="headerlink" href="#lxml.html.builder.H3" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id145"><span class="problematic" id="id146">*</span></a>args, <a href="#id147"><span class="problematic" id="id148">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H4">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H4</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h4')</em><a class="headerlink" href="#lxml.html.builder.H4" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id149"><span class="problematic" id="id150">*</span></a>args, <a href="#id151"><span class="problematic" id="id152">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H5">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H5</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h5')</em><a class="headerlink" href="#lxml.html.builder.H5" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id153"><span class="problematic" id="id154">*</span></a>args, <a href="#id155"><span class="problematic" id="id156">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.H6">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">H6</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'h6')</em><a class="headerlink" href="#lxml.html.builder.H6" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id157"><span class="problematic" id="id158">*</span></a>args, <a href="#id159"><span class="problematic" id="id160">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.HEAD">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">HEAD</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'head')</em><a class="headerlink" href="#lxml.html.builder.HEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id161"><span class="problematic" id="id162">*</span></a>args, <a href="#id163"><span class="problematic" id="id164">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.HR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">HR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'hr')</em><a class="headerlink" href="#lxml.html.builder.HR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id165"><span class="problematic" id="id166">*</span></a>args, <a href="#id167"><span class="problematic" id="id168">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.HTML">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">HTML</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'html')</em><a class="headerlink" href="#lxml.html.builder.HTML" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id169"><span class="problematic" id="id170">*</span></a>args, <a href="#id171"><span class="problematic" id="id172">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.I">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">I</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'i')</em><a class="headerlink" href="#lxml.html.builder.I" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id173"><span class="problematic" id="id174">*</span></a>args, <a href="#id175"><span class="problematic" id="id176">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.IFRAME">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">IFRAME</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'iframe')</em><a class="headerlink" href="#lxml.html.builder.IFRAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id177"><span class="problematic" id="id178">*</span></a>args, <a href="#id179"><span class="problematic" id="id180">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.IMG">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">IMG</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'img')</em><a class="headerlink" href="#lxml.html.builder.IMG" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id181"><span class="problematic" id="id182">*</span></a>args, <a href="#id183"><span class="problematic" id="id184">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.INPUT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">INPUT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'input')</em><a class="headerlink" href="#lxml.html.builder.INPUT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id185"><span class="problematic" id="id186">*</span></a>args, <a href="#id187"><span class="problematic" id="id188">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.INS">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">INS</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'ins')</em><a class="headerlink" href="#lxml.html.builder.INS" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id189"><span class="problematic" id="id190">*</span></a>args, <a href="#id191"><span class="problematic" id="id192">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.ISINDEX">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">ISINDEX</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'isindex')</em><a class="headerlink" href="#lxml.html.builder.ISINDEX" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id193"><span class="problematic" id="id194">*</span></a>args, <a href="#id195"><span class="problematic" id="id196">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.KBD">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">KBD</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'kbd')</em><a class="headerlink" href="#lxml.html.builder.KBD" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id197"><span class="problematic" id="id198">*</span></a>args, <a href="#id199"><span class="problematic" id="id200">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.LABEL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">LABEL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'label')</em><a class="headerlink" href="#lxml.html.builder.LABEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id201"><span class="problematic" id="id202">*</span></a>args, <a href="#id203"><span class="problematic" id="id204">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.LEGEND">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">LEGEND</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'legend')</em><a class="headerlink" href="#lxml.html.builder.LEGEND" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id205"><span class="problematic" id="id206">*</span></a>args, <a href="#id207"><span class="problematic" id="id208">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.LI">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">LI</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'li')</em><a class="headerlink" href="#lxml.html.builder.LI" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id209"><span class="problematic" id="id210">*</span></a>args, <a href="#id211"><span class="problematic" id="id212">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.LINK">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">LINK</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'link')</em><a class="headerlink" href="#lxml.html.builder.LINK" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id213"><span class="problematic" id="id214">*</span></a>args, <a href="#id215"><span class="problematic" id="id216">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.MAP">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">MAP</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'map')</em><a class="headerlink" href="#lxml.html.builder.MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id217"><span class="problematic" id="id218">*</span></a>args, <a href="#id219"><span class="problematic" id="id220">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.MENU">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">MENU</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'menu')</em><a class="headerlink" href="#lxml.html.builder.MENU" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id221"><span class="problematic" id="id222">*</span></a>args, <a href="#id223"><span class="problematic" id="id224">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.META">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">META</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'meta')</em><a class="headerlink" href="#lxml.html.builder.META" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id225"><span class="problematic" id="id226">*</span></a>args, <a href="#id227"><span class="problematic" id="id228">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.NOFRAMES">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">NOFRAMES</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'noframes')</em><a class="headerlink" href="#lxml.html.builder.NOFRAMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id229"><span class="problematic" id="id230">*</span></a>args, <a href="#id231"><span class="problematic" id="id232">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.NOSCRIPT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">NOSCRIPT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'noscript')</em><a class="headerlink" href="#lxml.html.builder.NOSCRIPT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id233"><span class="problematic" id="id234">*</span></a>args, <a href="#id235"><span class="problematic" id="id236">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.OBJECT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">OBJECT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'object')</em><a class="headerlink" href="#lxml.html.builder.OBJECT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id237"><span class="problematic" id="id238">*</span></a>args, <a href="#id239"><span class="problematic" id="id240">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.OL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">OL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'ol')</em><a class="headerlink" href="#lxml.html.builder.OL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id241"><span class="problematic" id="id242">*</span></a>args, <a href="#id243"><span class="problematic" id="id244">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.OPTGROUP">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">OPTGROUP</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'optgroup')</em><a class="headerlink" href="#lxml.html.builder.OPTGROUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id245"><span class="problematic" id="id246">*</span></a>args, <a href="#id247"><span class="problematic" id="id248">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.OPTION">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">OPTION</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'option')</em><a class="headerlink" href="#lxml.html.builder.OPTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id249"><span class="problematic" id="id250">*</span></a>args, <a href="#id251"><span class="problematic" id="id252">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.P">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">P</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'p')</em><a class="headerlink" href="#lxml.html.builder.P" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id253"><span class="problematic" id="id254">*</span></a>args, <a href="#id255"><span class="problematic" id="id256">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.PARAM">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">PARAM</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'param')</em><a class="headerlink" href="#lxml.html.builder.PARAM" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id257"><span class="problematic" id="id258">*</span></a>args, <a href="#id259"><span class="problematic" id="id260">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.PRE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">PRE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'pre')</em><a class="headerlink" href="#lxml.html.builder.PRE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id261"><span class="problematic" id="id262">*</span></a>args, <a href="#id263"><span class="problematic" id="id264">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.Q">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">Q</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'q')</em><a class="headerlink" href="#lxml.html.builder.Q" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id265"><span class="problematic" id="id266">*</span></a>args, <a href="#id267"><span class="problematic" id="id268">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.S">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">S</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 's')</em><a class="headerlink" href="#lxml.html.builder.S" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id269"><span class="problematic" id="id270">*</span></a>args, <a href="#id271"><span class="problematic" id="id272">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SAMP">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SAMP</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'samp')</em><a class="headerlink" href="#lxml.html.builder.SAMP" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id273"><span class="problematic" id="id274">*</span></a>args, <a href="#id275"><span class="problematic" id="id276">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SCRIPT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SCRIPT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'script')</em><a class="headerlink" href="#lxml.html.builder.SCRIPT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id277"><span class="problematic" id="id278">*</span></a>args, <a href="#id279"><span class="problematic" id="id280">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SELECT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SELECT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'select')</em><a class="headerlink" href="#lxml.html.builder.SELECT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id281"><span class="problematic" id="id282">*</span></a>args, <a href="#id283"><span class="problematic" id="id284">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SMALL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SMALL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'small')</em><a class="headerlink" href="#lxml.html.builder.SMALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id285"><span class="problematic" id="id286">*</span></a>args, <a href="#id287"><span class="problematic" id="id288">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SPAN">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SPAN</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'span')</em><a class="headerlink" href="#lxml.html.builder.SPAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id289"><span class="problematic" id="id290">*</span></a>args, <a href="#id291"><span class="problematic" id="id292">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.STRIKE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">STRIKE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'strike')</em><a class="headerlink" href="#lxml.html.builder.STRIKE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id293"><span class="problematic" id="id294">*</span></a>args, <a href="#id295"><span class="problematic" id="id296">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.STRONG">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">STRONG</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'strong')</em><a class="headerlink" href="#lxml.html.builder.STRONG" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id297"><span class="problematic" id="id298">*</span></a>args, <a href="#id299"><span class="problematic" id="id300">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.STYLE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">STYLE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'style')</em><a class="headerlink" href="#lxml.html.builder.STYLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id301"><span class="problematic" id="id302">*</span></a>args, <a href="#id303"><span class="problematic" id="id304">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SUB">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SUB</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'sub')</em><a class="headerlink" href="#lxml.html.builder.SUB" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id305"><span class="problematic" id="id306">*</span></a>args, <a href="#id307"><span class="problematic" id="id308">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.SUP">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">SUP</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'sup')</em><a class="headerlink" href="#lxml.html.builder.SUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id309"><span class="problematic" id="id310">*</span></a>args, <a href="#id311"><span class="problematic" id="id312">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TABLE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TABLE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'table')</em><a class="headerlink" href="#lxml.html.builder.TABLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id313"><span class="problematic" id="id314">*</span></a>args, <a href="#id315"><span class="problematic" id="id316">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TBODY">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TBODY</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'tbody')</em><a class="headerlink" href="#lxml.html.builder.TBODY" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id317"><span class="problematic" id="id318">*</span></a>args, <a href="#id319"><span class="problematic" id="id320">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TD">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TD</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'td')</em><a class="headerlink" href="#lxml.html.builder.TD" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id321"><span class="problematic" id="id322">*</span></a>args, <a href="#id323"><span class="problematic" id="id324">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TEXTAREA">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TEXTAREA</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'textarea')</em><a class="headerlink" href="#lxml.html.builder.TEXTAREA" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id325"><span class="problematic" id="id326">*</span></a>args, <a href="#id327"><span class="problematic" id="id328">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TFOOT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TFOOT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'tfoot')</em><a class="headerlink" href="#lxml.html.builder.TFOOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id329"><span class="problematic" id="id330">*</span></a>args, <a href="#id331"><span class="problematic" id="id332">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TH">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TH</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'th')</em><a class="headerlink" href="#lxml.html.builder.TH" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id333"><span class="problematic" id="id334">*</span></a>args, <a href="#id335"><span class="problematic" id="id336">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.THEAD">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">THEAD</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'thead')</em><a class="headerlink" href="#lxml.html.builder.THEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id337"><span class="problematic" id="id338">*</span></a>args, <a href="#id339"><span class="problematic" id="id340">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TITLE">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TITLE</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'title')</em><a class="headerlink" href="#lxml.html.builder.TITLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id341"><span class="problematic" id="id342">*</span></a>args, <a href="#id343"><span class="problematic" id="id344">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'tr')</em><a class="headerlink" href="#lxml.html.builder.TR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id345"><span class="problematic" id="id346">*</span></a>args, <a href="#id347"><span class="problematic" id="id348">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.TT">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">TT</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'tt')</em><a class="headerlink" href="#lxml.html.builder.TT" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id349"><span class="problematic" id="id350">*</span></a>args, <a href="#id351"><span class="problematic" id="id352">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.U">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">U</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'u')</em><a class="headerlink" href="#lxml.html.builder.U" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id353"><span class="problematic" id="id354">*</span></a>args, <a href="#id355"><span class="problematic" id="id356">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.UL">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">UL</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'ul')</em><a class="headerlink" href="#lxml.html.builder.UL" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id357"><span class="problematic" id="id358">*</span></a>args, <a href="#id359"><span class="problematic" id="id360">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.VAR">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">VAR</code><em class="property"> = functools.partial(&lt;lxml.builder.ElementMaker object&gt;, 'var')</em><a class="headerlink" href="#lxml.html.builder.VAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>partial(func, <a href="#id361"><span class="problematic" id="id362">*</span></a>args, <a href="#id363"><span class="problematic" id="id364">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.builder.html_parser">
+<code class="descclassname">lxml.html.builder.</code><code class="descname">html_parser</code><em class="property"> = &lt;lxml.html.HTMLParser object&gt;</em><a class="headerlink" href="#lxml.html.builder.html_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>An HTML parser that is configured to return lxml.html Element
+objects.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

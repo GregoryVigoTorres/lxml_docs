@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.tests.test_threading &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.tests.test_threading</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.tests.test_threading</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/tests/test_threading.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-tests-test-threading">
+<h1>lxml.tests.test_threading<a class="headerlink" href="#lxml-tests-test-threading" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_threading.</code><code class="descname">ThreadPipelineTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Threading tests based on a thread worker pipeline.</p>
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndExtendWorker">
+<em class="property">class </em><code class="descname">ParseAndExtendWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndExtendWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndExtendWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em>, <em>_fromstring=&lt;cyfunction fromstring&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndExtendWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndInjectWorker">
+<em class="property">class </em><code class="descname">ParseAndInjectWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndInjectWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndInjectWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em>, <em>_fromstring=&lt;cyfunction fromstring&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseAndInjectWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseWorker">
+<em class="property">class </em><code class="descname">ParseWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ParseWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>xml</em>, <em>_fromstring=&lt;cyfunction fromstring&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ParseWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ReverseWorker">
+<em class="property">class </em><code class="descname">ReverseWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ReverseWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.ReverseWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.ReverseWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.RotateWorker">
+<em class="property">class </em><code class="descname">RotateWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.RotateWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.RotateWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.RotateWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.SerialiseWorker">
+<em class="property">class </em><code class="descname">SerialiseWorker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.SerialiseWorker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.SerialiseWorker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.SerialiseWorker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.Validate">
+<em class="property">class </em><code class="descname">Validate</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.Validate" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.Validate.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.Validate.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.Worker">
+<em class="property">class </em><code class="descname">Worker</code><span class="sig-paren">(</span><em>in_queue</em>, <em>in_count</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.Worker" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.Worker.handle">
+<code class="descname">handle</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.Worker.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.Worker.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.Worker.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase._build_pipeline">
+<code class="descname">_build_pipeline</code><span class="sig-paren">(</span><em>item_count</em>, <em>*classes</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase._build_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.etree">
+<code class="descname">etree</code><em class="property"> = &lt;module 'lxml.etree' from '/home/lemur/LibCode/my_lxml.git/src/lxml/etree.cpython-36m-x86_64-linux-gnu.so'&gt;</em><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.etree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.item_count">
+<code class="descname">item_count</code><em class="property"> = 40</em><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.item_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.test_thread_pipeline_global_parse">
+<code class="descname">test_thread_pipeline_global_parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.test_thread_pipeline_global_parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.test_thread_pipeline_thread_parse">
+<code class="descname">test_thread_pipeline_thread_parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.test_thread_pipeline_thread_parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_threading.ThreadPipelineTestCase.xml">
+<code class="descname">xml</code><em class="property"> = b'&lt;!DOCTYPE threadtest [\n    &lt;!ELEMENT threadtest (thread-tag1,thread-tag2)+&gt;\n    &lt;!ATTLIST threadtest\n        version    CDATA  &quot;1.0&quot;\n    &gt;\n    &lt;!ELEMENT thread-tag1 EMPTY&gt;\n    &lt;!ELEMENT thread-tag2 (div)&gt;\n    &lt;!ELEMENT div (threaded)&gt;\n    &lt;!ATTLIST div\n        huhu  CDATA  #IMPLIED\n    &gt;\n    &lt;!ELEMENT threaded EMPTY&gt;\n    &lt;!ATTLIST threaded\n        host  CDATA  #REQUIRED\n    &gt;\n]&gt;\n&lt;threadtest version=&quot;123&quot;&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n  &lt;thread-tag1 /&gt;\n  &lt;thread-tag2&gt;\n    &lt;div huhu=&quot;true&quot;&gt;\n       &lt;threaded host=&quot;here&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/thread-tag2&gt;\n\n&lt;/threadtest&gt;'</em><a class="headerlink" href="#lxml.tests.test_threading.ThreadPipelineTestCase.xml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lxml.tests.test_threading.ThreadingTestCase">
+<em class="property">class </em><code class="descclassname">lxml.tests.test_threading.</code><code class="descname">ThreadingTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Threading tests</p>
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase._run_thread">
+<code class="descname">_run_thread</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase._run_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase._run_threads">
+<code class="descname">_run_threads</code><span class="sig-paren">(</span><em>count</em>, <em>func</em>, <em>main_func=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase._run_threads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.etree">
+<code class="descname">etree</code><em class="property"> = &lt;module 'lxml.etree' from '/home/lemur/LibCode/my_lxml.git/src/lxml/etree.cpython-36m-x86_64-linux-gnu.so'&gt;</em><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.etree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_concurrent_attribute_names_in_dicts">
+<code class="descname">test_concurrent_attribute_names_in_dicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_concurrent_attribute_names_in_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_concurrent_class_lookup">
+<code class="descname">test_concurrent_class_lookup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_concurrent_class_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_concurrent_proxies">
+<code class="descname">test_concurrent_proxies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_concurrent_proxies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_main_xslt_in_thread">
+<code class="descname">test_main_xslt_in_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_main_xslt_in_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_subtree_copy_thread">
+<code class="descname">test_subtree_copy_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_subtree_copy_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_thread_create_xslt">
+<code class="descname">test_thread_create_xslt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_thread_create_xslt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_thread_error_log">
+<code class="descname">test_thread_error_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_thread_error_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_thread_mix">
+<code class="descname">test_thread_mix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_thread_mix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_thread_xslt">
+<code class="descname">test_thread_xslt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_thread_xslt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.tests.test_threading.ThreadingTestCase.test_thread_xslt_attr_replace">
+<code class="descname">test_thread_xslt_attr_replace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.ThreadingTestCase.test_thread_xslt_attr_replace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.test_threading.test_suite">
+<code class="descclassname">lxml.tests.test_threading.</code><code class="descname">test_suite</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.test_threading.test_suite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

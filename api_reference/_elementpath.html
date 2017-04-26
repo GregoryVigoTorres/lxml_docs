@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>_elementpath &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../about.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">_elementpath</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>_elementpath</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api_reference/_elementpath.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../tutorial.html">Tutorial</a>
+            <a href="../docindex.html">Docs</a>
+            <a href="../api_reference.html">API Reference</a>
+            <a href="../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="elementpath">
+<h1>_elementpath<a class="headerlink" href="#elementpath" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lxml._elementpath._build_path_iterator">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">_build_path_iterator</code><span class="sig-paren">(</span><em>path</em>, <em>namespaces</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath._build_path_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>compile selector pattern</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.find">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">find</code><span class="sig-paren">(</span><em>elem</em>, <em>path</em>, <em>namespaces=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.find" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.findall">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">findall</code><span class="sig-paren">(</span><em>elem</em>, <em>path</em>, <em>namespaces=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.findall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.findtext">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">findtext</code><span class="sig-paren">(</span><em>elem</em>, <em>path</em>, <em>default=None</em>, <em>namespaces=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.findtext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.iterfind">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">iterfind</code><span class="sig-paren">(</span><em>elem</em>, <em>path</em>, <em>namespaces=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.iterfind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_child">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_child</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_descendant">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_descendant</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_descendant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_parent">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_parent</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_predicate">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_predicate</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_predicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_self">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_self</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_self" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.prepare_star">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">prepare_star</code><span class="sig-paren">(</span><em>next</em>, <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.prepare_star" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml._elementpath.xpath_tokenizer">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">xpath_tokenizer</code><span class="sig-paren">(</span><em>pattern</em>, <em>namespaces=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml._elementpath.xpath_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="lxml._elementpath._cache">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">_cache</code><em class="property"> = {}</em><a class="headerlink" href="#lxml._elementpath._cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object&#8217;s</p>
+<blockquote>
+<div>(key, value) pairs</div></blockquote>
+<dl class="docutils">
+<dt>dict(iterable) -&gt; new dictionary initialized as if via:</dt>
+<dd><p class="first">d = {}
+for k, v in iterable:</p>
+<blockquote class="last">
+<div>d[k] = v</div></blockquote>
+</dd>
+<dt>dict(<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs) -&gt; new dictionary initialized with the name=value pairs</dt>
+<dd>in the keyword argument list.  For example:  dict(one=1, two=2)</dd>
+</dl>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml._elementpath.ops">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">ops</code><em class="property"> = {'': &lt;function prepare_child&gt;, '*': &lt;function prepare_star&gt;, '.': &lt;function prepare_self&gt;, '..': &lt;function prepare_parent&gt;, '//': &lt;function prepare_descendant&gt;, '[': &lt;function prepare_predicate&gt;}</em><a class="headerlink" href="#lxml._elementpath.ops" title="Permalink to this definition">¶</a></dt>
+<dd><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object&#8217;s</p>
+<blockquote>
+<div>(key, value) pairs</div></blockquote>
+<dl class="docutils">
+<dt>dict(iterable) -&gt; new dictionary initialized as if via:</dt>
+<dd><p class="first">d = {}
+for k, v in iterable:</p>
+<blockquote class="last">
+<div>d[k] = v</div></blockquote>
+</dd>
+<dt>dict(<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs) -&gt; new dictionary initialized with the name=value pairs</dt>
+<dd>in the keyword argument list.  For example:  dict(one=1, two=2)</dd>
+</dl>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml._elementpath.xpath_tokenizer_re">
+<code class="descclassname">lxml._elementpath.</code><code class="descname">xpath_tokenizer_re</code><em class="property"> = re.compile('(\'[^\']*\'|&quot;[^&quot;]*&quot;|::|//?|\\.\\.|\\(\\)|[/.*:\\[\\]\\(\\)&#64;=])|((?:\\{[^}]+\\})?[^/\\[\\]\\(\\)&#64;=\\s]+)|\\s+')</em><a class="headerlink" href="#lxml._elementpath.xpath_tokenizer_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

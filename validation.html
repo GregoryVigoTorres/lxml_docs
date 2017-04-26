@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Validation with lxml &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Validation with lxml</a><ul>
+<li><a class="reference internal" href="#validation-at-parse-time">Validation at parse time</a></li>
+<li><a class="reference internal" href="#id1">DTD</a></li>
+<li><a class="reference internal" href="#relaxng">RelaxNG</a></li>
+<li><a class="reference internal" href="#xmlschema">XMLSchema</a></li>
+<li><a class="reference internal" href="#id2">Schematron</a></li>
+<li><a class="reference internal" href="#id3">(Pre-ISO-Schematron)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Validation with lxml</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/validation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="validation-with-lxml">
+<h1><a class="toc-backref" href="#id4">Validation with lxml</a><a class="headerlink" href="#validation-with-lxml" title="Permalink to this headline">¶</a></h1>
+<p>Apart from the built-in DTD support in parsers, lxml currently supports three
+schema languages: <a class="reference external" href="http://en.wikipedia.org/wiki/Document_Type_Definition">DTD</a>, <a class="reference external" href="http://www.relaxng.org/">Relax NG</a> and <a class="reference external" href="http://www.w3.org/XML/Schema">XML Schema</a>.  All three provide
+identical APIs in lxml, represented by validator classes with the obvious
+names.</p>
+<p>lxml also provides support for ISO-<a class="reference external" href="http://www.schematron.com">Schematron</a>, based on the pure-XSLT
+<a class="reference external" href="http://www.schematron.com/implementation.html">skeleton implementation</a> of Schematron:</p>
+<p>There is also basic support for <cite>pre-ISO-Schematron</cite> through the libxml2
+Schematron features. However, this does not currently support error reporting
+in the validation phase due to insufficiencies in the implementation as of
+libxml2 2.6.30.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#validation-with-lxml" id="id4">Validation with lxml</a><ul>
+<li><a class="reference internal" href="#validation-at-parse-time" id="id5">Validation at parse time</a></li>
+<li><a class="reference internal" href="#id1" id="id6">DTD</a></li>
+<li><a class="reference internal" href="#relaxng" id="id7">RelaxNG</a></li>
+<li><a class="reference internal" href="#xmlschema" id="id8">XMLSchema</a></li>
+<li><a class="reference internal" href="#id2" id="id9">Schematron</a></li>
+<li><a class="reference internal" href="#id3" id="id10">(Pre-ISO-Schematron)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The usual setup procedure:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+</pre></div>
+</div>
+<div class="section" id="validation-at-parse-time">
+<h2><a class="toc-backref" href="#id5">Validation at parse time</a><a class="headerlink" href="#validation-at-parse-time" title="Permalink to this headline">¶</a></h2>
+<p>The parser in lxml can do on-the-fly validation of a document against
+a DTD or an XML schema.  The DTD is retrieved automatically based on
+the DOCTYPE of the parsed document.  All you have to do is use a
+parser that has DTD validation enabled:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">dtd_validation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Obviously, a request for validation enables the DTD loading feature.
+There are two other options that enable loading the DTD, but that do
+not perform any validation.  The first is the <code class="docutils literal"><span class="pre">load_dtd</span></code> keyword
+option, which simply loads the DTD into the parser and makes it
+available to the document as external subset.  You can retrieve the
+DTD from the parsed document using the <code class="docutils literal"><span class="pre">docinfo</span></code> property of the
+result ElementTree object.  The internal subset is available as
+<code class="docutils literal"><span class="pre">internalDTD</span></code>, the external subset is provided as <code class="docutils literal"><span class="pre">externalDTD</span></code>.</p>
+<p>The third way to activate DTD loading is with the
+<code class="docutils literal"><span class="pre">attribute_defaults</span></code> option, which loads the DTD and weaves
+attribute default values into the document.  Again, no validation is
+performed unless explicitly requested.</p>
+<p>XML schema is supported in a similar way, but requires an explicit
+schema to be provided:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema_root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">  &lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;xsd:element name=&quot;a&quot; type=&quot;xsd:integer&quot;/&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/xsd:schema&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">schema_root</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="p">(</span><span class="n">schema</span> <span class="o">=</span> <span class="n">schema</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s2">&quot;&lt;a&gt;5&lt;/a&gt;&quot;</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the validation fails (be it for a DTD or an XML schema), the parser
+will raise an exception:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s2">&quot;&lt;a&gt;no int&lt;/a&gt;&quot;</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span>  
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">lxml.etree.XMLSyntaxError</span>: <span class="n">Element &#39;a&#39;: &#39;no int&#39; is not a valid value of the atomic type &#39;xs:integer&#39;...</span>
+</pre></div>
+</div>
+<p>If you want the parser to succeed regardless of the outcome of the
+validation, you should use a non validating parser and run the
+validation separately after parsing the document.</p>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id6">DTD</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>As described above, the parser support for DTDs depends on internal or
+external subsets of the XML file.  This means that the XML file itself
+must either contain a DTD or must reference a DTD to make this work.
+If you want to validate an XML document against a DTD that is not
+referenced by the document itself, you can use the <code class="docutils literal"><span class="pre">DTD</span></code> class.</p>
+<p>To use the <code class="docutils literal"><span class="pre">DTD</span></code> class, you must first pass a filename or file-like object
+into the constructor to parse a DTD:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;&lt;!ELEMENT b EMPTY&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now you can use it to validate documents:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;b/&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dtd</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&lt;a/&gt;&lt;/b&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dtd</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>The reason for the validation failure can be found in the error log:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dtd</span><span class="o">.</span><span class="n">error_log</span><span class="o">.</span><span class="n">filter_from_errors</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">&lt;string&gt;:1:0:ERROR:VALID:DTD_NOT_EMPTY: Element b was declared EMPTY this one has content</span>
+</pre></div>
+</div>
+<p>As an alternative to parsing from a file, you can use the
+<code class="docutils literal"><span class="pre">external_id</span></code> keyword argument to parse from a catalog.  The
+following example reads the DocBook DTD in version 4.2, if available
+in the system catalog:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">external_id</span> <span class="o">=</span> <span class="s2">&quot;-//OASIS//DTD DocBook XML V4.2//EN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The DTD information is available as attributes on the DTD object. The method
+<code class="docutils literal"><span class="pre">iterelements</span></code> provides an iterator over the element declarations:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;!ELEMENT a EMPTY&gt;&lt;!ELEMENT b EMPTY&gt;&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">dtd</span><span class="o">.</span><span class="n">iterelements</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">el</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="go">a</span>
+<span class="go">b</span>
+</pre></div>
+</div>
+<p>The method <code class="docutils literal"><span class="pre">elements</span></code> returns the element declarations as a list:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;!ELEMENT a EMPTY&gt;&lt;!ELEMENT b EMPTY&gt;&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">dtd</span><span class="o">.</span><span class="n">elements</span><span class="p">())</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>An element declaration object provides the following attributes/methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">name</span></code>: The name of the element;</li>
+<li><code class="docutils literal"><span class="pre">type</span></code>: The element type, one of &#8220;undefined&#8221;, &#8220;empty&#8221;, &#8220;any&#8221;, &#8220;mixed&#8221;, or &#8220;element&#8221;;</li>
+<li><code class="docutils literal"><span class="pre">content</span></code>: Element content declaration (see below);</li>
+<li><code class="docutils literal"><span class="pre">iterattributes()</span></code>: Return an iterator over attribute declarations (see below);</li>
+<li><code class="docutils literal"><span class="pre">attributes()</span></code>: Return a list of attribute declarations.</li>
+</ul>
+</div></blockquote>
+<p>The <code class="docutils literal"><span class="pre">content</span></code> attribute contains information about the content model of the element.
+These element content declaration objects form a binary tree (via the <code class="docutils literal"><span class="pre">left</span></code> and <code class="docutils literal"><span class="pre">right</span></code>
+attributes), that makes it possible to reconstruct the content model expression. Here&#8217;s a
+list of all attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">name</span></code>: If this object represents an element in the content model expression,
+<code class="docutils literal"><span class="pre">name</span></code> is the name of the element, otherwise it is <code class="docutils literal"><span class="pre">None</span></code>;</li>
+<li><code class="docutils literal"><span class="pre">type</span></code>: The type of the node: one of &#8220;pcdata&#8221;, &#8220;element&#8221;, &#8220;seq&#8221;, or &#8220;or&#8221;;</li>
+<li><code class="docutils literal"><span class="pre">occur</span></code>: How often this element (or this combination of elements) may occur:
+one of &#8220;once&#8221;, &#8220;opt&#8221;, &#8220;mult&#8221;, or &#8220;plus&#8221;</li>
+<li><code class="docutils literal"><span class="pre">left</span></code>: The left hand subexpression</li>
+<li><code class="docutils literal"><span class="pre">right</span></code>: The right hand subexpression</li>
+</ul>
+</div></blockquote>
+<p>For example, the element declaration <code class="docutils literal"><span class="pre">&lt;!ELEMENT</span> <span class="pre">a</span> <span class="pre">(a|b)+&gt;</span></code> results
+in the following element content declaration objects:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;!ELEMENT a (a|b)+&gt;&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">content</span> <span class="o">=</span> <span class="n">dtd</span><span class="o">.</span><span class="n">elements</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">content</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">occur</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;or&#39;, &#39;plus&#39;, None)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">right</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">left</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">occur</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;element&#39;, &#39;once&#39;, &#39;a&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">right</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">occur</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">name</span>
+<span class="go">(&#39;element&#39;, &#39;once&#39;, &#39;b&#39;)</span>
+</pre></div>
+</div>
+<p>Attributes declarations have the following attributes/methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">name</span></code>: The name of the attribute;</li>
+<li><code class="docutils literal"><span class="pre">elemname</span></code>: The name of the element the attribute belongs to;</li>
+<li><code class="docutils literal"><span class="pre">type</span></code>: The attribute type, one of &#8220;cdata&#8221;, &#8220;id&#8221;, &#8220;idref&#8221;, &#8220;idrefs&#8221;, &#8220;entity&#8221;,
+&#8220;entities&#8221;, &#8220;nmtoken&#8221;, &#8220;nmtokens&#8221;, &#8220;enumeration&#8221;, or &#8220;notation&#8221;;</li>
+<li><code class="docutils literal"><span class="pre">default</span></code>: The type of the default value, one of &#8220;none&#8221;, &#8220;required&#8221;, &#8220;implied&#8221;,
+or &#8220;fixed&#8221;;</li>
+<li><code class="docutils literal"><span class="pre">defaultValue</span></code>: The default value;</li>
+<li><code class="docutils literal"><span class="pre">itervalues()</span></code>: Return an iterator over the allowed attribute values (if the attribute
+is of type &#8220;enumeration&#8221;);</li>
+<li><code class="docutils literal"><span class="pre">values()</span></code>: Return a list of allowed attribute values.</li>
+</ul>
+</div></blockquote>
+<p>Entity declarations are available via the <code class="docutils literal"><span class="pre">iterentities</span></code> and <code class="docutils literal"><span class="pre">entities</span></code> methods:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtd</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">DTD</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;!ENTITY hurz &quot;&amp;#x40;&quot;&gt;&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entity</span> <span class="o">=</span> <span class="n">dtd</span><span class="o">.</span><span class="n">entities</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entity</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">orig</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">content</span>
+<span class="go">(&#39;hurz&#39;, &#39;&amp;#x40;&#39;, &#39;@&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relaxng">
+<h2><a class="toc-backref" href="#id7">RelaxNG</a><a class="headerlink" href="#relaxng" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">RelaxNG</span></code> class takes an ElementTree object to construct a Relax NG
+validator:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;element name=&quot;a&quot; xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;</span>
+<span class="gp">... </span><span class="s1"> &lt;zeroOrMore&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;element name=&quot;b&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">      &lt;text /&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;/element&gt;</span>
+<span class="gp">... </span><span class="s1"> &lt;/zeroOrMore&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/element&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">RelaxNG</span><span class="p">(</span><span class="n">relaxng_doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, pass a filename to the <code class="docutils literal"><span class="pre">file</span></code> keyword argument to parse from
+a file.  This also enables correct handling of include files from within the
+RelaxNG parser.</p>
+<p>You can then validate some ElementTree document against the schema. You&#8217;ll get
+back True if the document is valid against the Relax NG schema, and False if
+not:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">valid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invalid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;c&gt;&lt;/c&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Calling the schema object has the same effect as calling its validate
+method. This is sometimes used in conditional statements:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">invalid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;c&gt;&lt;/c&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">relaxng</span><span class="p">(</span><span class="n">doc2</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;invalid!&quot;</span><span class="p">)</span>
+<span class="go">invalid!</span>
+</pre></div>
+</div>
+<p>If you prefer getting an exception when validating, you can use the
+<code class="docutils literal"><span class="pre">assert_</span></code> or <code class="docutils literal"><span class="pre">assertValid</span></code> methods:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng</span><span class="o">.</span><span class="n">assertValid</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">lxml.etree.DocumentInvalid</span>: <span class="n">Did not expect element c there, line 1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relaxng</span><span class="o">.</span><span class="n">assert_</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">AssertionError</span>: <span class="n">Did not expect element c there, line 1</span>
+</pre></div>
+</div>
+<p>If you want to find out why the validation failed in the second case, you can
+look up the error log of the validation process and check it for relevant
+messages:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">log</span> <span class="o">=</span> <span class="n">relaxng</span><span class="o">.</span><span class="n">error_log</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">last_error</span><span class="p">)</span>
+<span class="go">&lt;string&gt;:1:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMWRONG: Did not expect element c there</span>
+</pre></div>
+</div>
+<p>You can see that the error (ERROR) happened during RelaxNG validation
+(RELAXNGV).  The message then tells you what went wrong.  You can also
+look at the error domain and its type directly:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">last_error</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">domain_name</span><span class="p">)</span>
+<span class="go">RELAXNGV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">type_name</span><span class="p">)</span>
+<span class="go">RELAXNG_ERR_ELEMWRONG</span>
+</pre></div>
+</div>
+<p>Note that this error log is local to the RelaxNG object.  It will only
+contain log entries that appeared during the validation.</p>
+<p>Similar to XSLT, there&#8217;s also a less efficient but easier shortcut method to
+do one-shot RelaxNG validation:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">relaxng</span><span class="p">(</span><span class="n">relaxng_doc</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span><span class="o">.</span><span class="n">relaxng</span><span class="p">(</span><span class="n">relaxng_doc</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>libxml2 does not currently support the <a class="reference external" href="http://relaxng.org/compact-tutorial.html">RelaxNG Compact Syntax</a>.
+However, if <a class="reference external" href="https://pypi.python.org/pypi/rnc2rng">rnc2rng</a> is installed, lxml 3.6 and later can use it
+internally to parse the input schema.  It recognises the <cite>.rnc</cite> file
+extension and also allows parsing an RNC schema from a string using
+<cite>RelaxNG.from_rnc_string()</cite>.</p>
+<p>Alternatively, the <a class="reference external" href="http://www.thaiopensource.com/relaxng/trang.html">trang</a> translator can convert the compact syntax
+to the XML syntax, which can then be used with lxml.</p>
+</div>
+<div class="section" id="xmlschema">
+<h2><a class="toc-backref" href="#id8">XMLSchema</a><a class="headerlink" href="#xmlschema" title="Permalink to this headline">¶</a></h2>
+<p>lxml.etree also has XML Schema (XSD) support, using the class
+lxml.etree.XMLSchema.  The API is very similar to the Relax NG and DTD
+classes.  Pass an ElementTree object to construct a XMLSchema validator:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;xsd:element name=&quot;a&quot; type=&quot;AType&quot;/&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;xsd:complexType name=&quot;AType&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;xsd:sequence&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;xsd:element name=&quot;b&quot; type=&quot;xsd:string&quot; /&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/xsd:sequence&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/xsd:complexType&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/xsd:schema&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">xmlschema_doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can then validate some ElementTree document with this.  Like with RelaxNG,
+you&#8217;ll get back true if the document is valid against the XML schema, and
+false if not:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">valid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invalid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;c&gt;&lt;/c&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Calling the schema object has the same effect as calling its validate method.
+This is sometimes used in conditional statements:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">invalid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&lt;a&gt;&lt;c&gt;&lt;/c&gt;&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">xmlschema</span><span class="p">(</span><span class="n">doc2</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;invalid!&quot;</span><span class="p">)</span>
+<span class="go">invalid!</span>
+</pre></div>
+</div>
+<p>If you prefer getting an exception when validating, you can use the
+<code class="docutils literal"><span class="pre">assert_</span></code> or <code class="docutils literal"><span class="pre">assertValid</span></code> methods:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema</span><span class="o">.</span><span class="n">assertValid</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">lxml.etree.DocumentInvalid</span>: <span class="n">Element &#39;c&#39;: This element is not expected. Expected is ( b )., line 1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmlschema</span><span class="o">.</span><span class="n">assert_</span><span class="p">(</span><span class="n">doc2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">AssertionError</span>: <span class="n">Element &#39;c&#39;: This element is not expected. Expected is ( b )., line 1</span>
+</pre></div>
+</div>
+<p>Error reporting works as for the RelaxNG class:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">log</span> <span class="o">=</span> <span class="n">xmlschema</span><span class="o">.</span><span class="n">error_log</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">last_error</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">domain_name</span><span class="p">)</span>
+<span class="go">SCHEMASV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">type_name</span><span class="p">)</span>
+<span class="go">SCHEMAV_ELEMENT_CONTENT</span>
+</pre></div>
+</div>
+<p>If you were to print this log entry, you would get something like the
+following.  Note that the error message depends on the libxml2 version in
+use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="n">ERROR</span><span class="p">::</span><span class="n">SCHEMAV_ELEMENT_CONTENT</span><span class="p">:</span> <span class="n">Element</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="n">This</span> <span class="n">element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">expected</span><span class="o">.</span> <span class="n">Expected</span> <span class="ow">is</span> <span class="p">(</span> <span class="n">b</span> <span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Similar to XSLT and RelaxNG, there&#8217;s also a less efficient but easier shortcut
+method to do XML Schema validation:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">xmlschema</span><span class="p">(</span><span class="n">xmlschema_doc</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span><span class="o">.</span><span class="n">xmlschema</span><span class="p">(</span><span class="n">xmlschema_doc</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id9">Schematron</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>From version 2.3 on lxml features ISO-<a class="reference external" href="http://www.schematron.com">Schematron</a> support built on the
+de-facto reference implementation of Schematron, the pure-XSLT-1.0
+<a class="reference external" href="http://www.schematron.com/implementation.html">skeleton implementation</a>. This is provided by the lxml.isoschematron package
+that implements the Schematron class, with an API compatible to the other
+validators&#8217;.  Pass an Element or ElementTree object to construct a Schematron
+validator:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">isoschematron</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;schema xmlns=&quot;http://purl.oclc.org/dsdl/schematron&quot; &gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;pattern id=&quot;sum_equals_100_percent&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;title&gt;Sum equals 100%.&lt;/title&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;rule context=&quot;Total&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">      &lt;assert test=&quot;sum(//Percent)=100&quot;&gt;Sum is not 100%.&lt;/assert&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;/rule&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/pattern&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/schema&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sct_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span> <span class="o">=</span> <span class="n">isoschematron</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can then validate some ElementTree document with this. Just like with
+XMLSchema or RelaxNG, you&#8217;ll get back true if the document is valid against the
+schema, and false if not:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">valid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;Total&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;20&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;30&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;50&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/Total&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">getroot</span><span class="p">(),</span> <span class="s2">&quot;Percent&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;10&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Calling the schema object has the same effect as calling its validate method.
+This can be useful for conditional statements:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">isoschematron</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">is_valid</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;invalid!&quot;</span><span class="p">)</span>
+<span class="go">invalid!</span>
+</pre></div>
+</div>
+<p>Built on a pure-xslt implementation, the actual validator is created as an
+XSLT 1.0 stylesheet using these steps:</p>
+<ol class="arabic simple" start="0">
+<li>(Extract embedded Schematron from XML Schema or RelaxNG schema)</li>
+<li>Process inclusions</li>
+<li>Process abstract patterns</li>
+<li>Compile the schematron schema to XSLT</li>
+</ol>
+<p>To allow more control over the individual steps, isoschematron.Schematron
+supports an extended API:</p>
+<p>The <code class="docutils literal"><span class="pre">include</span></code> and <code class="docutils literal"><span class="pre">expand</span></code> keyword arguments can be used to switch off
+steps 1) and 2).</p>
+<p>To set parameters for steps 1), 2) and 3) dictionaries containing parameters
+for XSLT can be provided using the keyword arguments <code class="docutils literal"><span class="pre">include_params</span></code>,
+<code class="docutils literal"><span class="pre">expand_params</span></code> or <code class="docutils literal"><span class="pre">compile_params</span></code>. Schematron automatically converts these
+parameters to stylesheet parameters so you need not worry to set string
+parameters using quotes or to use XSLT.strparam(). If you ever need to pass an
+XPath as argument to the XSLT stylesheet you can pass in an etree.XPath object
+(see XPath and XSLT with lxml: <a class="reference external" href="xpathxslt.html#stylesheet-parameters">Stylesheet-parameters</a> for background on this).</p>
+<p>The <code class="docutils literal"><span class="pre">phase</span></code> parameter of the compile step is additionally exposed as a keyword
+argument. If set, it overrides occurrence in <code class="docutils literal"><span class="pre">compile_params</span></code>. Note that
+isoschematron.Schematron might expose more common parameters as additional keyword
+args in the future.</p>
+<p>By setting <code class="docutils literal"><span class="pre">store_schematron</span></code> to True, the (included-and-expanded) schematron
+document tree is stored and made available through the <code class="docutils literal"><span class="pre">schematron</span></code> property.</p>
+<p>Similarly, setting <code class="docutils literal"><span class="pre">store_xslt</span></code> to True will result in the validation XSLT
+document tree being kept; it can be retrieved through the <code class="docutils literal"><span class="pre">validator_xslt</span></code>
+property.</p>
+<p>Finally, with <code class="docutils literal"><span class="pre">store_report</span></code> set to True (default: False), the resulting
+validation report document gets stored and can be accessed as the
+<code class="docutils literal"><span class="pre">validation_report</span></code> property.</p>
+<p>Using the <code class="docutils literal"><span class="pre">phase</span></code> parameter of isoschematron.Schematron allows for selective
+validation of predefined pattern groups:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;schema xmlns=&quot;http://purl.oclc.org/dsdl/schematron&quot; &gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;phase id=&quot;phase.sum_check&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;active pattern=&quot;sum_equals_100_percent&quot;/&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/phase&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;phase id=&quot;phase.entries_check&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;active pattern=&quot;all_positive&quot;/&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/phase&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;pattern id=&quot;sum_equals_100_percent&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;title&gt;Sum equals 100%.&lt;/title&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;rule context=&quot;Total&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">      &lt;assert test=&quot;sum(//Percent)=100&quot;&gt;Sum is not 100%.&lt;/assert&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;/rule&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/pattern&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;pattern id=&quot;all_positive&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;title&gt;All entries must be positive.&lt;/title&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;rule context=&quot;Percent&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">      &lt;assert test=&quot;number(.)&gt;0&quot;&gt;Number (&lt;value-of select=&quot;.&quot;/&gt;) not positive&lt;/assert&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;/rule&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/pattern&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/schema&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sct_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span> <span class="o">=</span> <span class="n">isoschematron</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">valid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;Total&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;20&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;30&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;50&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/Total&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invalid_positive</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;Total&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;0&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;50&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;50&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/Total&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">invalid_positive</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>If the constraint of Percent entries being positive is not of interest in a
+certain validation scenario, it can now be disabled:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">selective</span> <span class="o">=</span> <span class="n">isoschematron</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="s2">&quot;phase.sum_check&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selective</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The usage of validation phases is a unique feature of ISO-Schematron and can be
+a very powerful tool e.g. for establishing validation stages or to provide
+different validators for different &#8220;validation audiences&#8221;.</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id10">(Pre-ISO-Schematron)</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Since version 2.0, lxml.etree features <a class="reference external" href="http://www.ascc.net/xml/schematron">pre-ISO-Schematron</a> support, using the
+class lxml.etree.Schematron.  It requires at least libxml2 2.6.21 to
+work.  The API is the same as for the other validators.  Pass an
+ElementTree object to construct a Schematron validator:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;schema xmlns=&quot;http://www.ascc.net/xml/schematron&quot; &gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;pattern name=&quot;Sum equals 100%.&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;rule context=&quot;Total&quot;&gt;</span>
+<span class="gp">... </span><span class="s1">      &lt;assert test=&quot;sum(//Percent)=100&quot;&gt;Sum is not 100%.&lt;/assert&gt;</span>
+<span class="gp">... </span><span class="s1">    &lt;/rule&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;/pattern&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/schema&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sct_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can then validate some ElementTree document with this.  Like with RelaxNG,
+you&#8217;ll get back true if the document is valid against the schema, and false if
+not:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">valid</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">&lt;Total&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;20&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;30&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;Percent&gt;50&lt;/Percent&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/Total&gt;</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">getroot</span><span class="p">(),</span> <span class="s2">&quot;Percent&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;10&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schematron</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Calling the schema object has the same effect as calling its validate method.
+This is sometimes used in conditional statements:</p>
+<div class="highlight-pycon"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Schematron</span><span class="p">(</span><span class="n">sct_doc</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">is_valid</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;invalid!&quot;</span><span class="p">)</span>
+<span class="go">invalid!</span>
+</pre></div>
+</div>
+<p>Note that libxml2 restricts error reporting to the parsing step (when creating
+the Schematron instance).  There is not currently any support for error
+reporting during validation.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

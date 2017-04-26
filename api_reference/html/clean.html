@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.html.clean &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.html.clean</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.html.clean</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/html/clean.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-html-clean">
+<h1>lxml.html.clean<a class="headerlink" href="#lxml-html-clean" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lxml.html.clean.Cleaner">
+<em class="property">class </em><code class="descclassname">lxml.html.clean.</code><code class="descname">Cleaner</code><span class="sig-paren">(</span><em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instances cleans the document of each of the possible offending
+elements.  The cleaning is controlled by attributes; you can
+override attributes in a subclass, or set them in the constructor.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">scripts</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> tags.</dd>
+<dt><code class="docutils literal"><span class="pre">javascript</span></code>:</dt>
+<dd>Removes any Javascript, like an <code class="docutils literal"><span class="pre">onclick</span></code> attribute. Also removes stylesheets
+as they could contain Javascript.</dd>
+<dt><code class="docutils literal"><span class="pre">comments</span></code>:</dt>
+<dd>Removes any comments.</dd>
+<dt><code class="docutils literal"><span class="pre">style</span></code>:</dt>
+<dd>Removes any style tags.</dd>
+<dt><code class="docutils literal"><span class="pre">inline_style</span></code></dt>
+<dd>Removes any style attributes.  Defaults to the value of the <code class="docutils literal"><span class="pre">style</span></code> option.</dd>
+<dt><code class="docutils literal"><span class="pre">links</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;link&gt;</span></code> tags</dd>
+<dt><code class="docutils literal"><span class="pre">meta</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;meta&gt;</span></code> tags</dd>
+<dt><code class="docutils literal"><span class="pre">page_structure</span></code>:</dt>
+<dd>Structural parts of a page: <code class="docutils literal"><span class="pre">&lt;head&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;html&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;title&gt;</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">processing_instructions</span></code>:</dt>
+<dd>Removes any processing instructions.</dd>
+<dt><code class="docutils literal"><span class="pre">embedded</span></code>:</dt>
+<dd>Removes any embedded objects (flash, iframes)</dd>
+<dt><code class="docutils literal"><span class="pre">frames</span></code>:</dt>
+<dd>Removes any frame-related tags</dd>
+<dt><code class="docutils literal"><span class="pre">forms</span></code>:</dt>
+<dd>Removes any form tags</dd>
+<dt><code class="docutils literal"><span class="pre">annoying_tags</span></code>:</dt>
+<dd>Tags that aren&#8217;t <em>wrong</em>, but are annoying.  <code class="docutils literal"><span class="pre">&lt;blink&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;marquee&gt;</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">remove_tags</span></code>:</dt>
+<dd>A list of tags to remove.  Only the tags will be removed,
+their content will get pulled up into the parent tag.</dd>
+<dt><code class="docutils literal"><span class="pre">kill_tags</span></code>:</dt>
+<dd>A list of tags to kill.  Killing also removes the tag&#8217;s content,
+i.e. the whole subtree, not just the tag itself.</dd>
+<dt><code class="docutils literal"><span class="pre">allow_tags</span></code>:</dt>
+<dd>A list of tags to include (default include all).</dd>
+<dt><code class="docutils literal"><span class="pre">remove_unknown_tags</span></code>:</dt>
+<dd>Remove any tags that aren&#8217;t standard parts of HTML.</dd>
+<dt><code class="docutils literal"><span class="pre">safe_attrs_only</span></code>:</dt>
+<dd>If true, only include &#8216;safe&#8217; attributes (specifically the list
+from the feedparser HTML sanitisation web site).</dd>
+<dt><code class="docutils literal"><span class="pre">safe_attrs</span></code>:</dt>
+<dd>A set of attribute names to override the default list of attributes
+considered &#8216;safe&#8217; (when safe_attrs_only=True).</dd>
+<dt><code class="docutils literal"><span class="pre">add_nofollow</span></code>:</dt>
+<dd>If true, then any &lt;a&gt; tags will have <code class="docutils literal"><span class="pre">rel=&quot;nofollow&quot;</span></code> added to them.</dd>
+<dt><code class="docutils literal"><span class="pre">host_whitelist</span></code>:</dt>
+<dd><p class="first">A list or set of hosts that you can use for embedded content
+(for content like <code class="docutils literal"><span class="pre">&lt;object&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;&gt;</span></code>, etc).
+You can also implement/override the method
+<code class="docutils literal"><span class="pre">allow_embedded_url(el,</span> <span class="pre">url)</span></code> or <code class="docutils literal"><span class="pre">allow_element(el)</span></code> to
+implement more complex rules for what can be embedded.
+Anything that passes this test will be shown, regardless of
+the value of (for instance) <code class="docutils literal"><span class="pre">embedded</span></code>.</p>
+<p>Note that this parameter might not work as intended if you do not
+make the links absolute before doing the cleaning.</p>
+<p class="last">Note that you may also need to set <code class="docutils literal"><span class="pre">whitelist_tags</span></code>.</p>
+</dd>
+<dt><code class="docutils literal"><span class="pre">whitelist_tags</span></code>:</dt>
+<dd>A set of tags that can be included with <code class="docutils literal"><span class="pre">host_whitelist</span></code>.
+The default is <code class="docutils literal"><span class="pre">iframe</span></code> and <code class="docutils literal"><span class="pre">embed</span></code>; you may wish to
+include other tags like <code class="docutils literal"><span class="pre">script</span></code>, or you may want to
+implement <code class="docutils literal"><span class="pre">allow_embedded_url</span></code> for more control.  Set to None to
+include all tags.</dd>
+</dl>
+<p>This modifies the document <em>in place</em>.</p>
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner._has_sneaky_javascript">
+<code class="descname">_has_sneaky_javascript</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner._has_sneaky_javascript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depending on the browser, stuff like <code class="docutils literal"><span class="pre">e</span> <span class="pre">x</span> <span class="pre">p</span> <span class="pre">r</span> <span class="pre">e</span> <span class="pre">s</span> <span class="pre">s</span> <span class="pre">i</span> <span class="pre">o</span> <span class="pre">n(...)</span></code>
+can get interpreted, or <code class="docutils literal"><span class="pre">expre/*</span> <span class="pre">stuff</span> <span class="pre">*/ssion(...)</span></code>.  This
+checks for attempt to do stuff like this.</p>
+<p>Typically the response will be to kill the entire style; if you
+have just a bit of Javascript in the style another rule will catch
+that and remove only the Javascript from the style; this catches
+more sneaky attempts.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner._kill_elements">
+<code class="descname">_kill_elements</code><span class="sig-paren">(</span><em>doc</em>, <em>condition</em>, <em>iterate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner._kill_elements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner._remove_javascript_link">
+<code class="descname">_remove_javascript_link</code><span class="sig-paren">(</span><em>link</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner._remove_javascript_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner._substitute_comments">
+<code class="descname">_substitute_comments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner._substitute_comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the string obtained by replacing the leftmost non-overlapping occurrences of pattern in string by the replacement repl.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner._tag_link_attrs">
+<code class="descname">_tag_link_attrs</code><em class="property"> = {'script': 'src', 'link': 'href', 'applet': ['code', 'object'], 'iframe': 'src', 'embed': 'src', 'layer': 'src', 'a': 'href'}</em><a class="headerlink" href="#lxml.html.clean.Cleaner._tag_link_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.add_nofollow">
+<code class="descname">add_nofollow</code><em class="property"> = False</em><a class="headerlink" href="#lxml.html.clean.Cleaner.add_nofollow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner.allow_element">
+<code class="descname">allow_element</code><span class="sig-paren">(</span><em>el</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner.allow_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner.allow_embedded_url">
+<code class="descname">allow_embedded_url</code><span class="sig-paren">(</span><em>el</em>, <em>url</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner.allow_embedded_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner.allow_follow">
+<code class="descname">allow_follow</code><span class="sig-paren">(</span><em>anchor</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner.allow_follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to suppress rel=&#8221;nofollow&#8221; on some anchors.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.allow_tags">
+<code class="descname">allow_tags</code><em class="property"> = None</em><a class="headerlink" href="#lxml.html.clean.Cleaner.allow_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.annoying_tags">
+<code class="descname">annoying_tags</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.annoying_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner.clean_html">
+<code class="descname">clean_html</code><span class="sig-paren">(</span><em>html</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner.clean_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.comments">
+<code class="descname">comments</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.comments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.embedded">
+<code class="descname">embedded</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.embedded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.forms">
+<code class="descname">forms</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.forms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.frames">
+<code class="descname">frames</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.frames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.host_whitelist">
+<code class="descname">host_whitelist</code><em class="property"> = ()</em><a class="headerlink" href="#lxml.html.clean.Cleaner.host_whitelist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.inline_style">
+<code class="descname">inline_style</code><em class="property"> = None</em><a class="headerlink" href="#lxml.html.clean.Cleaner.inline_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.javascript">
+<code class="descname">javascript</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.javascript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lxml.html.clean.Cleaner.kill_conditional_comments">
+<code class="descname">kill_conditional_comments</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.Cleaner.kill_conditional_comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>IE conditional comments basically embed HTML that the parser
+doesn&#8217;t normally see.  We can&#8217;t allow anything like that, so
+we&#8217;ll kill any comments that could be conditional.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.kill_tags">
+<code class="descname">kill_tags</code><em class="property"> = None</em><a class="headerlink" href="#lxml.html.clean.Cleaner.kill_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.links">
+<code class="descname">links</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.links" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.meta">
+<code class="descname">meta</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.page_structure">
+<code class="descname">page_structure</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.page_structure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.processing_instructions">
+<code class="descname">processing_instructions</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.processing_instructions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.remove_tags">
+<code class="descname">remove_tags</code><em class="property"> = None</em><a class="headerlink" href="#lxml.html.clean.Cleaner.remove_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.remove_unknown_tags">
+<code class="descname">remove_unknown_tags</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.remove_unknown_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.safe_attrs">
+<code class="descname">safe_attrs</code><em class="property"> = frozenset({'clear', 'for', 'char', 'alt', 'coords', 'hreflang', 'charoff', 'label', 'readonly', 'rules', 'scope', 'span', 'value', 'vspace', 'title', 'colspan', 'start', 'longdesc', 'rel', 'class', 'href', 'prompt', 'usemap', 'rowspan', 'cite', 'size', 'rev', 'summary', 'method', 'cellspacing', 'target', 'multiple', 'accept', 'disabled', 'tabindex', 'selected', 'type', 'align', 'headers', 'dir', 'cols', 'id', 'cellpadding', 'datetime', 'lang', 'color', 'axis', 'width', 'border', 'action', 'charset', 'ismap', 'shape', 'media', 'nowrap', 'frame', 'maxlength', 'src', 'nohref', 'abbr', 'height', 'name', 'rows', 'noshade', 'checked', 'accept-charset', 'accesskey', 'compact', 'enctype', 'hspace', 'valign'})</em><a class="headerlink" href="#lxml.html.clean.Cleaner.safe_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.safe_attrs_only">
+<code class="descname">safe_attrs_only</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.safe_attrs_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.scripts">
+<code class="descname">scripts</code><em class="property"> = True</em><a class="headerlink" href="#lxml.html.clean.Cleaner.scripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.style">
+<code class="descname">style</code><em class="property"> = False</em><a class="headerlink" href="#lxml.html.clean.Cleaner.style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lxml.html.clean.Cleaner.whitelist_tags">
+<code class="descname">whitelist_tags</code><em class="property"> = {'iframe', 'embed'}</em><a class="headerlink" href="#lxml.html.clean.Cleaner.whitelist_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean._break_text">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_break_text</code><span class="sig-paren">(</span><em>text</em>, <em>max_width</em>, <em>break_character</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean._break_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean._insert_break">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_insert_break</code><span class="sig-paren">(</span><em>word</em>, <em>width</em>, <em>break_character</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean._insert_break" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean._is_javascript_scheme">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_is_javascript_scheme</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean._is_javascript_scheme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean._link_text">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_link_text</code><span class="sig-paren">(</span><em>text</em>, <em>link_regexes</em>, <em>avoid_hosts</em>, <em>factory</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean._link_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean._transform_result">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_transform_result</code><span class="sig-paren">(</span><em>typ</em>, <em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean._transform_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the result back into the input type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.autolink">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">autolink</code><span class="sig-paren">(</span><em>el</em>, <em>link_regexes=_link_regexes</em>, <em>avoid_elements=_avoid_elements</em>, <em>avoid_hosts=_avoid_hosts</em>, <em>avoid_classes=_avoid_classes</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.autolink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn any URLs into links.</p>
+<p>It will search for links identified by the given regular
+expressions (by default mailto and http(s) links).</p>
+<p>It won&#8217;t link text in an element in avoid_elements, or an element
+with a class in avoid_classes.  It won&#8217;t link to anything with a
+host that matches one of the regular expressions in avoid_hosts
+(default localhost and 127.0.0.1).</p>
+<p>If you pass in an element, the element&#8217;s tail will not be
+substituted, only the contents of the element.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.autolink_html">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">autolink_html</code><span class="sig-paren">(</span><em>html</em>, <em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.autolink_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn any URLs into links.</p>
+<p>It will search for links identified by the given regular
+expressions (by default mailto and http(s) links).</p>
+<p>It won&#8217;t link text in an element in avoid_elements, or an element
+with a class in avoid_classes.  It won&#8217;t link to anything with a
+host that matches one of the regular expressions in avoid_hosts
+(default localhost and 127.0.0.1).</p>
+<p>If you pass in an element, the element&#8217;s tail will not be
+substituted, only the contents of the element.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.fromstring">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">fromstring</code><span class="sig-paren">(</span><em>html</em>, <em>base_url=None</em>, <em>parser=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.fromstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the html, returning a single element/document.</p>
+<p>This tries to minimally parse the chunk of text, without knowing if it
+is a fragment or a document.</p>
+<p>base_url will set the document&#8217;s base_url attribute (and the tree&#8217;s docinfo.URL)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.tostring">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">tostring</code><span class="sig-paren">(</span><em>doc</em>, <em>pretty_print=False</em>, <em>include_meta_content_type=False</em>, <em>encoding=None</em>, <em>method=&quot;html&quot;</em>, <em>with_tail=True</em>, <em>doctype=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an HTML string representation of the document.</p>
+<p>Note: if include_meta_content_type is true this will create a
+<code class="docutils literal"><span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;Content-Type&quot;</span> <span class="pre">...&gt;</span></code> tag in the head;
+regardless of the value of include_meta_content_type any existing
+<code class="docutils literal"><span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;Content-Type&quot;</span> <span class="pre">...&gt;</span></code> tag will be removed</p>
+<p>The <code class="docutils literal"><span class="pre">encoding</span></code> argument controls the output encoding (defauts to
+ASCII, with &amp;#...; character references for any characters outside
+of ASCII).  Note that you can pass the name <code class="docutils literal"><span class="pre">'unicode'</span></code> as
+<code class="docutils literal"><span class="pre">encoding</span></code> argument to serialise to a Unicode string.</p>
+<p>The <code class="docutils literal"><span class="pre">method</span></code> argument defines the output method.  It defaults to
+&#8216;html&#8217;, but can also be &#8216;xml&#8217; for xhtml output, or &#8216;text&#8217; to
+serialise to plain text without markup.</p>
+<p>To leave out the tail text of the top-level element that is being
+serialised, pass <code class="docutils literal"><span class="pre">with_tail=False</span></code>.</p>
+<p>The <code class="docutils literal"><span class="pre">doctype</span></code> option allows passing in a plain string that will
+be serialised before the XML tree.  Note that passing in non
+well-formed content here will make the XML output non well-formed.
+Also, an existing doctype in the document tree will not be removed
+when serialising an ElementTree instance.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">html</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">fragment_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+<span class="go">b&#39;&lt;p&gt;Hello&lt;br/&gt;world!&lt;/p&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<span class="go">b&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">root</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">fragment_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;TAIL&lt;/div&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!TAIL&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">with_tail</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">&#39;Helloworld!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">document_fromstring</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)</span>
+<span class="go">&#39;&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="n">doctype</span><span class="o">=</span><span class="s1">&#39;&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&#39;</span>
+<span class="gp">... </span>                 <span class="s1">&#39; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;&#39;</span><span class="p">))</span>
+<span class="go">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
+<span class="go">&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello&lt;br&gt;world!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.word_break">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">word_break</code><span class="sig-paren">(</span><em>el</em>, <em>max_width=40</em>, <em>avoid_elements=_avoid_word_break_elements</em>, <em>avoid_classes=_avoid_word_break_classes</em>, <em>break_character=unichr(0x200b)</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.word_break" title="Permalink to this definition">¶</a></dt>
+<dd><p>Breaks any long words found in the body of the text (not attributes).</p>
+<p>Doesn&#8217;t effect any of the tags in avoid_elements, by default
+<code class="docutils literal"><span class="pre">&lt;textarea&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;pre&gt;</span></code></p>
+<p>Breaks words by inserting &amp;#8203;, which is a unicode character
+for Zero Width Space character.  This generally takes up no space
+in rendering, but does copy as a space, and in monospace contexts
+usually takes up space.</p>
+<p>See <a class="reference external" href="http://www.cs.tut.fi/~jkorpela/html/nobr.html">http://www.cs.tut.fi/~jkorpela/html/nobr.html</a> for a discussion</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.word_break_html">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">word_break_html</code><span class="sig-paren">(</span><em>html</em>, <em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.word_break_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.html.clean.xhtml_to_html">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">xhtml_to_html</code><span class="sig-paren">(</span><em>xhtml</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.html.clean.xhtml_to_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all tags in an XHTML tree to HTML by removing their
+XHTML namespace.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean.XHTML_NAMESPACE">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">XHTML_NAMESPACE</code><em class="property"> = 'http://www.w3.org/1999/xhtml'</em><a class="headerlink" href="#lxml.html.clean.XHTML_NAMESPACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>str(object=&#8217;&#8216;) -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to &#8216;strict&#8217;.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._avoid_classes">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_avoid_classes</code><em class="property"> = ['nolink']</em><a class="headerlink" href="#lxml.html.clean._avoid_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._avoid_elements">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_avoid_elements</code><em class="property"> = ['textarea', 'pre', 'code', 'head', 'select', 'a']</em><a class="headerlink" href="#lxml.html.clean._avoid_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._avoid_hosts">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_avoid_hosts</code><em class="property"> = [re.compile('^localhost', re.IGNORECASE), re.compile('\\bexample\\.(?:com|org|net)$', re.IGNORECASE), re.compile('^127\\.0\\.0\\.1$')]</em><a class="headerlink" href="#lxml.html.clean._avoid_hosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._avoid_word_break_classes">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_avoid_word_break_classes</code><em class="property"> = ['nobreak']</em><a class="headerlink" href="#lxml.html.clean._avoid_word_break_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt>
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_avoid_word_break_elements</code><em class="property"> = ['pre', 'textarea', 'code']</em></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._break_prefer_re">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_break_prefer_re</code><em class="property"> = re.compile('[^a-z]', re.IGNORECASE)</em><a class="headerlink" href="#lxml.html.clean._break_prefer_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._conditional_comment_re">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_conditional_comment_re</code><em class="property"> = re.compile('\\[if[\\s\\n\\r]+.*?][\\s\\n\\r]*&gt;', re.IGNORECASE|re.DOTALL)</em><a class="headerlink" href="#lxml.html.clean._conditional_comment_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._css_import_re">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_css_import_re</code><em class="property"> = re.compile('&#64;\\s*import', re.IGNORECASE)</em><a class="headerlink" href="#lxml.html.clean._css_import_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._css_javascript_re">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_css_javascript_re</code><em class="property"> = re.compile('expression\\s*\\(.*?\\)', re.IGNORECASE|re.DOTALL)</em><a class="headerlink" href="#lxml.html.clean._css_javascript_re" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression objects</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._find_external_links">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_find_external_links</code><em class="property"> = descendant-or-self::a  [normalize-space(&#64;href) and substring(normalize-space(&#64;href),1,1) != '#'] |descendant-or-self::x:a[normalize-space(&#64;href) and substring(normalize-space(&#64;href),1,1) != '#']</em><a class="headerlink" href="#lxml.html.clean._find_external_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._find_styled_elements">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_find_styled_elements</code><em class="property"> = descendant-or-self::*[&#64;style]</em><a class="headerlink" href="#lxml.html.clean._find_styled_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>XPath(self, path, namespaces=None, extensions=None, regexp=True, smart_strings=True)
+A compiled XPath expression that can be called on Elements and ElementTrees.</p>
+<p>Besides the XPath expression, you can pass prefix-namespace
+mappings and extension functions to the constructor through the
+keyword arguments <code class="docutils literal"><span class="pre">namespaces</span></code> and <code class="docutils literal"><span class="pre">extensions</span></code>.  EXSLT
+regular expression support can be disabled with the &#8216;regexp&#8217;
+boolean keyword (defaults to True).  Smart strings will be
+returned for string results unless you pass
+<code class="docutils literal"><span class="pre">smart_strings=False</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean._link_regexes">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">_link_regexes</code><em class="property"> = [re.compile('(?P&lt;body&gt;https?://(?P&lt;host&gt;[a-z0-9._-]+)(?:/[/\\-_.,a-z0-9%&amp;?;=~]*)?(?:\\([/\\-_.,a-z0-9%&amp;?;=~]*\\))?)', re.IGNORECASE), re.compile('mailto:(?P&lt;body&gt;[a-z0-9._-]+&#64;(?P&lt;host&gt;[a-z0-9_.-]+[a-z]))', re.IGNORECASE)]</em><a class="headerlink" href="#lxml.html.clean._link_regexes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list() -&gt; new empty list
+list(iterable) -&gt; new list initialized from iterable&#8217;s items</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean.clean">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">clean</code><em class="property"> = &lt;lxml.html.clean.Cleaner object&gt;</em><a class="headerlink" href="#lxml.html.clean.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instances cleans the document of each of the possible offending
+elements.  The cleaning is controlled by attributes; you can
+override attributes in a subclass, or set them in the constructor.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">scripts</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;script&gt;</span></code> tags.</dd>
+<dt><code class="docutils literal"><span class="pre">javascript</span></code>:</dt>
+<dd>Removes any Javascript, like an <code class="docutils literal"><span class="pre">onclick</span></code> attribute. Also removes stylesheets
+as they could contain Javascript.</dd>
+<dt><code class="docutils literal"><span class="pre">comments</span></code>:</dt>
+<dd>Removes any comments.</dd>
+<dt><code class="docutils literal"><span class="pre">style</span></code>:</dt>
+<dd>Removes any style tags.</dd>
+<dt><code class="docutils literal"><span class="pre">inline_style</span></code></dt>
+<dd>Removes any style attributes.  Defaults to the value of the <code class="docutils literal"><span class="pre">style</span></code> option.</dd>
+<dt><code class="docutils literal"><span class="pre">links</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;link&gt;</span></code> tags</dd>
+<dt><code class="docutils literal"><span class="pre">meta</span></code>:</dt>
+<dd>Removes any <code class="docutils literal"><span class="pre">&lt;meta&gt;</span></code> tags</dd>
+<dt><code class="docutils literal"><span class="pre">page_structure</span></code>:</dt>
+<dd>Structural parts of a page: <code class="docutils literal"><span class="pre">&lt;head&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;html&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;title&gt;</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">processing_instructions</span></code>:</dt>
+<dd>Removes any processing instructions.</dd>
+<dt><code class="docutils literal"><span class="pre">embedded</span></code>:</dt>
+<dd>Removes any embedded objects (flash, iframes)</dd>
+<dt><code class="docutils literal"><span class="pre">frames</span></code>:</dt>
+<dd>Removes any frame-related tags</dd>
+<dt><code class="docutils literal"><span class="pre">forms</span></code>:</dt>
+<dd>Removes any form tags</dd>
+<dt><code class="docutils literal"><span class="pre">annoying_tags</span></code>:</dt>
+<dd>Tags that aren&#8217;t <em>wrong</em>, but are annoying.  <code class="docutils literal"><span class="pre">&lt;blink&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;marquee&gt;</span></code></dd>
+<dt><code class="docutils literal"><span class="pre">remove_tags</span></code>:</dt>
+<dd>A list of tags to remove.  Only the tags will be removed,
+their content will get pulled up into the parent tag.</dd>
+<dt><code class="docutils literal"><span class="pre">kill_tags</span></code>:</dt>
+<dd>A list of tags to kill.  Killing also removes the tag&#8217;s content,
+i.e. the whole subtree, not just the tag itself.</dd>
+<dt><code class="docutils literal"><span class="pre">allow_tags</span></code>:</dt>
+<dd>A list of tags to include (default include all).</dd>
+<dt><code class="docutils literal"><span class="pre">remove_unknown_tags</span></code>:</dt>
+<dd>Remove any tags that aren&#8217;t standard parts of HTML.</dd>
+<dt><code class="docutils literal"><span class="pre">safe_attrs_only</span></code>:</dt>
+<dd>If true, only include &#8216;safe&#8217; attributes (specifically the list
+from the feedparser HTML sanitisation web site).</dd>
+<dt><code class="docutils literal"><span class="pre">safe_attrs</span></code>:</dt>
+<dd>A set of attribute names to override the default list of attributes
+considered &#8216;safe&#8217; (when safe_attrs_only=True).</dd>
+<dt><code class="docutils literal"><span class="pre">add_nofollow</span></code>:</dt>
+<dd>If true, then any &lt;a&gt; tags will have <code class="docutils literal"><span class="pre">rel=&quot;nofollow&quot;</span></code> added to them.</dd>
+<dt><code class="docutils literal"><span class="pre">host_whitelist</span></code>:</dt>
+<dd><p class="first">A list or set of hosts that you can use for embedded content
+(for content like <code class="docutils literal"><span class="pre">&lt;object&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;&gt;</span></code>, etc).
+You can also implement/override the method
+<code class="docutils literal"><span class="pre">allow_embedded_url(el,</span> <span class="pre">url)</span></code> or <code class="docutils literal"><span class="pre">allow_element(el)</span></code> to
+implement more complex rules for what can be embedded.
+Anything that passes this test will be shown, regardless of
+the value of (for instance) <code class="docutils literal"><span class="pre">embedded</span></code>.</p>
+<p>Note that this parameter might not work as intended if you do not
+make the links absolute before doing the cleaning.</p>
+<p class="last">Note that you may also need to set <code class="docutils literal"><span class="pre">whitelist_tags</span></code>.</p>
+</dd>
+<dt><code class="docutils literal"><span class="pre">whitelist_tags</span></code>:</dt>
+<dd>A set of tags that can be included with <code class="docutils literal"><span class="pre">host_whitelist</span></code>.
+The default is <code class="docutils literal"><span class="pre">iframe</span></code> and <code class="docutils literal"><span class="pre">embed</span></code>; you may wish to
+include other tags like <code class="docutils literal"><span class="pre">script</span></code>, or you may want to
+implement <code class="docutils literal"><span class="pre">allow_embedded_url</span></code> for more control.  Set to None to
+include all tags.</dd>
+</dl>
+<p>This modifies the document <em>in place</em>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.html.clean.clean_html">
+<code class="descclassname">lxml.html.clean.</code><code class="descname">clean_html</code><em class="property"> = &lt;bound method Cleaner.clean_html of &lt;lxml.html.clean.Cleaner object&gt;&gt;</em><a class="headerlink" href="#lxml.html.clean.clean_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ElementTree compatibility of lxml.etree &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ElementTree compatibility of lxml.etree</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ElementTree compatibility of lxml.etree</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/compatibility.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="elementtree-compatibility-of-lxml-etree">
+<h1>ElementTree compatibility of lxml.etree<a class="headerlink" href="#elementtree-compatibility-of-lxml-etree" title="Permalink to this headline">¶</a></h1>
+<p>A lot of care has been taken to ensure compatibility between etree and
+ElementTree.  Nonetheless, some differences and incompatibilities exist:</p>
+<ul>
+<li><p class="first">Importing etree is obviously different; etree uses a lower-case
+package name, while ElementTree uses a combination of upper-case and
+lower case in imports:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># etree</span>
+<span class="kn">from</span> <span class="nn">lxml.etree</span> <span class="kn">import</span> <span class="n">Element</span>
+
+<span class="c1"># ElementTree</span>
+<span class="kn">from</span> <span class="nn">elementtree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span>
+
+<span class="c1"># ElementTree in the Python 2.5 standard library</span>
+<span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">Element</span>
+</pre></div>
+</div>
+<p>When switching over code from ElementTree to lxml.etree, and you&#8217;re using
+the package name prefix &#8216;ElementTree&#8217;, you can do the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># instead of</span>
+<span class="kn">from</span> <span class="nn">elementtree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
+<span class="c1"># use</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span> <span class="k">as</span> <span class="n">ElementTree</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">lxml.etree offers a lot more functionality, such as XPath, XSLT, Relax NG,
+and XML Schema support, which (c)ElementTree does not offer.</p>
+</li>
+<li><p class="first">etree has a different idea about Python unicode strings than ElementTree.
+In most parts of the API, ElementTree uses plain strings and unicode strings
+as what they are.  This includes Element.text, Element.tail and many other
+places.  However, the ElementTree parsers assume by default that any string
+(<cite>str</cite> or <cite>unicode</cite>) contains ASCII data.  They raise an exception if
+strings do not match the expected encoding.</p>
+<p>etree has the same idea about plain strings (<cite>str</cite>) as ElementTree.  For
+unicode strings, however, etree assumes throughout the API that they are
+Python unicode encoded strings rather than byte data.  This includes the
+parsers.  It is therefore perfectly correct to pass XML unicode data into
+the etree parsers in form of Python unicode strings.  It is an error, on the
+other hand, if unicode strings specify an encoding in their XML declaration,
+as this conflicts with the characteristic encoding of Python unicode
+strings.</p>
+</li>
+<li><p class="first">ElementTree allows you to place an Element in two different trees at the
+same time.  Thus, this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">SubElement</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will result in the following tree a:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;a&gt;&lt;b</span> <span class="nt">/&gt;&lt;/a&gt;</span>
+</pre></div>
+</div>
+<p>and the following tree c:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;c&gt;&lt;b</span> <span class="nt">/&gt;&lt;/c&gt;</span>
+</pre></div>
+</div>
+<p>In lxml, this behavior is different, because lxml is built on top of a tree
+that maintains parent relationships for elements (like W3C DOM).  This means
+an element can only exist in a single tree at the same time.  Adding an
+element in some tree to another tree will cause this element to be moved.</p>
+<p>So, for tree a we will get:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;a&gt;&lt;/a&gt;</span>
+</pre></div>
+</div>
+<p>and for tree c we will get:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;c&gt;&lt;b/&gt;&lt;/c&gt;</span>
+</pre></div>
+</div>
+<p>Unfortunately this is a rather fundamental difference in behavior, which is
+hard to change.  It won&#8217;t affect some applications, but if you want to port
+code you must unfortunately make sure that it doesn&#8217;t affect yours.</p>
+</li>
+<li><p class="first">etree allows navigation to the parent of a node by the <code class="docutils literal"><span class="pre">getparent()</span></code>
+method and to the siblings by calling <code class="docutils literal"><span class="pre">getnext()</span></code> and <code class="docutils literal"><span class="pre">getprevious()</span></code>.
+This is not possible in ElementTree as the underlying tree model does not
+have this information.</p>
+</li>
+<li><p class="first">When trying to set a subelement using __setitem__ that is in fact not an
+Element but some other object, etree raises a TypeError, and ElementTree
+raises an AssertionError.  This also applies to some other places of the
+API.  In general, etree tries to avoid AssertionErrors in favour of being
+more specific about the reason for the exception.</p>
+</li>
+<li><p class="first">When parsing fails in <code class="docutils literal"><span class="pre">iterparse()</span></code>, ElementTree up to version
+1.2.x raises a low-level <code class="docutils literal"><span class="pre">ExpatError</span></code> instead of a <code class="docutils literal"><span class="pre">SyntaxError</span></code>
+as the other parsers.  Both lxml and ElementTree 1.3 raise a
+<code class="docutils literal"><span class="pre">ParseError</span></code> for parser errors.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">iterparse()</span></code> function in lxml is implemented based on the libxml2
+parser and tree generator.  This means that modifications of the document
+root or the ancestors of the current element during parsing can irritate the
+parser and even segfault.  While this is not a problem in the Python object
+structure used by ElementTree, the C tree underlying lxml suffers from it.
+The golden rule for <code class="docutils literal"><span class="pre">iterparse()</span></code> on lxml therefore is: do not touch
+anything that will have to be touched again by the parser later on.  See the
+lxml parser documentation on this.</p>
+</li>
+<li><p class="first">ElementTree ignores comments and processing instructions when parsing XML,
+while etree will read them in and treat them as Comment or
+ProcessingInstruction elements respectively.  This is especially visible
+where comments are found inside text content, which is then split by the
+Comment element.</p>
+<p>You can disable this behaviour by passing the boolean <code class="docutils literal"><span class="pre">remove_comments</span></code>
+and/or <code class="docutils literal"><span class="pre">remove_pis</span></code> keyword arguments to the parser you use.  For
+convenience and to support portable code, you can also use the
+<code class="docutils literal"><span class="pre">etree.ETCompatXMLParser</span></code> instead of the default <code class="docutils literal"><span class="pre">etree.XMLParser</span></code>.  It
+tries to provide a default setup that is as close to the ElementTree parser
+as possible.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">TreeBuilder</span></code> class of <code class="docutils literal"><span class="pre">lxml.etree</span></code> uses a different
+signature for the <code class="docutils literal"><span class="pre">start()</span></code> method.  It accepts an additional
+argument <code class="docutils literal"><span class="pre">nsmap</span></code> to propagate the namespace declarations of an
+element in addition to its own namespace.  To assure compatibility
+with ElementTree (which does not support this argument), lxml checks
+if the method accepts 3 arguments before calling it, and otherwise
+drops the namespace mapping.  This should work with most existing
+ElementTree code, although there may still be conflicting cases.</p>
+</li>
+<li><p class="first">ElementTree 1.2 has a bug when serializing an empty Comment (no text
+argument given) to XML, etree serializes this successfully.</p>
+</li>
+<li><p class="first">ElementTree adds whitespace around comments on serialization, lxml does
+not.  This means that a comment text &#8220;text&#8221; that ElementTree serializes as
+&#8220;&lt;!&#8211; text &#8211;&gt;&#8221; will become &#8220;&lt;!&#8211;text&#8211;&gt;&#8221; in lxml.</p>
+</li>
+<li><p class="first">When the string &#8216;*&#8217; is used as tag filter in the <code class="docutils literal"><span class="pre">Element.getiterator()</span></code>
+method, ElementTree returns all elements in the tree, including comments and
+processing instructions. lxml.etree only returns real Elements, i.e. tree
+nodes that have a string tag name.  Without a filter, both libraries iterate
+over all nodes.</p>
+<p>Note that currently only lxml.etree supports passing the <code class="docutils literal"><span class="pre">Element</span></code> factory
+function as filter to select only Elements.  Both libraries support passing
+the <code class="docutils literal"><span class="pre">Comment</span></code> and <code class="docutils literal"><span class="pre">ProcessingInstruction</span></code> factories to select the
+respective tree nodes.</p>
+</li>
+<li><p class="first">ElementTree merges the target of a processing instruction into <code class="docutils literal"><span class="pre">PI.text</span></code>,
+while lxml.etree puts it into the <code class="docutils literal"><span class="pre">.target</span></code> property and leaves it out of
+the <code class="docutils literal"><span class="pre">.text</span></code> property.  The <code class="docutils literal"><span class="pre">pi.text</span></code> in ElementTree therefore
+correspondents to <code class="docutils literal"><span class="pre">pi.target</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">pi.text</span></code> in lxml.etree.</p>
+</li>
+<li><p class="first">Because etree is built on top of libxml2, which is namespace prefix aware,
+etree preserves namespaces declarations and prefixes while ElementTree tends
+to come up with its own prefixes (ns0, ns1, etc).  When no namespace prefix
+is given, however, etree creates ElementTree style prefixes as well.</p>
+</li>
+<li><p class="first">etree has a &#8216;prefix&#8217; attribute (read-only) on elements giving the Element&#8217;s
+prefix, if this is known, and None otherwise (in case of no namespace at
+all, or default namespace).</p>
+</li>
+<li><p class="first">etree further allows passing an &#8216;nsmap&#8217; dictionary to the Element and
+SubElement element factories to explicitly map namespace prefixes to
+namespace URIs.  These will be translated into namespace declarations on
+that element.  This means that in the probably rare case that you need to
+construct an attribute called &#8216;nsmap&#8217;, you need to be aware that unlike in
+ElementTree, you cannot pass it as a keyword argument to the Element and
+SubElement factories directly.</p>
+</li>
+<li><p class="first">ElementTree allows QName objects as attribute values and resolves their
+prefix on serialisation (e.g. an attribute value <code class="docutils literal"><span class="pre">QName(&quot;{myns}myname&quot;)</span></code>
+becomes &#8220;p:myname&#8221; if &#8220;p&#8221; is the namespace prefix of &#8220;myns&#8221;).  lxml.etree
+also allows you to set attribute values from QName instances (and also .text
+values), but it resolves their prefix immediately and stores the plain text
+value.  So, if prefixes are modified later on, e.g. by moving a subtree to a
+different tree (which reassigns the prefix mappings), the text values will
+not be updated and you might end up with an undefined prefix.</p>
+</li>
+<li><p class="first">etree elements can be copied using <code class="docutils literal"><span class="pre">copy.deepcopy()</span></code> and <code class="docutils literal"><span class="pre">copy.copy()</span></code>,
+just like ElementTree&#8217;s.  However, <code class="docutils literal"><span class="pre">copy.copy()</span></code> does <em>not</em> create a
+shallow copy where elements are shared between trees, as this makes no sense
+in the context of libxml2 trees.  Note that lxml can deep-copy trees
+considerably faster than ElementTree, so a deep copy might still be fast
+enough to replace a shallow copy in your case.</p>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

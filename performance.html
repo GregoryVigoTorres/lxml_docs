@@ -1,0 +1,1032 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="Performance evaluation of lxml and ElementTree: fast operations, common pitfalls and optimisation hints." name="description" />
+<meta content="Python XML parser performance, XML processing, performance comparison, lxml performance, lxml.etree, lxml.objectify, benchmarks, ElementTree" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Benchmarks and Speed &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Benchmarks and Speed</a><ul>
+<li><a class="reference internal" href="#general-notes">General notes</a></li>
+<li><a class="reference internal" href="#how-to-read-the-timings">How to read the timings</a></li>
+<li><a class="reference internal" href="#parsing-and-serialising">Parsing and Serialising</a></li>
+<li><a class="reference internal" href="#the-elementtree-api">The ElementTree API</a><ul>
+<li><a class="reference internal" href="#child-access">Child access</a></li>
+<li><a class="reference internal" href="#element-creation">Element creation</a></li>
+<li><a class="reference internal" href="#merging-different-sources">Merging different sources</a></li>
+<li><a class="reference internal" href="#deepcopy">deepcopy</a></li>
+<li><a class="reference internal" href="#tree-traversal">Tree traversal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xpath">XPath</a></li>
+<li><a class="reference internal" href="#a-longer-example">A longer example</a></li>
+<li><a class="reference internal" href="#lxml-objectify">lxml.objectify</a><ul>
+<li><a class="reference internal" href="#objectpath">ObjectPath</a></li>
+<li><a class="reference internal" href="#caching-elements">Caching Elements</a></li>
+<li><a class="reference internal" href="#further-optimisations">Further optimisations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Benchmarks and Speed</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/performance.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="benchmarks-and-speed">
+<h1><a class="toc-backref" href="#id1">Benchmarks and Speed</a><a class="headerlink" href="#benchmarks-and-speed" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Stefan Behnel</td>
+</tr>
+</tbody>
+</table>
+<p>lxml.etree is a very fast XML library.  Most of this is due to the
+speed of libxml2, e.g. the parser and serialiser, or the XPath engine.
+Other areas of lxml were specifically written for high performance in
+high-level operations, such as the tree iterators.</p>
+<p>On the other hand, the simplicity of lxml sometimes hides internal
+operations that are more costly than the API suggests.  If you are not
+aware of these cases, lxml may not always perform as you expect.  A
+common example in the Python world is the Python list type.  New users
+often expect it to be a linked list, while it actually is implemented
+as an array, which results in a completely different complexity for
+common operations.</p>
+<p>Similarly, the tree model of libxml2 is more complex than what lxml&#8217;s
+ElementTree API projects into Python space, so some operations may
+show unexpected performance.  Rest assured that most lxml users will
+not notice this in real life, as lxml is very fast in absolute
+numbers.  It is definitely fast enough for most applications, so lxml
+is probably somewhere between &#8216;fast enough&#8217; and &#8216;the best choice&#8217; for
+yours.  Read some <a class="reference external" href="http://permalink.gmane.org/gmane.comp.python.lxml.devel/3250">messages</a> from <a class="reference external" href="http://article.gmane.org/gmane.comp.python.lxml.devel/3246">happy</a> <a class="reference external" href="http://thread.gmane.org/gmane.comp.python.lxml.devel/3244/focus=3244">users</a> to see what we mean.</p>
+<p>This text describes where lxml.etree (abbreviated to &#8216;lxe&#8217;) excels, gives
+hints on some performance traps and compares the overall performance to the
+original <a class="reference external" href="http://effbot.org/zone/element-index.htm">ElementTree</a> (ET) and <a class="reference external" href="http://effbot.org/zone/celementtree.htm">cElementTree</a> (cET) libraries by Fredrik Lundh.
+The cElementTree library is a fast C-implementation of the original
+ElementTree.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#benchmarks-and-speed" id="id1">Benchmarks and Speed</a><ul>
+<li><a class="reference internal" href="#general-notes" id="id2">General notes</a></li>
+<li><a class="reference internal" href="#how-to-read-the-timings" id="id3">How to read the timings</a></li>
+<li><a class="reference internal" href="#parsing-and-serialising" id="id4">Parsing and Serialising</a></li>
+<li><a class="reference internal" href="#the-elementtree-api" id="id5">The ElementTree API</a><ul>
+<li><a class="reference internal" href="#child-access" id="id6">Child access</a></li>
+<li><a class="reference internal" href="#element-creation" id="id7">Element creation</a></li>
+<li><a class="reference internal" href="#merging-different-sources" id="id8">Merging different sources</a></li>
+<li><a class="reference internal" href="#deepcopy" id="id9">deepcopy</a></li>
+<li><a class="reference internal" href="#tree-traversal" id="id10">Tree traversal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xpath" id="id11">XPath</a></li>
+<li><a class="reference internal" href="#a-longer-example" id="id12">A longer example</a></li>
+<li><a class="reference internal" href="#lxml-objectify" id="id13">lxml.objectify</a><ul>
+<li><a class="reference internal" href="#objectpath" id="id14">ObjectPath</a></li>
+<li><a class="reference internal" href="#caching-elements" id="id15">Caching Elements</a></li>
+<li><a class="reference internal" href="#further-optimisations" id="id16">Further optimisations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general-notes">
+<h2><a class="toc-backref" href="#id2">General notes</a><a class="headerlink" href="#general-notes" title="Permalink to this headline">¶</a></h2>
+<p>First thing to say: there <em>is</em> an overhead involved in having a DOM-like C
+library mimic the ElementTree API.  As opposed to ElementTree, lxml has to
+generate Python representations of tree nodes on the fly when asked for them,
+and the internal tree structure of libxml2 results in a higher maintenance
+overhead than the simpler top-down structure of ElementTree.  What this means
+is: the more of your code runs in Python, the less you can benefit from the
+speed of lxml and libxml2.  Note, however, that this is true for most
+performance critical Python applications.  No one would implement Fourier
+transformations in pure Python when you can use NumPy.</p>
+<p>The up side then is that lxml provides powerful tools like tree iterators,
+XPath and XSLT, that can handle complex operations at the speed of C.  Their
+pythonic API in lxml makes them so flexible that most applications can easily
+benefit from them.</p>
+</div>
+<div class="section" id="how-to-read-the-timings">
+<h2><a class="toc-backref" href="#id3">How to read the timings</a><a class="headerlink" href="#how-to-read-the-timings" title="Permalink to this headline">¶</a></h2>
+<p>The statements made here are backed by the (micro-)benchmark scripts
+<a class="reference external" href="https://github.com/lxml/lxml/blob/master/benchmark/bench_etree.py">bench_etree.py</a>, <a class="reference external" href="https://github.com/lxml/lxml/blob/master/benchmark/bench_xpath.py">bench_xpath.py</a> and <a class="reference external" href="https://github.com/lxml/lxml/blob/master/benchmark/bench_objectify.py">bench_objectify.py</a> that come with
+the lxml source distribution.  They are distributed under the same BSD license
+as lxml itself, and the lxml project would like to promote them as a general
+benchmarking suite for all ElementTree implementations.  New benchmarks are
+very easy to add as tiny test methods, so if you write a performance test for
+a specific part of the API yourself, please consider sending it to the lxml
+mailing list.</p>
+<p>The timings presented below compare lxml 3.1.1 (with libxml2 2.9.0) to the
+latest released versions of ElementTree (with cElementTree as accelerator
+module) in the standard library of CPython 3.3.0.  They were run
+single-threaded on a 2.9GHz 64bit double core Intel i7 machine under
+Ubuntu Linux 12.10 (Quantal).  The C libraries were compiled with the
+same platform specific optimisation flags.  The Python interpreter was
+also manually compiled for the platform.  Note that many of the following
+ElementTree timings are therefore better than what a normal Python
+installation with the standard library (c)ElementTree modules would yield.
+Note also that CPython 2.7 and 3.2+ come with a newer ElementTree version,
+so older Python installations will not perform as good for (c)ElementTree,
+and sometimes substantially worse.</p>
+<p>The scripts run a number of simple tests on the different libraries, using
+different XML tree configurations: different tree sizes (T1-4), with or
+without attributes (-/A), with or without ASCII string or unicode text
+(-/S/U), and either against a tree or its serialised XML form (T/X).  In the
+result extracts cited below, T1 refers to a 3-level tree with many children at
+the third level, T2 is swapped around to have many children below the root
+element, T3 is a deep tree with few children at each level and T4 is a small
+tree, slightly broader than deep.  If repetition is involved, this usually
+means running the benchmark in a loop over all children of the tree root,
+otherwise, the operation is run on the root node (C/R).</p>
+<p>As an example, the character code <code class="docutils literal"><span class="pre">(SATR</span> <span class="pre">T1)</span></code> states that the benchmark was
+running for tree T1, with plain string text (S) and attributes (A).  It was
+run against the root element (R) in the tree structure of the data (T).</p>
+<p>Note that very small operations are repeated in integer loops to make them
+measurable.  It is therefore not always possible to compare the absolute
+timings of, say, a single access benchmark (which usually loops) and a &#8216;get
+all in one step&#8217; benchmark, which already takes enough time to be measurable
+and is therefore measured as is.  An example is the index access to a single
+child, which cannot be compared to the timings for <code class="docutils literal"><span class="pre">getchildren()</span></code>.  Take a
+look at the concrete benchmarks in the scripts to understand how the numbers
+compare.</p>
+</div>
+<div class="section" id="parsing-and-serialising">
+<h2><a class="toc-backref" href="#id4">Parsing and Serialising</a><a class="headerlink" href="#parsing-and-serialising" title="Permalink to this headline">¶</a></h2>
+<p>Serialisation is an area where lxml excels.  The reason is that it
+executes entirely at the C level, without any interaction with Python
+code.  The results are rather impressive, especially for UTF-8, which
+is native to libxml2.  While 20 to 40 times faster than (c)ElementTree
+1.2 (which was part of the standard library before Python 2.7/3.2),
+lxml is still more than 10 times as fast as the much improved
+ElementTree 1.3 in recent Python versions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">7.9958</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">83.1358</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">UATR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">8.3222</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">UATR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">84.4688</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">8.2297</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_utf16</span>  <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">87.3415</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_utf8</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">6.5677</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_utf8</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">76.2064</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_utf8</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">1.1952</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_utf8</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>   <span class="mf">22.0058</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>The difference is somewhat smaller for plain text serialisation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_ascii</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">2.7738</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_ascii</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">4.7629</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_ascii</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.8273</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_ascii</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">1.5273</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_utf16</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">2.7659</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_utf16</span>     <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">10.5038</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_utf16</span>     <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">2.8017</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_utf16</span>     <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">10.5207</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">tostring()</span></code> function also supports serialisation to a Python
+unicode string object, which is currently faster in ElementTree
+under CPython 3.3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">2.6896</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">1.0056</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">2.7366</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">1.0154</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.7997</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.3154</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.0048</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">tostring_text_unicode</span>   <span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.0160</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>For parsing, lxml.etree and cElementTree compete for the medal.
+Depending on the input, either of the two can be faster.  The (c)ET
+libraries use a very thin layer on top of the expat parser, which is
+known to be very fast.  Here are some timings from the benchmarking
+suite:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">SAXR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">13.0246</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">SAXR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">8.2929</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">XR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">1.3542</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">XR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">2.4023</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">UAXR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">7.5610</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">parse_bytesIO</span>   <span class="p">(</span><span class="n">UAXR</span> <span class="n">T3</span><span class="p">)</span>   <span class="mf">11.2455</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>And another couple of timings <a class="reference external" href="http://svn.effbot.org/public/elementtree-1.3/benchmark.py">from a benchmark</a> that Fredrik Lundh
+<a class="reference external" href="http://effbot.org/zone/celementtree.htm#benchmarks">used to promote cElementTree</a>, comparing a number of different
+parsers.  First, parsing a 274KB XML file containing Shakespeare&#8217;s
+Hamlet:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.017</span> <span class="n">seconds</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.007</span> <span class="n">seconds</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">6636</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.007</span> <span class="n">seconds</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.003</span> <span class="n">seconds</span>
+<span class="n">drop_whitespace</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.003</span> <span class="n">seconds</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">6636</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.004</span> <span class="n">seconds</span>
+<span class="n">minidom</span> <span class="n">tree</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.080</span> <span class="n">seconds</span>
+</pre></div>
+</div>
+<p>And a 3.4MB XML file containing the Old Testament:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.038</span> <span class="n">seconds</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.030</span> <span class="n">seconds</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">25317</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.030</span> <span class="n">seconds</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.016</span> <span class="n">seconds</span>
+<span class="n">drop_whitespace</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.015</span> <span class="n">seconds</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">25317</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.022</span> <span class="n">seconds</span>
+<span class="n">minidom</span> <span class="n">tree</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.288</span> <span class="n">seconds</span>
+</pre></div>
+</div>
+<p>Here are the same benchmarks again, but including the memory usage
+of the process in KB before and after parsing (using os.fork() to
+make sure we start from a clean state each time).  For the 274KB
+hamlet.xml file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">7284</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.017</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">9432</span> <span class="p">(</span><span class="o">+</span><span class="mi">2148</span><span class="p">)</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.007</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">9432</span> <span class="p">(</span><span class="o">+</span><span class="mi">2152</span><span class="p">)</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">6636</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.007</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">9448</span> <span class="p">(</span><span class="o">+</span><span class="mi">2164</span><span class="p">)</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.003</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">11032</span> <span class="p">(</span><span class="o">+</span><span class="mi">3748</span><span class="p">)</span>
+<span class="n">drop_whitespace</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.003</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">10224</span> <span class="p">(</span><span class="o">+</span><span class="mi">2940</span><span class="p">)</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">6636</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.004</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">11804</span> <span class="p">(</span><span class="o">+</span><span class="mi">4520</span><span class="p">)</span>
+<span class="n">minidom</span> <span class="n">tree</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.080</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">12324</span> <span class="p">(</span><span class="o">+</span><span class="mi">5040</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And for the 3.4MB Old Testament XML file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">10420</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.038</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">20660</span> <span class="p">(</span><span class="o">+</span><span class="mi">10240</span><span class="p">)</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.030</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">20660</span> <span class="p">(</span><span class="o">+</span><span class="mi">10240</span><span class="p">)</span>
+<span class="n">xml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">cElementTree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">25317</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.030</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">20844</span> <span class="p">(</span><span class="o">+</span><span class="mi">10424</span><span class="p">)</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.016</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">27624</span> <span class="p">(</span><span class="o">+</span><span class="mi">17204</span><span class="p">)</span>
+<span class="n">drop_whitespace</span><span class="o">.</span><span class="n">parse</span> <span class="n">done</span> <span class="ow">in</span> <span class="mf">0.015</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">24468</span> <span class="p">(</span><span class="o">+</span><span class="mi">14052</span><span class="p">)</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">XMLParser</span><span class="o">.</span><span class="n">feed</span><span class="p">():</span> <span class="mi">25317</span> <span class="n">nodes</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.022</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">29844</span> <span class="p">(</span><span class="o">+</span><span class="mi">19424</span><span class="p">)</span>
+<span class="n">minidom</span> <span class="n">tree</span> <span class="n">read</span> <span class="ow">in</span> <span class="mf">0.288</span> <span class="n">seconds</span>
+<span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mi">28788</span> <span class="p">(</span><span class="o">+</span><span class="mi">18368</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As can be seen from the sizes, both lxml.etree and cElementTree are
+rather memory friendly compared to the pure Python libraries
+ElementTree and (especially) minidom.  Comparing to older CPython
+versions, the memory footprint of the minidom library was considerably
+reduced in CPython 3.3, by about a factor of 4 in this case.</p>
+<p>For plain parser performance, lxml.etree and cElementTree tend to stay
+rather close to each other, usually within a factor of two, with
+winners well distributed over both sides.  Similar timings can be
+observed for the <code class="docutils literal"><span class="pre">iterparse()</span></code> function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">iterparse_bytesIO</span>   <span class="p">(</span><span class="n">SAXR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">17.9198</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iterparse_bytesIO</span>   <span class="p">(</span><span class="n">SAXR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">14.4982</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iterparse_bytesIO</span>   <span class="p">(</span><span class="n">UAXR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">8.8522</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iterparse_bytesIO</span>   <span class="p">(</span><span class="n">UAXR</span> <span class="n">T3</span><span class="p">)</span>   <span class="mf">12.9857</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>However, if you benchmark the complete round-trip of a serialise-parse
+cycle, the numbers will look similar to these:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">19.8867</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">80.7259</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">UATR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">23.7896</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">UATR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">98.0766</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">3.0684</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>   <span class="mf">24.6122</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">SATR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.3495</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">write_utf8_parse_bytesIO</span>   <span class="p">(</span><span class="n">SATR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">1.9610</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>For applications that require a high parser throughput of large files,
+and that do little to no serialization, both cET and lxml.etree are a
+good choice.  The cET library is particularly fast for iterparse
+applications that extract small amounts of data or aggregate
+information from large XML data sets that do not fit into memory.  If
+it comes to round-trip performance, however, lxml is multiple times
+faster in total.  So, whenever the input documents are not
+considerably larger than the output, lxml is the clear winner.</p>
+<p>Regarding HTML parsing, Ian Bicking has done some <a class="reference external" href="http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/">benchmarking on
+lxml&#8217;s HTML parser</a>, comparing it to a number of other famous HTML
+parser tools for Python.  lxml wins this contest by quite a length.
+To give an idea, the numbers suggest that lxml.html can run a couple
+of parse-serialise cycles in the time that other tools need for
+parsing alone.  The comparison even shows some very favourable results
+regarding memory consumption.</p>
+<p>Liza Daly has written an article that presents a couple of tweaks to
+get the most out of lxml&#8217;s parser for very large XML documents.  She
+quite favourably positions <code class="docutils literal"><span class="pre">lxml.etree</span></code> as a tool for
+<a class="reference external" href="http://www.ibm.com/developerworks/xml/library/x-hiperfparse/">high-performance XML parsing</a>.</p>
+<p>Finally, <a class="reference external" href="http://www.xml.com/">xml.com</a> has a couple of publications about XML parser
+performance.  Farwick and Hafner have written two interesting articles
+that compare the parser of libxml2 to some major Java based XML
+parsers.  One deals with <a class="reference external" href="http://www.xml.com/lpt/a/1702">event-driven parser performance</a>, the other
+one presents <a class="reference external" href="http://www.xml.com/lpt/a/1703">benchmark results comparing DOM parsers</a>.  Both
+comparisons suggest that libxml2&#8217;s parser performance is largely
+superiour to all commonly used Java parsers in almost all cases.  Note
+that the C parser benchmark results are based on <a class="reference external" href="http://xmlbench.sourceforge.net/">xmlbench</a>, which uses
+a simpler setup for libxml2 than lxml does.</p>
+</div>
+<div class="section" id="the-elementtree-api">
+<h2><a class="toc-backref" href="#id5">The ElementTree API</a><a class="headerlink" href="#the-elementtree-api" title="Permalink to this headline">¶</a></h2>
+<p>Since all three libraries implement the same API, their performance is
+easy to compare in this area.  A major disadvantage for lxml&#8217;s
+performance is the different tree model that underlies libxml2.  It
+allows lxml to provide parent pointers for elements and full XPath
+support, but also increases the overhead of tree building and
+restructuring.  This can be seen from the tree setup times of the
+benchmark (given in seconds):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span>       <span class="o">--</span>     <span class="n">S</span><span class="o">-</span>     <span class="n">U</span><span class="o">-</span>     <span class="o">-</span><span class="n">A</span>     <span class="n">SA</span>     <span class="n">UA</span>
+     <span class="n">T1</span><span class="p">:</span> <span class="mf">0.0299</span> <span class="mf">0.0343</span> <span class="mf">0.0344</span> <span class="mf">0.0293</span> <span class="mf">0.0345</span> <span class="mf">0.0342</span>
+     <span class="n">T2</span><span class="p">:</span> <span class="mf">0.0368</span> <span class="mf">0.0423</span> <span class="mf">0.0418</span> <span class="mf">0.0427</span> <span class="mf">0.0474</span> <span class="mf">0.0459</span>
+     <span class="n">T3</span><span class="p">:</span> <span class="mf">0.0088</span> <span class="mf">0.0084</span> <span class="mf">0.0086</span> <span class="mf">0.0251</span> <span class="mf">0.0258</span> <span class="mf">0.0261</span>
+     <span class="n">T4</span><span class="p">:</span> <span class="mf">0.0002</span> <span class="mf">0.0002</span> <span class="mf">0.0002</span> <span class="mf">0.0005</span> <span class="mf">0.0006</span> <span class="mf">0.0006</span>
+<span class="n">cET</span><span class="p">:</span>       <span class="o">--</span>     <span class="n">S</span><span class="o">-</span>     <span class="n">U</span><span class="o">-</span>     <span class="o">-</span><span class="n">A</span>     <span class="n">SA</span>     <span class="n">UA</span>
+     <span class="n">T1</span><span class="p">:</span> <span class="mf">0.0050</span> <span class="mf">0.0045</span> <span class="mf">0.0093</span> <span class="mf">0.0044</span> <span class="mf">0.0043</span> <span class="mf">0.0043</span>
+     <span class="n">T2</span><span class="p">:</span> <span class="mf">0.0073</span> <span class="mf">0.0075</span> <span class="mf">0.0074</span> <span class="mf">0.0201</span> <span class="mf">0.0075</span> <span class="mf">0.0074</span>
+     <span class="n">T3</span><span class="p">:</span> <span class="mf">0.0033</span> <span class="mf">0.0213</span> <span class="mf">0.0032</span> <span class="mf">0.0034</span> <span class="mf">0.0033</span> <span class="mf">0.0035</span>
+     <span class="n">T4</span><span class="p">:</span> <span class="mf">0.0000</span> <span class="mf">0.0000</span> <span class="mf">0.0000</span> <span class="mf">0.0000</span> <span class="mf">0.0000</span> <span class="mf">0.0000</span>
+</pre></div>
+</div>
+<p>The timings are somewhat close to each other, although cET can be
+several times faster than lxml for larger trees.  One of the
+reasons is that lxml must encode incoming string data and tag names
+into UTF-8, and additionally discard the created Python elements
+after their use, when they are no longer referenced.  ElementTree
+represents the tree itself through these objects, which reduces
+the overhead in creating them.</p>
+<div class="section" id="child-access">
+<h3><a class="toc-backref" href="#id6">Child access</a><a class="headerlink" href="#child-access" title="Permalink to this headline">¶</a></h3>
+<p>The same tree overhead makes operations like collecting children as in
+<code class="docutils literal"><span class="pre">list(element)</span></code> more costly in lxml.  Where cET can quickly create
+a shallow copy of their list of children, lxml has to create a Python
+object for each child and collect them in a list:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">root_list_children</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0038</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">root_list_children</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0010</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">root_list_children</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0455</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">root_list_children</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0050</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>This handicap is also visible when accessing single children:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">first_child</span>               <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0424</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">first_child</span>               <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0384</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">last_child</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0477</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">last_child</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0467</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>... unless you also add the time to find a child index in a bigger
+list.  ET and cET use Python lists here, which are based on arrays.
+The data structure used by libxml2 is a linked tree, and thus, a
+linked list of children:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">middle_child</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0710</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">middle_child</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0420</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">middle_child</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">1.7393</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">middle_child</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0396</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-creation">
+<h3><a class="toc-backref" href="#id7">Element creation</a><a class="headerlink" href="#element-creation" title="Permalink to this headline">¶</a></h3>
+<p>As opposed to ET, libxml2 has a notion of documents that each element must be
+in.  This results in a major performance difference for creating independent
+Elements that end up in independently created documents:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">create_elements</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">1.0045</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">create_elements</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0753</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Therefore, it is always preferable to create Elements for the document they
+are supposed to end up in, either as SubElements of an Element or using the
+explicit <code class="docutils literal"><span class="pre">Element.makeelement()</span></code> call:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">makeelement</span>               <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">1.0586</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">makeelement</span>               <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.1483</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">create_subelements</span>        <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.8826</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">create_subelements</span>        <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0827</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>So, if the main performance bottleneck of an application is creating large XML
+trees in memory through calls to Element and SubElement, cET is the best
+choice.  Note, however, that the serialisation performance may even out this
+advantage, especially for smaller trees and trees with many attributes.</p>
+</div>
+<div class="section" id="merging-different-sources">
+<h3><a class="toc-backref" href="#id8">Merging different sources</a><a class="headerlink" href="#merging-different-sources" title="Permalink to this headline">¶</a></h3>
+<p>A critical action for lxml is moving elements between document contexts.  It
+requires lxml to do recursive adaptations throughout the moved tree structure.</p>
+<p>The following benchmark appends all root children of the second tree to the
+root of the first tree:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">append_from_document</span>      <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">)</span>    <span class="mf">1.0812</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">append_from_document</span>      <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">)</span>    <span class="mf">0.1104</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">append_from_document</span>      <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">,</span><span class="n">T4</span><span class="p">)</span>    <span class="mf">0.0155</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">append_from_document</span>      <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">,</span><span class="n">T4</span><span class="p">)</span>    <span class="mf">0.0060</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Although these are fairly small numbers compared to parsing, this easily shows
+the different performance classes for lxml and (c)ET.  Where the latter do not
+have to care about parent pointers and tree structures, lxml has to deep
+traverse the appended tree.  The performance difference therefore increases
+with the size of the tree that is moved.</p>
+<p>This difference is not always as visible, but applies to most parts of the
+API, like inserting newly created elements:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">insert_from_document</span>         <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">)</span>    <span class="mf">3.9763</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">insert_from_document</span>         <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">)</span>    <span class="mf">0.1459</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>or replacing the child slice by a newly created element:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">replace_children_element</span>   <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0749</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">replace_children_element</span>   <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0081</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>as opposed to replacing the slice with an existing element from the
+same document:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">replace_children</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0052</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">replace_children</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0036</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>While these numbers are too small to provide a major performance
+impact in practice, you should keep this difference in mind when you
+merge very large trees.  Note that Elements have a <code class="docutils literal"><span class="pre">makeelement()</span></code>
+method that allows to create an Element within the same document,
+thus avoiding the merge overhead when inserting it into that tree.</p>
+</div>
+<div class="section" id="deepcopy">
+<h3><a class="toc-backref" href="#id9">deepcopy</a><a class="headerlink" href="#deepcopy" title="Permalink to this headline">¶</a></h3>
+<p>Deep copying a tree is fast in lxml:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">3.1650</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>   <span class="mf">53.9973</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="o">-</span><span class="n">ATR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">3.7365</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="o">-</span><span class="n">ATR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">61.6267</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.7913</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">deepcopy_all</span>              <span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>   <span class="mf">13.6220</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>So, for example, if you have a database-like scenario where you parse in a
+large tree and then search and copy independent subtrees from it for further
+processing, lxml is by far the best choice here.</p>
+</div>
+<div class="section" id="tree-traversal">
+<h3><a class="toc-backref" href="#id10">Tree traversal</a><a class="headerlink" href="#tree-traversal" title="Permalink to this headline">¶</a></h3>
+<p>Another important area in XML processing is iteration for tree
+traversal.  If your algorithms can benefit from step-by-step
+traversal of the XML tree and especially if few elements are of
+interest or the target element tag name is known, the <code class="docutils literal"><span class="pre">.iter()</span></code>
+method is a good choice:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">iter_all</span>             <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">1.0529</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_all</span>             <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.2635</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iter_islice</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0110</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_islice</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0050</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iter_tag</span>             <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0079</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_tag</span>             <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0112</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iter_tag_all</span>         <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.1822</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_tag_all</span>         <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.5343</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>This translates directly into similar timings for <code class="docutils literal"><span class="pre">Element.findall()</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">findall</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">1.7176</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">findall</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.9973</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">findall</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.3967</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">findall</span>              <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.2525</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">findall_tag</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.2258</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">findall_tag</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.5770</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">findall_tag</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.1085</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">findall_tag</span>          <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.1919</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that all three libraries currently use the same Python
+implementation for <code class="docutils literal"><span class="pre">.findall()</span></code>, except for their native tree
+iterator (<code class="docutils literal"><span class="pre">element.iter()</span></code>).  In general, lxml is very fast
+for iteration, but loses ground against cET when many Elements
+are found and need to be instantiated.  So, the more selective
+your search is, the faster lxml will run.</p>
+</div>
+</div>
+<div class="section" id="xpath">
+<h2><a class="toc-backref" href="#id11">XPath</a><a class="headerlink" href="#xpath" title="Permalink to this headline">¶</a></h2>
+<p>The following timings are based on the benchmark script <a class="reference external" href="https://github.com/lxml/lxml/blob/master/benchmark/bench_xpath.py">bench_xpath.py</a>.</p>
+<p>This part of lxml does not have an equivalent in ElementTree.  However, lxml
+provides more than one way of accessing it and you should take care which part
+of the lxml API you use.  The most straight forward way is to call the
+<code class="docutils literal"><span class="pre">xpath()</span></code> method on an Element or ElementTree:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_method</span>         <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.3982</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_method</span>         <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">7.8895</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_method</span>         <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.0477</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_method</span>         <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.3982</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>This is well suited for testing and when the XPath expressions are as diverse
+as the trees they are called on.  However, if you have a single XPath
+expression that you want to apply to a larger number of different elements,
+the <code class="docutils literal"><span class="pre">XPath</span></code> class is the most efficient way to do it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class</span>          <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.0713</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class</span>          <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">1.1325</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class</span>          <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.0215</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class</span>          <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.0722</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that this still allows you to use variables in the expression, so you can
+parse it once and then adapt it through variables at call time.  In other
+cases, where you have a fixed Element or ElementTree and want to run different
+expressions on it, you should consider the <code class="docutils literal"><span class="pre">XPathEvaluator</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_element</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.1101</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_element</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">2.0473</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_element</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T3</span><span class="p">)</span>    <span class="mf">0.0267</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_element</span>        <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.1087</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>While it looks slightly slower, creating an XPath object for each of the
+expressions generates a much higher overhead here:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class_repeat</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T1</span>   <span class="p">)</span>    <span class="mf">0.3884</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class_repeat</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T2</span>   <span class="p">)</span>    <span class="mf">7.6182</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class_repeat</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T3</span>   <span class="p">)</span>    <span class="mf">0.0465</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_class_repeat</span>           <span class="p">(</span><span class="o">--</span><span class="n">TC</span> <span class="n">T4</span>   <span class="p">)</span>    <span class="mf">0.3877</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that tree iteration can be substantially faster than XPath if
+your code short-circuits after the first couple of elements were
+found.  The XPath engine will always return the complete result set,
+regardless of how much of it will actually be used.</p>
+<p>Here is an example where only the first matching element is being
+searched, a case for which XPath has syntax support as well:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">find_single</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0184</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">find_single</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0052</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iter_single</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0024</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_single</span>                <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0007</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_single</span>               <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0033</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>When looking for the first two elements out of many, the numbers
+explode for XPath, as restricting the result subset requires a
+more complex expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">iterfind_two</span>               <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0184</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iterfind_two</span>               <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0062</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">iter_two</span>                   <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0029</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">cET</span><span class="p">:</span> <span class="n">iter_two</span>                   <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.0017</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">xpath_two</span>                  <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>    <span class="mf">0.2768</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-longer-example">
+<h2><a class="toc-backref" href="#id12">A longer example</a><a class="headerlink" href="#a-longer-example" title="Permalink to this headline">¶</a></h2>
+<p>... based on lxml 1.3.</p>
+<p>A while ago, Uche Ogbuji posted a <a class="reference external" href="http://www.onlamp.com/pub/wlg/6291">benchmark proposal</a> that would
+read in a 3MB XML version of the <a class="reference external" href="http://www.ibiblio.org/bosak/xml/eg/religion.2.00.xml.zip">Old Testament</a> of the Bible and
+look for the word <em>begat</em> in all verses.  Apparently, it is contained
+in 120 out of almost 24000 verses.  This is easy to implement in
+ElementTree using <code class="docutils literal"><span class="pre">findall()</span></code>.  However, the fastest and most memory
+friendly way to do this is obviously <code class="docutils literal"><span class="pre">iterparse()</span></code>, as most of the
+data is not of any interest.</p>
+<p>Now, Uche&#8217;s original proposal was more or less the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bench_ET</span><span class="p">():</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;ot.xml&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;//v&quot;</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="s1">&#39;begat&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which takes about one second on my machine today.  The faster <code class="docutils literal"><span class="pre">iterparse()</span></code>
+variant looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bench_ET_iterparse</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">event</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;ot.xml&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">if</span> <span class="s1">&#39;begat&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The improvement is about 10%.  At the time I first tried (early 2006), lxml
+didn&#8217;t have <code class="docutils literal"><span class="pre">iterparse()</span></code> support, but the <code class="docutils literal"><span class="pre">findall()</span></code> variant was already
+faster than ElementTree.  This changes immediately when you switch to
+cElementTree.  The latter only needs 0.17 seconds to do the trick today and
+only some impressive 0.10 seconds when running the iterparse version.  And
+even back then, it was quite a bit faster than what lxml could achieve.</p>
+<p>Since then, lxml has matured a lot and has gotten much faster.  The iterparse
+variant now runs in 0.14 seconds, and if you remove the <code class="docutils literal"><span class="pre">v.clear()</span></code>, it is
+even a little faster (which isn&#8217;t the case for cElementTree).</p>
+<p>One of the many great tools in lxml is XPath, a Swiss army knife for finding
+things in XML documents.  It is possible to move the whole thing to a pure
+XPath implementation, which looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bench_lxml_xpath_all</span><span class="p">():</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;ot.xml&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//v[contains(., &#39;begat&#39;)]/text()&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This runs in about 0.13 seconds and is about the shortest possible
+implementation (in lines of Python code) that I could come up with.  Now, this
+is already a rather complex XPath expression compared to the simple &#8220;//v&#8221;
+ElementPath expression we started with.  Since this is also valid XPath, let&#8217;s
+try this instead:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bench_lxml_xpath</span><span class="p">():</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;ot.xml&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//v&quot;</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="s1">&#39;begat&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This gets us down to 0.12 seconds, thus showing that a generic XPath
+evaluation engine cannot always compete with a simpler, tailored solution.
+However, since this is not much different from the original findall variant,
+we can remove the complexity of the XPath call completely and just go with
+what we had in the beginning.  Under lxml, this runs in the same 0.12 seconds.</p>
+<p>But there is one thing left to try.  We can replace the simple ElementPath
+expression with a native tree iterator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bench_lxml_getiterator</span><span class="p">():</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;ot.xml&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">getiterator</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="s1">&#39;begat&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This implements the same thing, just without the overhead of parsing and
+evaluating a path expression.  And this makes it another bit faster, down to
+0.11 seconds.  For comparison, cElementTree runs this version in 0.17 seconds.</p>
+<p>So, what have we learned?</p>
+<ul class="simple">
+<li>Python code is not slow.  The pure XPath solution was not even as fast as
+the first shot Python implementation.  In general, a few more lines in
+Python make things more readable, which is much more important than the last
+5% of performance.</li>
+<li>It&#8217;s important to know the available options - and it&#8217;s worth starting with
+the most simple one.  In this case, a programmer would then probably have
+started with <code class="docutils literal"><span class="pre">getiterator(&quot;v&quot;)</span></code> or <code class="docutils literal"><span class="pre">iterparse()</span></code>.  Either of them would
+already have been the most efficient, depending on which library is used.</li>
+<li>It&#8217;s important to know your tool.  lxml and cElementTree are both very fast
+libraries, but they do not have the same performance characteristics.  The
+fastest solution in one library can be comparatively slow in the other.  If
+you optimise, optimise for the specific target platform.</li>
+<li>It&#8217;s not always worth optimising.  After all that hassle we got from 0.12
+seconds for the initial implementation to 0.11 seconds.  Switching over to
+cElementTree and writing an <code class="docutils literal"><span class="pre">iterparse()</span></code> based version would have given
+us 0.10 seconds - not a big difference for 3MB of XML.</li>
+<li>Take care what operation is really dominating in your use case.  If we split
+up the operations, we can see that lxml is slightly slower than cElementTree
+on <code class="docutils literal"><span class="pre">parse()</span></code> (both about 0.06 seconds), but more visibly slower on
+<code class="docutils literal"><span class="pre">iterparse()</span></code>: 0.07 versus 0.10 seconds.  However, tree iteration in lxml
+is incredibly fast, so it can be better to parse the whole tree and then
+iterate over it rather than using <code class="docutils literal"><span class="pre">iterparse()</span></code> to do both in one step.
+Or, you can just wait for the lxml developers to optimise iterparse in one
+of the next releases...</li>
+</ul>
+</div>
+<div class="section" id="lxml-objectify">
+<h2><a class="toc-backref" href="#id13">lxml.objectify</a><a class="headerlink" href="#lxml-objectify" title="Permalink to this headline">¶</a></h2>
+<p>The following timings are based on the benchmark script <a class="reference external" href="https://github.com/lxml/lxml/blob/master/benchmark/bench_objectify.py">bench_objectify.py</a>.</p>
+<p>Objectify is a data-binding API for XML based on lxml.etree, that was added in
+version 1.1.  It uses standard Python attribute access to traverse the XML
+tree.  It also features ObjectPath, a fast path language based on the same
+meme.</p>
+<p>Just like lxml.etree, lxml.objectify creates Python representations of
+elements on the fly.  To save memory, the normal Python garbage collection
+mechanisms will discard them when their last reference is gone.  In cases
+where deeply nested elements are frequently accessed through the objectify
+API, the create-discard cycles can become a bottleneck, as elements have to be
+instantiated over and over again.</p>
+<div class="section" id="objectpath">
+<h3><a class="toc-backref" href="#id14">ObjectPath</a><a class="headerlink" href="#objectpath" title="Permalink to this headline">¶</a></h3>
+<p>ObjectPath can be used to speed up the access to elements that are deep in the
+tree.  It avoids step-by-step Python element instantiations along the path,
+which can substantially improve the access time:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">attribute</span>                  <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">4.1828</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attribute</span>                  <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">17.3802</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attribute</span>                  <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">3.8657</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath</span>                 <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.9289</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath</span>                 <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">13.3109</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath</span>                 <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.9289</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">6.2900</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">20.4713</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">6.1679</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">1.3049</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">14.0815</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep</span>            <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">1.3051</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note, however, that parsing ObjectPath expressions is not for free either, so
+this is most effective for frequently accessing the same element.</p>
+</div>
+<div class="section" id="caching-elements">
+<h3><a class="toc-backref" href="#id15">Caching Elements</a><a class="headerlink" href="#caching-elements" title="Permalink to this headline">¶</a></h3>
+<p>A way to improve the normal attribute access time is static instantiation of
+the Python objects, thus trading memory for speed.  Just create a cache
+dictionary and run:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cache</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>after parsing and:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">cache</span><span class="p">[</span><span class="n">root</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>when you are done with the tree.  This will keep the Python element
+representations of all elements alive and thus avoid the overhead of repeated
+Python object creation.  You can also consider using filters or generator
+expressions to be more selective.  By choosing the right trees (or even
+subtrees and elements) to cache, you can trade memory usage against access
+speed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxe</span><span class="p">:</span> <span class="n">attribute_cached</span>           <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">3.1357</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attribute_cached</span>           <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">15.8911</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attribute_cached</span>           <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">2.9194</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">3.8984</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">16.8300</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">attributes_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">3.6936</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T1</span><span class="p">)</span>    <span class="mf">0.7496</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T2</span><span class="p">)</span>   <span class="mf">12.3763</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+<span class="n">lxe</span><span class="p">:</span> <span class="n">objectpath_deep_cached</span>     <span class="p">(</span><span class="o">--</span><span class="n">TR</span> <span class="n">T4</span><span class="p">)</span>    <span class="mf">0.7427</span> <span class="n">msec</span><span class="o">/</span><span class="k">pass</span>
+</pre></div>
+</div>
+<p>Things to note: you cannot currently use <code class="docutils literal"><span class="pre">weakref.WeakKeyDictionary</span></code> objects
+for this as lxml&#8217;s element objects do not support weak references (which are
+costly in terms of memory).  Also note that new element objects that you add
+to these trees will not turn up in the cache automatically and will therefore
+still be garbage collected when all their Python references are gone, so this
+is most effective for largely immutable trees.  You should consider using a
+set instead of a list in this case and add new elements by hand.</p>
+</div>
+<div class="section" id="further-optimisations">
+<h3><a class="toc-backref" href="#id16">Further optimisations</a><a class="headerlink" href="#further-optimisations" title="Permalink to this headline">¶</a></h3>
+<p>Here are some more things to try if optimisation is required:</p>
+<ul class="simple">
+<li>A lot of time is usually spent in tree traversal to find the addressed
+elements in the tree.  If you often work in subtrees, do what you would also
+do with deep Python objects: assign the parent of the subtree to a variable
+or pass it into functions instead of starting at the root.  This allows
+accessing its descendants more directly.</li>
+<li>Try assigning data values directly to attributes instead of passing them
+through DataElement.</li>
+<li>If you use custom data types that are costly to parse, try running
+<code class="docutils literal"><span class="pre">objectify.annotate()</span></code> over read-only trees to speed up the attribute type
+inference on read access.</li>
+</ul>
+<p>Note that none of these measures is guaranteed to speed up your application.
+As usual, you should prefer readable code over premature optimisations and
+profile your expected use cases before bothering to apply optimisations at
+random.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

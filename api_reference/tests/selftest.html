@@ -1,0 +1,954 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxml.tests.selftest &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="../../about.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">lxml.tests.selftest</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>lxml.tests.selftest</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_reference/tests/selftest.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="../../tutorial.html">Tutorial</a>
+            <a href="../../docindex.html">Docs</a>
+            <a href="../../api_reference.html">API Reference</a>
+            <a href="../../genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxml-tests-selftest">
+<h1>lxml.tests.selftest<a class="headerlink" href="#lxml-tests-selftest" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lxml.tests.selftest.bad_find">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">bad_find</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.bad_find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check bad or unsupported path expressions.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">SAMPLE_XML</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;/tag&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">SyntaxError</span>: <span class="n">cannot use absolute path on element</span>
+</pre></div>
+</div>
+<p># this is supported in ET 1.3:
+#&gt;&gt;&gt; elem.findall(&#8220;section//&#8221;)
+#Traceback (most recent call last):
+#SyntaxError: invalid path</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.bug_xmltoolkit25">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">bug_xmltoolkit25</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.bug_xmltoolkit25" title="Permalink to this definition">¶</a></dt>
+<dd><p>typo in ElementTree.findtext</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">SAMPLE_XML</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;text&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;subtext&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.bug_xmltoolkit28">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">bug_xmltoolkit28</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.bug_xmltoolkit28" title="Permalink to this definition">¶</a></dt>
+<dd><p>.//tag causes exceptions</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;doc&gt;&lt;table&gt;&lt;tbody/&gt;&lt;/table&gt;&lt;/doc&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//thead&quot;</span><span class="p">))</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tbody&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tbody&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.check_element">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">check_element</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.check_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.check_element_tree">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">check_element_tree</code><span class="sig-paren">(</span><em>tree</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.check_element_tree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.check_mapping">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">check_mapping</code><span class="sig-paren">(</span><em>mapping</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.check_mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.check_string">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">check_string</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.check_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.check_string_or_none">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">check_string_or_none</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.check_string_or_none" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.encoding">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">encoding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test encoding issues.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;abc&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;abc&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;us-ascii&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;abc&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;iso-8859-1&#39;?&gt;\n&lt;tag&gt;abc&lt;/tag&gt;&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&lt;&amp;</span><span class="se">\&quot;\&#39;</span><span class="s2">&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;&amp;lt;&amp;amp;&quot;\&#39;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;&amp;lt;&amp;amp;&quot;\&#39;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;us-ascii&quot;</span><span class="p">)</span> <span class="c1"># cdata characters</span>
+<span class="go">&#39;&lt;tag&gt;&amp;lt;&amp;amp;&quot;\&#39;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&#39;&lt;?xml version=\&#39;1.0\&#39; encoding=\&#39;iso-8859-1\&#39;?&gt;\n&lt;tag&gt;&amp;lt;&amp;amp;&quot;\&#39;&amp;gt;&lt;/tag&gt;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;&amp;</span><span class="se">\&quot;\&#39;</span><span class="s2">&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;&amp;lt;&amp;amp;&amp;quot;\&#39;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;&amp;lt;&amp;amp;&amp;quot;\&#39;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;us-ascii&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;&amp;lt;&amp;amp;&amp;quot;\&#39;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&#39;&lt;?xml version=\&#39;1.0\&#39; encoding=\&#39;iso-8859-1\&#39;?&gt;\n&lt;tag key=&quot;&amp;lt;&amp;amp;&amp;quot;\&#39;&amp;gt;&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe5\xf6\xf6</span><span class="s1">&lt;&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;&amp;#229;&amp;#246;&amp;#246;&amp;lt;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;\xc3\xa5\xc3\xb6\xc3\xb6&amp;lt;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;us-ascii&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;&amp;#229;&amp;#246;&amp;#246;&amp;lt;&amp;gt;&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&quot;&lt;?xml version=&#39;1.0&#39; encoding=&#39;iso-8859-1&#39;?&gt;\n&lt;tag&gt;\xe5\xf6\xf6&amp;lt;&amp;gt;&lt;/tag&gt;&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe5\xf6\xf6</span><span class="s1">&lt;&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;&amp;#229;&amp;#246;&amp;#246;&amp;lt;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;\xc3\xa5\xc3\xb6\xc3\xb6&amp;lt;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;us-ascii&quot;</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag key=&quot;&amp;#229;&amp;#246;&amp;#246;&amp;lt;&amp;gt;&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="go">&#39;&lt;?xml version=\&#39;1.0\&#39; encoding=\&#39;iso-8859-1\&#39;?&gt;\n&lt;tag key=&quot;\xe5\xf6\xf6&amp;lt;&amp;gt;&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.find">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">find</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test find methods (including xpath syntax).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">SAMPLE_XML</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;tag&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;tag&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;tag&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;tag&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;text&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;tog&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;tog&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<span class="go">&#39;default&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;text&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;subtext&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">)</span>
+<span class="go">&#39;subtext&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;, &#39;section&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section/tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section//tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section/*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section//*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section/.//*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;*/*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;*//*&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;*/tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;*/./tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;./tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;././tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag[@class]&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag[@class=&#39;a&#39;]&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag[@class=&#39;b&#39;]&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//tag[@id]&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//section[tag]&quot;</span><span class="p">))</span>
+<span class="go">[&#39;section&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//section[element]&quot;</span><span class="p">))</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;../tag&quot;</span><span class="p">))</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;section/../tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;./tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+</pre></div>
+</div>
+<p>FIXME: ET&#8217;s Path module handles this case incorrectly; this gives
+a warning in 1.3, and the behaviour will be modified in 1.4.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;/tag&quot;</span><span class="p">))</span>
+<span class="go">[&#39;tag&#39;, &#39;tag&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.fix_compatibility">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">fix_compatibility</code><span class="sig-paren">(</span><em>xml_data</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.fix_compatibility" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.interface">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test element tree interface.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">element</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">check_element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">check_element_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.iterators">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">iterators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.iterators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test iterators.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;this is a &lt;i&gt;paragraph&lt;/i&gt;.&lt;/body&gt;..&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">iter</span><span class="p">())</span>
+<span class="go">[&#39;html&#39;, &#39;body&#39;, &#39;i&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize_list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iter</span><span class="p">())</span>
+<span class="go">[&#39;body&#39;, &#39;i&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">itertext</span><span class="p">())</span>
+<span class="go">&#39;this is a paragraph...&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">itertext</span><span class="p">())</span>
+<span class="go">&#39;this is a paragraph.&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.iterparse">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">iterparse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.iterparse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test iterparse interface.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iterparse</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">iterparse</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">end element</span>
+<span class="go">end element</span>
+<span class="go">end empty-element</span>
+<span class="go">end root</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;root&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple-ns.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">end {http://namespace/}element</span>
+<span class="go">end {http://namespace/}element</span>
+<span class="go">end {http://namespace/}empty-element</span>
+<span class="go">end {http://namespace/}root</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple.xml&quot;</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple.xml&quot;</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple.xml&quot;</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="go">start root</span>
+<span class="go">start element</span>
+<span class="go">end element</span>
+<span class="go">start element</span>
+<span class="go">end element</span>
+<span class="go">start empty-element</span>
+<span class="go">end empty-element</span>
+<span class="go">end root</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;start-ns&quot;</span><span class="p">,</span> <span class="s2">&quot;end-ns&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="s2">&quot;samples/simple-ns.xml&quot;</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span><span class="p">))</span>
+<span class="gp">... </span>  <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">elem</span><span class="p">))</span>
+<span class="go">start-ns (&#39;&#39;, &#39;http://namespace/&#39;)</span>
+<span class="go">start {http://namespace/}root</span>
+<span class="go">start {http://namespace/}element</span>
+<span class="go">end {http://namespace/}element</span>
+<span class="go">start {http://namespace/}element</span>
+<span class="go">end {http://namespace/}element</span>
+<span class="go">start {http://namespace/}empty-element</span>
+<span class="go">end {http://namespace/}empty-element</span>
+<span class="go">end {http://namespace/}root</span>
+<span class="go">end-ns None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.namespace">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">namespace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test namespace issues.</p>
+<ol class="arabic simple">
+<li>xml namespace</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;tag xml:lang=&#39;en&#39; /&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 1.1</span>
+<span class="go">&#39;&lt;tag xml:lang=&quot;en&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>other &#8220;well-known&#8221; namespaces</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;rdf:RDF xmlns:rdf=&#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#39; /&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 2.1</span>
+<span class="go">&#39;&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;html:html xmlns:html=&#39;http://www.w3.org/1999/xhtml&#39; /&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 2.2</span>
+<span class="go">&#39;&lt;html:html xmlns:html=&quot;http://www.w3.org/1999/xhtml&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;soap:Envelope xmlns:soap=&#39;http://schemas.xmlsoap.org/soap/envelope&#39; /&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 2.3</span>
+<span class="go">&#39;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>unknown namespaces</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.normalize_crlf">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">normalize_crlf</code><span class="sig-paren">(</span><em>tree</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.normalize_crlf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.parsefile">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">parsefile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.parsefile" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Test parsing from file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;samples/simple.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normalize_crlf</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stdout</span><span class="p">())</span>
+<span class="go">&lt;root&gt;</span>
+<span class="go">   &lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;</span>
+<span class="go">   &lt;element&gt;text&lt;/element&gt;tail</span>
+<span class="go">   &lt;empty-element/&gt;</span>
+<span class="go">&lt;/root&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;samples/simple-ns.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normalize_crlf</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stdout</span><span class="p">())</span>
+<span class="go">&lt;root xmlns=&quot;http://namespace/&quot;&gt;</span>
+<span class="go">   &lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;</span>
+<span class="go">   &lt;element&gt;text&lt;/element&gt;tail</span>
+<span class="go">   &lt;empty-element/&gt;</span>
+<span class="go">&lt;/root&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>##     &lt;ns0:root xmlns:ns0=&#8221;http://namespace/&#8221;&gt;
+##        &lt;ns0:element key=&#8221;value&#8221;&gt;text&lt;/ns0:element&gt;
+##        &lt;ns0:element&gt;text&lt;/ns0:element&gt;tail
+##        &lt;ns0:empty-element/&gt;
+##     &lt;/ns0:root&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.parseliteral">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">parseliteral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.parseliteral" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">element</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stdout</span><span class="p">())</span>
+<span class="go">&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">element</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stdout</span><span class="p">())</span>
+<span class="go">&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>##     &gt;&gt;&gt; sequence = [&#8220;&lt;html&gt;&lt;body&gt;&#8221;, &#8220;text&lt;/bo&#8221;, &#8220;dy&gt;&lt;/html&gt;&#8221;]
+##     &gt;&gt;&gt; element = ElementTree.fromstringlist(sequence)
+##     &gt;&gt;&gt; ElementTree.ElementTree(element).write(stdout())
+##     &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+<span class="go">&#39;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&#39;</span>
+</pre></div>
+</div>
+<p># looks different in lxml
+#    &gt;&gt;&gt; print(ElementTree.tostring(element, &#8220;ascii&#8221;))
+#    &lt;?xml version=&#8216;1.0&#8217; encoding=&#8217;ascii&#8217;?&gt;
+#    &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XMLID</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XMLID</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body id=&#39;body&#39;&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ids</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tag</span>
+<span class="go">&#39;body&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.qname">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">qname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.qname" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Test QName handling.</p>
+<ol class="arabic simple">
+<li>decorated tags</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{uri}</span><span class="s2">tag&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 1.1</span>
+<span class="go">&#39;&lt;ns0:tag xmlns:ns0=&quot;uri&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">QName</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{uri}</span><span class="s2">tag&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 1.2</span>
+<span class="go">&#39;&lt;ns0:tag xmlns:ns0=&quot;uri&quot;/&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">QName</span><span class="p">(</span><span class="s2">&quot;uri&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="c1"># 1.3</span>
+<span class="go">&#39;&lt;ns0:tag xmlns:ns0=&quot;uri&quot;/&gt;&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p># ns/attribute order ...</p>
+<p>##     2) decorated attributes</p>
+<p>##     &gt;&gt;&gt; elem.clear()
+##     &gt;&gt;&gt; elem.attrib[&#8220;{uri}key&#8221;] = &#8220;value&#8221;
+##     &gt;&gt;&gt; serialize(elem) # 2.1
+##     &#8216;&lt;ns0:tag ns0:key=&#8221;value&#8221; xmlns:ns0=&#8221;uri&#8221;/&gt;&#8217;</p>
+<p>##     &gt;&gt;&gt; elem.clear()
+##     &gt;&gt;&gt; elem.attrib[ElementTree.QName(&#8220;{uri}key&#8221;)] = &#8220;value&#8221;
+##     &gt;&gt;&gt; serialize(elem) # 2.2
+##     &#8216;&lt;ns0:tag ns0:key=&#8221;value&#8221; xmlns:ns0=&#8221;uri&#8221;/&gt;&#8217;</p>
+<p>##     3) decorated values are not converted by default, but the
+##        QName wrapper can be used for values</p>
+<p>##     &gt;&gt;&gt; elem.clear()
+##     &gt;&gt;&gt; elem.attrib[&#8220;{uri}key&#8221;] = &#8220;{uri}value&#8221;
+##     &gt;&gt;&gt; serialize(elem) # 3.1
+##     &#8216;&lt;ns0:tag ns0:key=&#8221;{uri}value&#8221; xmlns:ns0=&#8221;uri&#8221;/&gt;&#8217;</p>
+<p>##     &gt;&gt;&gt; elem.clear()
+##     &gt;&gt;&gt; elem.attrib[&#8220;{uri}key&#8221;] = ElementTree.QName(&#8220;{uri}value&#8221;)
+##     &gt;&gt;&gt; serialize(elem) # 3.2
+##     &#8216;&lt;ns0:tag ns0:key=&#8221;ns0:value&#8221; xmlns:ns0=&#8221;uri&#8221;/&gt;&#8217;</p>
+<p>##     &gt;&gt;&gt; elem.clear()
+##     &gt;&gt;&gt; subelem = ElementTree.Element(&#8220;tag&#8221;)
+##     &gt;&gt;&gt; subelem.attrib[&#8220;{uri1}key&#8221;] = ElementTree.QName(&#8220;{uri2}value&#8221;)
+##     &gt;&gt;&gt; elem.append(subelem)
+##     &gt;&gt;&gt; elem.append(subelem)
+##     &gt;&gt;&gt; serialize(elem) # 3.3
+##     &#8216;&lt;ns0:tag xmlns:ns0=&#8221;uri&#8221;&gt;&lt;tag ns1:key=&#8221;ns2:value&#8221; xmlns:ns1=&#8221;uri1&#8221; xmlns:ns2=&#8221;uri2&#8221;/&gt;&lt;tag ns1:key=&#8221;ns2:value&#8221; xmlns:ns1=&#8221;uri1&#8221; xmlns:ns2=&#8221;uri2&#8221;/&gt;&lt;/ns0:tag&gt;&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.serialize">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">serialize</code><span class="sig-paren">(</span><em>elem</em>, <em>**options</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.simpleops">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">simpleops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.simpleops" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;body&gt;&lt;tag/&gt;&lt;/body&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;body&gt;&lt;tag/&gt;&lt;/body&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;tag2&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;body&gt;&lt;tag/&gt;&lt;tag2/&gt;&lt;/body&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;body&gt;&lt;tag/&gt;&lt;/body&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;body&gt;&lt;tag2/&gt;&lt;tag/&gt;&lt;/body&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">e</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;body&gt;&lt;tag/&gt;&lt;tag2/&gt;&lt;/body&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.stdout">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">stdout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.stdout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.summarize">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">summarize</code><span class="sig-paren">(</span><em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.summarize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.summarize_list">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">summarize_list</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.summarize_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.writefile">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">writefile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.writefile" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;text&lt;/tag&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementTree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="s2">&quot;subtag&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;subtext&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="go">&#39;&lt;tag&gt;text&lt;subtag&gt;subtext&lt;/subtag&gt;&lt;/tag&gt;&#39;</span>
+</pre></div>
+</div>
+<p>##     Test tag suppression
+##     &gt;&gt;&gt; elem.tag = None
+##     &gt;&gt;&gt; serialize(elem)
+##     &#8216;text&lt;subtag&gt;subtext&lt;/subtag&gt;&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.writestring">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">writestring</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.writestring" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+<span class="go">&#39;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+<span class="go">&#39;&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.xinclude">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">xinclude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.xinclude" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Basic inclusion example (XInclude C.1)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="n">xinclude_loader</span><span class="p">(</span><span class="s2">&quot;C1.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementInclude</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">xinclude_loader</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">document</span><span class="p">))</span> <span class="c1"># C1</span>
+<span class="go">&lt;document&gt;</span>
+<span class="go">  &lt;p&gt;120 Mz is adequate for an average home user.&lt;/p&gt;</span>
+<span class="go">  &lt;disclaimer&gt;</span>
+<span class="go">  &lt;p&gt;The opinions represented herein represent those of the individual</span>
+<span class="go">  and should not be interpreted as official policy endorsed by this</span>
+<span class="go">  organization.&lt;/p&gt;</span>
+<span class="go">&lt;/disclaimer&gt;</span>
+<span class="go">&lt;/document&gt;</span>
+</pre></div>
+</div>
+<p>Textual inclusion example (XInclude C.2)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="n">xinclude_loader</span><span class="p">(</span><span class="s2">&quot;C2.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementInclude</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">xinclude_loader</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">document</span><span class="p">))</span> <span class="c1"># C2</span>
+<span class="go">&lt;document&gt;</span>
+<span class="go">  &lt;p&gt;This document has been accessed</span>
+<span class="go">  324387 times.&lt;/p&gt;</span>
+<span class="go">&lt;/document&gt;</span>
+</pre></div>
+</div>
+<p>Textual inclusion of XML example (XInclude C.3)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="n">xinclude_loader</span><span class="p">(</span><span class="s2">&quot;C3.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementInclude</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">xinclude_loader</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">document</span><span class="p">))</span> <span class="c1"># C3</span>
+<span class="go">&lt;document&gt;</span>
+<span class="go">  &lt;p&gt;The following is the source of the &quot;data.xml&quot; resource:&lt;/p&gt;</span>
+<span class="go">  &lt;example&gt;&amp;lt;?xml version=&#39;1.0&#39;?&amp;gt;</span>
+<span class="go">&amp;lt;data&amp;gt;</span>
+<span class="go">  &amp;lt;item&amp;gt;&amp;lt;![CDATA[Brooks &amp;amp; Shields]]&amp;gt;&amp;lt;/item&amp;gt;</span>
+<span class="go">&amp;lt;/data&amp;gt;</span>
+<span class="go">&lt;/example&gt;</span>
+<span class="go">&lt;/document&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>##     Fallback example (XInclude C.5)
+##     Note! Fallback support is not yet implemented</p>
+<p>##     &gt;&gt;&gt; document = xinclude_loader(&#8220;C5.xml&#8221;)
+##     &gt;&gt;&gt; ElementInclude.include(document, xinclude_loader)
+##     Traceback (most recent call last):
+##     IOError: resource not found
+##     &gt;&gt;&gt; # print(serialize(document)) # C5</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.xinclude_default">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">xinclude_default</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.xinclude_default" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="n">xinclude_loader</span><span class="p">(</span><span class="s2">&quot;default.xml&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ElementInclude</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">document</span><span class="p">))</span> <span class="c1"># default</span>
+<span class="go">&lt;document&gt;</span>
+<span class="go">  &lt;p&gt;Example.&lt;/p&gt;</span>
+<span class="go">  &lt;root&gt;</span>
+<span class="go">   &lt;element key=&quot;value&quot;&gt;text&lt;/element&gt;</span>
+<span class="go">   &lt;element&gt;text&lt;/element&gt;tail</span>
+<span class="go">   &lt;empty-element/&gt;</span>
+<span class="go">&lt;/root&gt;</span>
+<span class="go">&lt;/document&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.xinclude_loader">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">xinclude_loader</code><span class="sig-paren">(</span><em>href</em>, <em>parse=&quot;xml&quot;</em>, <em>encoding=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.xinclude_loader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lxml.tests.selftest.xpath_tokenizer">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">xpath_tokenizer</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#lxml.tests.selftest.xpath_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the XPath tokenizer.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># tests from the xml specification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="go">[&#39;*&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;text()&quot;</span><span class="p">)</span>
+<span class="go">[&#39;text&#39;, &#39;()&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;@name&quot;</span><span class="p">)</span>
+<span class="go">[&#39;@&#39;, &#39;name&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;@*&quot;</span><span class="p">)</span>
+<span class="go">[&#39;@&#39;, &#39;*&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;para[1]&quot;</span><span class="p">)</span>
+<span class="go">[&#39;para&#39;, &#39;[&#39;, &#39;1&#39;, &#39;]&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;para[last()]&quot;</span><span class="p">)</span>
+<span class="go">[&#39;para&#39;, &#39;[&#39;, &#39;last&#39;, &#39;()&#39;, &#39;]&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;*/para&quot;</span><span class="p">)</span>
+<span class="go">[&#39;*&#39;, &#39;/&#39;, &#39;para&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;/doc/chapter[5]/section[2]&quot;</span><span class="p">)</span>
+<span class="go">[&#39;/&#39;, &#39;doc&#39;, &#39;/&#39;, &#39;chapter&#39;, &#39;[&#39;, &#39;5&#39;, &#39;]&#39;, &#39;/&#39;, &#39;section&#39;, &#39;[&#39;, &#39;2&#39;, &#39;]&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;chapter//para&quot;</span><span class="p">)</span>
+<span class="go">[&#39;chapter&#39;, &#39;//&#39;, &#39;para&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;//para&quot;</span><span class="p">)</span>
+<span class="go">[&#39;//&#39;, &#39;para&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;//olist/item&quot;</span><span class="p">)</span>
+<span class="go">[&#39;//&#39;, &#39;olist&#39;, &#39;/&#39;, &#39;item&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="go">[&#39;.&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;.//para&quot;</span><span class="p">)</span>
+<span class="go">[&#39;.&#39;, &#39;//&#39;, &#39;para&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+<span class="go">[&#39;..&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;../@lang&quot;</span><span class="p">)</span>
+<span class="go">[&#39;..&#39;, &#39;/&#39;, &#39;@&#39;, &#39;lang&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;chapter[title]&quot;</span><span class="p">)</span>
+<span class="go">[&#39;chapter&#39;, &#39;[&#39;, &#39;title&#39;, &#39;]&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;employee[@secretary and @assistant]&quot;</span><span class="p">)</span>
+<span class="go">[&#39;employee&#39;, &#39;[&#39;, &#39;@&#39;, &#39;secretary&#39;, &#39;&#39;, &#39;and&#39;, &#39;&#39;, &#39;@&#39;, &#39;assistant&#39;, &#39;]&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># additional tests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;{http://spam}egg&quot;</span><span class="p">)</span>
+<span class="go">[&#39;{http://spam}egg&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;./spam.egg&quot;</span><span class="p">)</span>
+<span class="go">[&#39;.&#39;, &#39;/&#39;, &#39;spam.egg&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xpath_tokenizer</span><span class="p">(</span><span class="s2">&quot;.//{http://spam}egg&quot;</span><span class="p">)</span>
+<span class="go">[&#39;.&#39;, &#39;//&#39;, &#39;{http://spam}egg&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.tests.selftest.ENTITY_XML">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">ENTITY_XML</code><em class="property"> = &quot;&lt;!DOCTYPE points [\n&lt;!ENTITY % user-entities SYSTEM 'user-entities.xml'&gt;\n%user-entities;\n]&gt;\n&lt;document&gt;&amp;entity;&lt;/document&gt;\n&quot;</em><a class="headerlink" href="#lxml.tests.selftest.ENTITY_XML" title="Permalink to this definition">¶</a></dt>
+<dd><p>str(object=&#8217;&#8216;) -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
+<p>Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to &#8216;strict&#8217;.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.tests.selftest.SAMPLE_XML">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">SAMPLE_XML</code><em class="property"> = &lt;Element body&gt;</em><a class="headerlink" href="#lxml.tests.selftest.SAMPLE_XML" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element class.</p>
+<p>References a document object and a libxml node.</p>
+<p>By pointing to a Document instance, a reference is kept to
+_Document as long as there is some pointer to a node in it.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lxml.tests.selftest.XINCLUDE">
+<code class="descclassname">lxml.tests.selftest.</code><code class="descname">XINCLUDE</code><em class="property"> = {'C1.xml': '&lt;?xml version=\'1.0\'?&gt;\n&lt;document xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;\n  &lt;p&gt;120 Mz is adequate for an average home user.&lt;/p&gt;\n  &lt;xi:include href=&quot;disclaimer.xml&quot;/&gt;\n&lt;/document&gt;\n', 'disclaimer.xml': &quot;&lt;?xml version='1.0'?&gt;\n&lt;disclaimer&gt;\n  &lt;p&gt;The opinions represented herein represent those of the individual\n  and should not be interpreted as official policy endorsed by this\n  organization.&lt;/p&gt;\n&lt;/disclaimer&gt;\n&quot;, 'C2.xml': '&lt;?xml version=\'1.0\'?&gt;\n&lt;document xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;\n  &lt;p&gt;This document has been accessed\n  &lt;xi:include href=&quot;count.txt&quot; parse=&quot;text&quot;/&gt; times.&lt;/p&gt;\n&lt;/document&gt;\n', 'count.txt': '324387', 'C3.xml': '&lt;?xml version=\'1.0\'?&gt;\n&lt;document xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;\n  &lt;p&gt;The following is the source of the &quot;data.xml&quot; resource:&lt;/p&gt;\n  &lt;example&gt;&lt;xi:include href=&quot;data.xml&quot; parse=&quot;text&quot;/&gt;&lt;/example&gt;\n&lt;/document&gt;\n', 'data.xml': &quot;&lt;?xml version='1.0'?&gt;\n&lt;data&gt;\n  &lt;item&gt;&lt;![CDATA[Brooks &amp; Shields]]&gt;&lt;/item&gt;\n&lt;/data&gt;\n&quot;, 'C5.xml': '&lt;?xml version=\'1.0\'?&gt;\n&lt;div xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;\n  &lt;xi:include href=&quot;example.txt&quot; parse=&quot;text&quot;&gt;\n    &lt;xi:fallback&gt;\n      &lt;xi:include href=&quot;fallback-example.txt&quot; parse=&quot;text&quot;&gt;\n        &lt;xi:fallback&gt;&lt;a href=&quot;mailto:bob&#64;example.org&quot;&gt;Report error&lt;/a&gt;&lt;/xi:fallback&gt;\n      &lt;/xi:include&gt;\n    &lt;/xi:fallback&gt;\n  &lt;/xi:include&gt;\n&lt;/div&gt;\n', 'default.xml': '&lt;?xml version=\'1.0\'?&gt;\n&lt;document xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;\n  &lt;p&gt;Example.&lt;/p&gt;\n  &lt;xi:include href=&quot;samples/simple.xml&quot;/&gt;\n&lt;/document&gt;\n'}</em><a class="headerlink" href="#lxml.tests.selftest.XINCLUDE" title="Permalink to this definition">¶</a></dt>
+<dd><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object&#8217;s</p>
+<blockquote>
+<div>(key, value) pairs</div></blockquote>
+<dl class="docutils">
+<dt>dict(iterable) -&gt; new dictionary initialized as if via:</dt>
+<dd><p class="first">d = {}
+for k, v in iterable:</p>
+<blockquote class="last">
+<div>d[k] = v</div></blockquote>
+</dd>
+<dt>dict(<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs) -&gt; new dictionary initialized with the name=value pairs</dt>
+<dd>in the keyword argument list.  For example:  dict(one=1, two=2)</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

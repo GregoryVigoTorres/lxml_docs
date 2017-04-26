@@ -1,0 +1,1459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sitemap &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Sitemap</a><ul>
+<li><a class="reference internal" href="#about-lxml">About lxml</a></li>
+<li><a class="reference internal" href="#using-lxml">Using lxml</a></li>
+<li><a class="reference internal" href="#developing-lxml">Developing lxml</a></li>
+<li><a class="reference internal" href="#api-reference">API Reference</a></li>
+<li><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Sitemap</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sitemap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sitemap">
+<h1>Sitemap<a class="headerlink" href="#sitemap" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-lxml">
+<h2>About lxml<a class="headerlink" href="#about-lxml" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#mailing-list">Mailing list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#bug-tracker">Bug tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about.html#old-versions">Old Versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Why lxml?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#motto">Motto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#aims">Aims</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lxml2.html">What&#8217;s new in lxml 2.0?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lxml2.html#changes-in-etree-and-objectify">Changes in etree and objectify</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#incompatible-changes">Incompatible changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#deprecation">Deprecation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxml2.html#new-modules">New modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#lxml-usedoctest">lxml.usedoctest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#lxml-html">lxml.html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxml2.html#lxml-cssselect">lxml.cssselect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#where-to-get-it">Where to get it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ms-windows">MS Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#macos-x">MacOS-X</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-lxml-from-dev-sources">Building lxml from dev sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#using-lxml-with-python-libxml2">Using lxml with python-libxml2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#source-builds-on-ms-windows">Source builds on MS Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#source-builds-on-macos-x">Source builds on MacOS-X</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Benchmarks and Speed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#general-notes">General notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#how-to-read-the-timings">How to read the timings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#parsing-and-serialising">Parsing and Serialising</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#the-elementtree-api">The ElementTree API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#child-access">Child access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#element-creation">Element creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#merging-different-sources">Merging different sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#deepcopy">deepcopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#tree-traversal">Tree traversal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#xpath">XPath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#a-longer-example">A longer example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#lxml-objectify">lxml.objectify</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#objectpath">ObjectPath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#caching-elements">Caching Elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#further-optimisations">Further optimisations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compatibility.html">ElementTree compatibility of lxml.etree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">Table of Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docindex.html#html">HTML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html">lxml.html</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#parsing-html">Parsing HTML</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#parsing-html-fragments">Parsing HTML fragments</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#really-broken-pages">Really broken pages</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#html-element-methods">HTML Element Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#running-html-doctests">Running HTML doctests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#creating-html-with-the-e-factory">Creating HTML with the E-factory</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#viewing-your-html">Viewing your HTML</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#working-with-links">Working with links</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#forms">Forms</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#form-filling-example">Form Filling Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#form-submission">Form Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#cleaning-up-html">Cleaning up HTML</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#autolink">autolink</a></li>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#wordwrap">wordwrap</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#html-diff">HTML Diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lxmlhtml.html#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="lxmlhtml.html#microformat-example">Microformat Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="html5parser.html">html5lib Parser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="html5parser.html#differences-to-regular-html-parsing">Differences to regular HTML parsing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="html5parser.html#function-reference">Function Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docindex.html#cssselect-xpath-xslt">CSSSelect/XPath &amp; XSLT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cssselect.html">lxml.cssselect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cssselect.html#the-cssselector-class">The CSSSelector class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cssselect.html#the-cssselect-method">The cssselect method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cssselect.html#supported-selectors">Supported Selectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cssselect.html#namespaces">Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html">XPath and XSLT with lxml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xpathxslt.html#xpath">XPath</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#the-xpath-method">The <code class="docutils literal"><span class="pre">xpath()</span></code> method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#namespaces-and-prefixes">Namespaces and prefixes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#xpath-return-values">XPath return values</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#generating-xpath-expressions">Generating XPath expressions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#the-xpath-class">The <code class="docutils literal"><span class="pre">XPath</span></code> class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#regular-expressions-in-xpath">Regular expressions in XPath</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#the-xpathevaluator-classes">The <code class="docutils literal"><span class="pre">XPathEvaluator</span></code> classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#etxpath"><code class="docutils literal"><span class="pre">ETXPath</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#error-handling">Error handling</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="xpathxslt.html#xslt">XSLT</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#xslt-result-objects">XSLT result objects</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#stylesheet-parameters">Stylesheet parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#errors-and-messages">Errors and messages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#the-xslt-tree-method">The <code class="docutils literal"><span class="pre">xslt()</span></code> tree method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#dealing-with-stylesheet-complexity">Dealing with stylesheet complexity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xpathxslt.html#profiling">Profiling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docindex.html#xml">XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html">Using custom Element classes in lxml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="element_classes.html#background-on-element-proxies">Background on Element proxies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="element_classes.html#element-initialization">Element initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="element_classes.html#setting-up-a-class-lookup-scheme">Setting up a class lookup scheme</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="element_classes.html#default-class-lookup">Default class lookup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="element_classes.html#namespace-class-lookup">Namespace class lookup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="element_classes.html#attribute-based-lookup">Attribute based lookup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="element_classes.html#custom-element-class-lookup">Custom element class lookup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="element_classes.html#tree-based-element-class-lookup-in-python">Tree based element class lookup in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="element_classes.html#generating-xml-with-custom-classes">Generating XML with custom classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="element_classes.html#id1">Implementing namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="elementsoup.html">BeautifulSoup Parser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="elementsoup.html#parsing-with-the-soupparser">Parsing with the soupparser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elementsoup.html#entity-handling">Entity handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elementsoup.html#using-soupparser-as-a-fallback">Using soupparser as a fallback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elementsoup.html#using-only-the-encoding-detection">Using only the encoding detection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sax.html">Sax support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sax.html#building-a-tree-from-sax-events">Building a tree from SAX events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sax.html#producing-sax-events-from-an-elementtree-or-element">Producing SAX events from an ElementTree or Element</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sax.html#interfacing-with-pulldom-minidom">Interfacing with pulldom/minidom</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="validation.html">Validation with lxml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#validation-at-parse-time">Validation at parse time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#id1">DTD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#relaxng">RelaxNG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#xmlschema">XMLSchema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#id2">Schematron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validation.html#id3">(Pre-ISO-Schematron)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="resolvers.html">Document loading and URL resolving</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resolvers.html#xml-catalogs">XML Catalogs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resolvers.html#uri-resolvers">URI Resolvers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resolvers.html#document-loading-in-context">Document loading in context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resolvers.html#i-o-access-control-in-xslt">I/O access control in XSLT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docindex.html#objectify">Objectify</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html">lxml.objectify</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#the-lxml-objectify-api">The lxml.objectify API</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#element-access-through-object-attributes">Element access through object attributes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#creating-objectify-trees">Creating objectify trees</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#tree-generation-with-the-e-factory">Tree generation with the E-factory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#namespace-handling">Namespace handling</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#asserting-a-schema">Asserting a Schema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#objectpath">ObjectPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#python-data-types">Python data types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#recursive-tree-dump">Recursive tree dump</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#recursive-string-representation-of-elements">Recursive string representation of elements</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#how-data-types-are-matched">How data types are matched</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#type-annotations">Type annotations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#xml-schema-datatype-annotation">XML Schema datatype annotation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#the-dataelement-factory">The DataElement factory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#defining-additional-data-classes">Defining additional data classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="objectify.html#advanced-element-class-lookup">Advanced element class lookup</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="objectify.html#what-is-different-from-lxml-etree">What is different from lxml.etree?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">lxml FAQ - Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#general-questions">General Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#is-there-a-tutorial">Is there a tutorial?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#where-can-i-find-more-documentation-about-lxml">Where can I find more documentation about lxml?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#what-standards-does-lxml-implement">What standards does lxml implement?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#who-uses-lxml">Who uses lxml?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#what-is-the-difference-between-lxml-etree-and-lxml-objectify">What is the difference between lxml.etree and lxml.objectify?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-make-my-application-run-faster">How can I make my application run faster?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#what-about-that-trailing-text-on-serialised-elements">What about that trailing text on serialised Elements?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-find-out-if-an-element-is-a-comment-or-pi">How can I find out if an Element is a comment or PI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-map-an-xml-tree-into-a-dict-of-dicts">How can I map an XML tree into a dict of dicts?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-does-lxml-sometimes-return-str-values-for-text-in-python-2">Why does lxml sometimes return &#8216;str&#8217; values for text in Python 2?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#which-version-of-libxml2-and-libxslt-should-i-use-or-require">Which version of libxml2 and libxslt should I use or require?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#where-are-the-binary-builds">Where are the binary builds?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-do-i-get-errors-about-missing-ucs4-symbols-when-installing-lxml">Why do I get errors about missing UCS4 symbols when installing lxml?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#my-c-compiler-crashes-on-installation">My C compiler crashes on installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-is-lxml-not-written-in-python">Why is lxml not written in Python?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-contribute">How can I contribute?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#bugs">Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#my-application-crashes">My application crashes!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#my-application-crashes-on-macos-x">My application crashes on MacOS-X!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#i-think-i-have-found-a-bug-in-lxml-what-should-i-do">I think I have found a bug in lxml. What should I do?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-do-i-know-a-bug-is-really-in-lxml-and-not-in-libxml2">How do I know a bug is really in lxml and not in libxml2?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#id1">Threading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#can-i-use-threads-to-concurrently-access-the-lxml-api">Can I use threads to concurrently access the lxml API?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#does-my-program-run-faster-if-i-use-threads">Does my program run faster if I use threads?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#would-my-single-threaded-program-run-faster-if-i-turned-off-threading">Would my single-threaded program run faster if I turned off threading?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-can-t-i-reuse-xslt-stylesheets-in-other-threads">Why can&#8217;t I reuse XSLT stylesheets in other threads?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#my-program-crashes-when-run-with-mod-python-pyro-zope-plone">My program crashes when run with mod_python/Pyro/Zope/Plone/...</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#parsing-and-serialisation">Parsing and Serialisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-doesn-t-the-pretty-print-option-reformat-my-xml-output">Why doesn&#8217;t the <code class="docutils literal"><span class="pre">pretty_print</span></code> option reformat my XML output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-can-t-lxml-parse-my-xml-from-unicode-strings">Why can&#8217;t lxml parse my XML from unicode strings?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#can-lxml-parse-from-file-objects-opened-in-unicode-text-mode">Can lxml parse from file objects opened in unicode/text mode?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#what-is-the-difference-between-str-xslt-doc-and-xslt-doc-write">What is the difference between str(xslt(doc)) and xslt(doc).write() ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-can-t-i-just-delete-parents-or-clear-the-root-node-in-iterparse">Why can&#8217;t I just delete parents or clear the root node in iterparse()?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-do-i-output-null-characters-in-xml-text">How do I output null characters in XML text?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#is-lxml-vulnerable-to-xml-bombs">Is lxml vulnerable to XML bombs?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-do-i-use-lxml-safely-as-a-web-service-endpoint">How do I use lxml safely as a web-service endpoint?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#xpath-and-document-traversal">XPath and Document Traversal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#what-are-the-findall-and-xpath-methods-on-element-tree">What are the <code class="docutils literal"><span class="pre">findall()</span></code> and <code class="docutils literal"><span class="pre">xpath()</span></code> methods on Element(Tree)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#why-doesn-t-findall-support-full-xpath-expressions">Why doesn&#8217;t <code class="docutils literal"><span class="pre">findall()</span></code> support full XPath expressions?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-find-out-which-namespace-prefixes-are-used-in-a-document">How can I find out which namespace prefixes are used in a document?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html#how-can-i-specify-a-default-namespace-for-xpath-expressions">How can I specify a default namespace for XPath expressions?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="using-lxml">
+<h2>Using lxml<a class="headerlink" href="#using-lxml" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">The lxml.etree Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-element-class">The Element class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#elements-are-lists">Elements are lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#elements-carry-attributes-as-a-dict">Elements carry attributes as a dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#elements-contain-text">Elements contain text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#using-xpath-to-find-text">Using XPath to find text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#tree-iteration">Tree iteration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#serialisation">Serialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-elementtree-class">The ElementTree class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#parsing-from-strings-and-files">Parsing from strings and files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#the-fromstring-function">The fromstring() function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#the-xml-function">The XML() function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#the-parse-function">The parse() function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#parser-objects">Parser objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#incremental-parsing">Incremental parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial.html#event-driven-parsing">Event-driven parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-e-factory">The E-factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#elementpath">ElementPath</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing XML and HTML with lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#parsers">Parsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#parser-options">Parser options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#error-log">Error log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#parsing-html">Parsing HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#doctype-information">Doctype information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#the-target-parser-interface">The target parser interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#the-feed-parser-interface">The feed parser interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#incremental-event-parsing">Incremental event parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#event-types">Event types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#modifying-the-tree">Modifying the tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#selective-tag-events">Selective tag events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#comments-and-pis">Comments and PIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#events-with-custom-targets">Events with custom targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#iterparse-and-iterwalk">iterparse and iterwalk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#iterwalk">iterwalk</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#python-unicode-strings">Python unicode strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parsing.html#serialising-to-unicode-strings">Serialising to Unicode strings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lxmlhtml.html">lxml.html</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#parsing-html">Parsing HTML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#parsing-html-fragments">Parsing HTML fragments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#really-broken-pages">Really broken pages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#html-element-methods">HTML Element Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#running-html-doctests">Running HTML doctests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#creating-html-with-the-e-factory">Creating HTML with the E-factory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#viewing-your-html">Viewing your HTML</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#working-with-links">Working with links</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#forms">Forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#form-filling-example">Form Filling Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#form-submission">Form Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#cleaning-up-html">Cleaning up HTML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#autolink">autolink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#wordwrap">wordwrap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#html-diff">HTML Diff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxmlhtml.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxmlhtml.html#microformat-example">Microformat Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="html5parser.html">html5lib Parser</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="html5parser.html#differences-to-regular-html-parsing">Differences to regular HTML parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html5parser.html#function-reference">Function Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sax.html">Sax support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sax.html#building-a-tree-from-sax-events">Building a tree from SAX events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sax.html#producing-sax-events-from-an-elementtree-or-element">Producing SAX events from an ElementTree or Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sax.html#interfacing-with-pulldom-minidom">Interfacing with pulldom/minidom</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cssselect.html">lxml.cssselect</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cssselect.html#the-cssselector-class">The CSSSelector class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cssselect.html#the-cssselect-method">The cssselect method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cssselect.html#supported-selectors">Supported Selectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cssselect.html#namespaces">Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xpathxslt.html">XPath and XSLT with lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xpathxslt.html#xpath">XPath</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#the-xpath-method">The <code class="docutils literal"><span class="pre">xpath()</span></code> method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#namespaces-and-prefixes">Namespaces and prefixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#xpath-return-values">XPath return values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#generating-xpath-expressions">Generating XPath expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#the-xpath-class">The <code class="docutils literal"><span class="pre">XPath</span></code> class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#regular-expressions-in-xpath">Regular expressions in XPath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#the-xpathevaluator-classes">The <code class="docutils literal"><span class="pre">XPathEvaluator</span></code> classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#etxpath"><code class="docutils literal"><span class="pre">ETXPath</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#error-handling">Error handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xpathxslt.html#xslt">XSLT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#xslt-result-objects">XSLT result objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#stylesheet-parameters">Stylesheet parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#errors-and-messages">Errors and messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#the-xslt-tree-method">The <code class="docutils literal"><span class="pre">xslt()</span></code> tree method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#dealing-with-stylesheet-complexity">Dealing with stylesheet complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xpathxslt.html#profiling">Profiling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation with lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#validation-at-parse-time">Validation at parse time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#id1">DTD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#relaxng">RelaxNG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#xmlschema">XMLSchema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#id2">Schematron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#id3">(Pre-ISO-Schematron)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="element_classes.html">Using custom Element classes in lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="element_classes.html#background-on-element-proxies">Background on Element proxies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element_classes.html#element-initialization">Element initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element_classes.html#setting-up-a-class-lookup-scheme">Setting up a class lookup scheme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html#default-class-lookup">Default class lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html#namespace-class-lookup">Namespace class lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html#attribute-based-lookup">Attribute based lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html#custom-element-class-lookup">Custom element class lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="element_classes.html#tree-based-element-class-lookup-in-python">Tree based element class lookup in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="element_classes.html#generating-xml-with-custom-classes">Generating XML with custom classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element_classes.html#id1">Implementing namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="elementsoup.html">BeautifulSoup Parser</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="elementsoup.html#parsing-with-the-soupparser">Parsing with the soupparser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elementsoup.html#entity-handling">Entity handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elementsoup.html#using-soupparser-as-a-fallback">Using soupparser as a fallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elementsoup.html#using-only-the-encoding-detection">Using only the encoding detection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="objectify.html">lxml.objectify</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#the-lxml-objectify-api">The lxml.objectify API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#element-access-through-object-attributes">Element access through object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#creating-objectify-trees">Creating objectify trees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#tree-generation-with-the-e-factory">Tree generation with the E-factory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#namespace-handling">Namespace handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#asserting-a-schema">Asserting a Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#objectpath">ObjectPath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#python-data-types">Python data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#recursive-tree-dump">Recursive tree dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#recursive-string-representation-of-elements">Recursive string representation of elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#how-data-types-are-matched">How data types are matched</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#type-annotations">Type annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#xml-schema-datatype-annotation">XML Schema datatype annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#the-dataelement-factory">The DataElement factory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#defining-additional-data-classes">Defining additional data classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objectify.html#advanced-element-class-lookup">Advanced element class lookup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="objectify.html#what-is-different-from-lxml-etree">What is different from lxml.etree?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resolvers.html">Document loading and URL resolving</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resolvers.html#xml-catalogs">XML Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resolvers.html#uri-resolvers">URI Resolvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resolvers.html#document-loading-in-context">Document loading in context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resolvers.html#i-o-access-control-in-xslt">I/O access control in XSLT</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="developing-lxml">
+<h2>Developing lxml<a class="headerlink" href="#developing-lxml" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="build.html">How to build lxml from source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build.html#cython">Cython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#github-git-and-hg">Github, git and hg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#building-the-sources">Building the sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#running-the-tests-and-reporting-errors">Running the tests and reporting errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#building-an-egg-or-wheel">Building an egg or wheel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#building-lxml-on-macos-x">Building lxml on MacOS-X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#static-linking-on-windows">Static linking on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#building-debian-packages-from-svn-sources">Building Debian packages from SVN sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lxml-source-howto.html">How to read the source of lxml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#what-is-cython">What is Cython?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#where-to-start">Where to start?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxml-source-howto.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxml-source-howto.html#the-documentation">The documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#lxml-etree">lxml.etree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#python-modules">Python modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#lxml-objectify">lxml.objectify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxml-source-howto.html#lxml-html">lxml.html</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Python extensions for XPath and XSLT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#xpath-extension-functions">XPath Extension functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#the-functionnamespace">The FunctionNamespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#global-prefix-assignment">Global prefix assignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#the-xpath-context">The XPath context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#evaluators-and-xslt">Evaluators and XSLT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#evaluator-local-extensions">Evaluator-local extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#what-to-return-from-a-function">What to return from a function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#xslt-extension-elements">XSLT extension elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#declaring-extension-elements">Declaring extension elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#applying-xsl-templates">Applying XSL templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html#working-with-read-only-elements">Working with read-only elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memorymanagement.html">Memory management</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">APIs specific to lxml.etree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#lxml-etree">lxml.etree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#other-element-apis">Other Element APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#trees-and-documents">Trees and Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#iteration">Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#error-handling-on-exceptions">Error handling on exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#error-logging">Error logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#serialisation">Serialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#incremental-xml-generation">Incremental XML generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#cdata">CDATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#xinclude-and-elementinclude">XInclude and ElementInclude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#write-c14n-on-elementtree">write_c14n on ElementTree</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capi.html">The public C-API of lxml.etree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capi.html#writing-external-modules-in-cython">Writing external modules in Cython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capi.html#writing-external-modules-in-c">Writing external modules in C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/ElementInclude.html">ElementInclude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/_elementpath.html">_elementpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/builder.html">builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/cssselect.html">cssselect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/doctestcompare.html">doctestcompare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/pyclasslookup.html">pyclasslookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/sax.html">sax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/isoschematron/isoschematron.html">lxml.isoschematron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#lxml-html">lxml.html</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/ElementSoup.html">lxml.html.ElementSoup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/_diffcommand.html">lxml.html._diffcommand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/_html5builder.html">lxml.html._html5builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/_setmixin.html">lxml.html._setmixin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/builder.html">lxml.html.builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/clean.html">lxml.html.clean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/defs.html">lxml.html.defs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/diff.html">lxml.html.diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/formfill.html">lxml.html.formfill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/html5parser.html">lxml.html.html5parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/html/soupparser.html">lxml.html.soupparser</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#lxml-tests">lxml.tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/common_imports.html">lxml.tests.common_imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/dummy_http_server.html">lxml.tests.dummy_http_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/selftest.html">lxml.tests.selftest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/selftest2.html">lxml.tests.selftest2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_builder.html">lxml.tests.test_builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_classlookup.html">lxml.tests.test_classlookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_css.html">lxml.tests.test_css</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_doctestcompare.html">lxml.tests.test_doctestcompare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_dtd.html">lxml.tests.test_dtd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_elementpath.html">lxml.tests.test_elementpath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_elementtree.html">lxml.tests.test_elementtree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_errors.html">lxml.tests.test_errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_etree.html">lxml.tests.test_etree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_htmlparser.html">lxml.tests.test_htmlparser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_http_io.html">lxml.tests.test_http_io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_incremental_xmlfile.html">lxml.tests.test_incremental_xmlfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_io.html">lxml.tests.test_io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_isoschematron.html">lxml.tests.test_isoschematron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_nsclasses.html">lxml.tests.test_nsclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_objectify.html">lxml.tests.test_objectify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_pyclasslookup.html">lxml.tests.test_pyclasslookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_relaxng.html">lxml.tests.test_relaxng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_sax.html">lxml.tests.test_sax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_schematron.html">lxml.tests.test_schematron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_threading.html">lxml.tests.test_threading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_unicode.html">lxml.tests.test_unicode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_xmlschema.html">lxml.tests.test_xmlschema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_xpathevaluator.html">lxml.tests.test_xpathevaluator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/tests/test_xslt.html">lxml.tests.test_xslt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="changes">
+<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">lxml changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id1">3.7.2 (2017-01-08)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#bugs-fixed">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id2">3.7.1 (2016-12-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id3">3.7.0 (2016-12-10)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#features-added">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id4">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#other-changes">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id5">3.6.4 (2016-08-20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id6">3.6.3 (2016-08-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id7">3.6.2 (2016-08-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id8">3.6.1 (2016-07-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id9">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id10">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id11">3.6.0 (2016-03-17)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id12">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id13">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id14">3.5.0 (2015-11-13)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id15">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#b1-2015-09-18">3.5.0b1 (2015-09-18)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id16">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id17">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id18">3.4.4 (2015-04-25)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id19">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id20">3.4.3 (2015-04-15)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id21">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id22">3.4.2 (2015-02-07)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id23">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id24">3.4.1 (2014-11-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id25">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id26">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id27">3.4.0 (2014-09-10)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id28">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id29">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id30">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id31">3.3.6 (2014-08-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id32">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id33">3.3.5 (2014-04-18)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id34">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id35">3.3.4 (2014-04-03)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id36">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id37">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id38">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id39">3.3.3 (2014-03-04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id40">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id41">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id42">3.3.2 (2014-02-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id43">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id44">3.3.1 (2014-02-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id45">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id46">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id47">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id48">3.3.0 (2014-01-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id49">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id50">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id51">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta5-2014-01-18">3.3.0beta5 (2014-01-18)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id52">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id53">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id54">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta4-2014-01-12">3.3.0beta4 (2014-01-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id55">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id56">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id57">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta3-2014-01-02">3.3.0beta3 (2014-01-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id58">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id59">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id60">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta2-2013-12-20">3.3.0beta2 (2013-12-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id61">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id62">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id63">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2013-12-12">3.3.0beta1 (2013-12-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id64">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id65">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id66">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id67">3.2.5 (2014-01-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id68">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id69">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id70">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id71">3.2.4 (2013-11-07)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id72">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id73">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id74">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id75">3.2.3 (2013-07-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id76">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id77">3.2.2 (2013-07-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id78">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id79">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id80">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id81">3.2.1 (2013-05-11)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id82">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id83">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id84">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id85">3.2.0 (2013-04-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id86">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id87">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id88">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id89">3.1.2 (2013-04-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id90">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id91">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id92">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id93">3.1.1 (2013-03-29)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id94">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id95">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id96">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id97">3.1.0 (2013-02-10)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id98">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id99">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id100">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2012-12-21">3.1beta1 (2012-12-21)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id101">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id102">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id103">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id104">3.0.2 (2012-12-14)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id105">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id106">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id107">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id108">3.0.1 (2012-10-14)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id109">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id110">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id111">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id112">3.0 (2012-10-08)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id113">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id114">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id115">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2012-09-26">3.0beta1 (2012-09-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id116">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id117">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id118">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha2-2012-08-23">3.0alpha2 (2012-08-23)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id119">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id120">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id121">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha1-2012-07-31">3.0alpha1 (2012-07-31)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id122">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id123">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id124">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id125">2.3.6 (2012-09-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id126">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id127">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id128">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id129">2.3.5 (2012-07-31)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id130">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id131">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id132">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id133">2.3.4 (2012-03-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id134">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id135">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id136">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id137">2.3.3 (2012-01-04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id138">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id139">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id140">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id141">2.3.2 (2011-11-11)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id142">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id143">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id144">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id145">2.3.1 (2011-09-25)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id146">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id147">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id148">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id149">2.3 (2011-02-06)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id150">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id151">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id152">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2010-09-06">2.3beta1 (2010-09-06)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id153">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id154">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id155">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha2-2010-07-24">2.3alpha2 (2010-07-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id156">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id157">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id158">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha1-2010-06-19">2.3alpha1 (2010-06-19)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id159">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id160">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id161">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id162">2.2.8 (2010-09-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id163">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id164">2.2.7 (2010-07-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id165">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id166">2.2.6 (2010-03-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id167">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id168">2.2.5 (2010-02-28)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id169">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id170">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id171">2.2.4 (2009-11-11)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id172">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id173">2.2.3 (2009-10-30)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id174">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id175">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id176">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id177">2.2.2 (2009-06-21)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id178">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id179">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id180">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id181">2.2.1 (2009-06-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id182">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id183">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id184">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id185">2.2 (2009-03-21)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id186">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id187">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta4-2009-02-27">2.2beta4 (2009-02-27)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id188">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id189">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id190">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta3-2009-02-17">2.2beta3 (2009-02-17)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id191">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id192">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id193">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta2-2009-01-25">2.2beta2 (2009-01-25)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id194">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id195">2.1.5 (2009-01-06)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id196">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2008-12-12">2.2beta1 (2008-12-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id197">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id198">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id199">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id200">2.1.4 (2008-12-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id201">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id202">2.0.11 (2008-12-12)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id203">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha1-2008-11-23">2.2alpha1 (2008-11-23)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id204">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id205">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id206">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id207">2.1.3 (2008-11-17)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id208">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id209">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id210">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id211">2.0.10 (2008-11-17)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id212">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id213">2.1.2 (2008-09-05)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id214">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id215">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id216">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id217">2.0.9 (2008-09-05)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id218">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id219">2.1.1 (2008-07-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id220">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id221">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id222">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id223">2.0.8 (2008-07-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id224">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id225">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id226">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id227">2.1 (2008-07-09)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id228">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id229">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id230">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id231">2.0.7 (2008-06-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id232">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id233">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id234">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta3-2008-06-19">2.1beta3 (2008-06-19)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id235">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id236">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id237">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id238">2.0.6 (2008-05-31)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id239">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id240">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id241">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta2-2008-05-02">2.1beta2 (2008-05-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id242">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id243">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id244">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id245">2.0.5 (2008-05-01)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id246">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id247">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id248">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#beta1-2008-04-15">2.1beta1 (2008-04-15)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id249">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id250">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id251">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id252">2.0.4 (2008-04-13)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id253">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id254">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id255">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#alpha1-2008-03-27">2.1alpha1 (2008-03-27)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id256">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id257">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id258">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id259">2.0.3 (2008-03-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id260">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id261">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id262">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id263">2.0.2 (2008-02-22)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id264">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id265">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id266">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id267">2.0.1 (2008-02-13)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id268">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id269">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id270">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id271">2.0 (2008-02-01)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id272">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id273">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id274">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id275">1.3.6 (2007-10-29)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id276">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id277">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id278">1.3.5 (2007-10-22)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id279">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id280">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id281">1.3.4 (2007-08-30)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id282">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id283">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id284">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id285">1.3.3 (2007-07-26)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id286">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id287">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id288">1.3.2 (2007-07-03)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id289">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id290">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id291">1.3.1 (2007-07-02)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id292">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id293">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id294">1.3 (2007-06-24)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id295">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id296">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id297">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id298">1.2.1 (2007-02-27)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id299">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id300">1.2 (2007-02-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id301">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id302">Bugs fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id303">Other changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id304">1.1.2 (2006-10-30)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id305">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id306">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id307">1.1.1 (2006-09-21)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id308">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id309">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id310">1.1 (2006-09-13)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id311">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id312">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id313">1.0.4 (2006-09-09)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id314">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id315">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id316">1.0.3 (2006-08-08)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id317">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id318">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id319">1.0.2 (2006-06-27)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id320">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id321">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id322">1.0.1 (2006-06-09)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id323">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id324">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id325">1.0 (2006-06-01)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id326">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id327">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id328">0.9.2 (2006-05-10)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id329">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id330">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id331">0.9.1 (2006-03-30)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id332">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id333">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id334">0.9 (2006-03-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id335">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id336">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id337">0.8 (2005-11-03)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id338">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id339">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id340">0.7 (2005-06-15)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id341">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id342">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id343">0.6 (2005-05-14)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id344">Features added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changes.html#id345">Bugs fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id346">0.5.1 (2005-04-09)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#id347">0.5 (2005-04-08)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

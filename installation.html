@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing lxml &mdash; lxml 3.7.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/lxml_theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="lxml 3.7.2 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lxml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Installing lxml</a><ul>
+<li><a class="reference internal" href="#where-to-get-it">Where to get it</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#ms-windows">MS Windows</a></li>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#macos-x">MacOS-X</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-lxml-from-dev-sources">Building lxml from dev sources</a></li>
+<li><a class="reference internal" href="#using-lxml-with-python-libxml2">Using lxml with python-libxml2</a></li>
+<li><a class="reference internal" href="#source-builds-on-ms-windows">Source builds on MS Windows</a></li>
+<li><a class="reference internal" href="#source-builds-on-macos-x">Source builds on MacOS-X</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lxml</a>
+        
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installing lxml</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+
+          <nav class="docs-nav">
+            <a href="tutorial.html">Tutorial</a>
+            <a href="docindex.html">Docs</a>
+            <a href="api_reference.html">API Reference</a>
+            <a href="genindex.html">Index</a>
+          </nav>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-lxml">
+<h1><a class="toc-backref" href="#id1">Installing lxml</a><a class="headerlink" href="#installing-lxml" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#installing-lxml" id="id1">Installing lxml</a></li>
+</ul>
+</div>
+<div class="section" id="where-to-get-it">
+<h2>Where to get it<a class="headerlink" href="#where-to-get-it" title="Permalink to this headline">¶</a></h2>
+<p>lxml is generally distributed through <a class="reference external" href="http://pypi.python.org/pypi/lxml">PyPI</a>.</p>
+<p>Most <strong>Linux</strong> platforms come with some version of lxml readily
+packaged, usually named <code class="docutils literal"><span class="pre">python-lxml</span></code> for the Python 2.x version
+and <code class="docutils literal"><span class="pre">python3-lxml</span></code> for Python 3.x.  If you can use that version,
+the quickest way to install lxml is to use the system package
+manager, e.g. <code class="docutils literal"><span class="pre">apt-get</span></code> on Debian/Ubuntu:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">lxml</span>
+</pre></div>
+</div>
+<p>For <strong>MacOS-X</strong>, a <a class="reference external" href="http://macports.org/">macport</a> of lxml is available.
+Try something like</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">port</span> <span class="n">install</span> <span class="n">py27</span><span class="o">-</span><span class="n">lxml</span>
+</pre></div>
+</div>
+<p>To install a newer version or to install lxml on other systems,
+see below.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>You need Python 2.6 or later.</p>
+<p>Unless you are using a static binary distribution (e.g. from a
+Windows binary installer), lxml requires libxml2 and libxslt to
+be installed, in particular:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://xmlsoft.org/">libxml2</a> version 2.7.0 or later.<ul>
+<li>We recommend libxml2 2.9.2 or a later version.</li>
+<li>If you want to use the feed parser interface, especially when
+parsing from unicode strings, do not use libxml2 2.7.4 through
+2.7.6.</li>
+</ul>
+</li>
+<li><a class="reference external" href="http://xmlsoft.org/XSLT/">libxslt</a> version 1.1.23 or later.<ul>
+<li>We recommend libxslt 1.1.28 or later. Version 1.1.25 will not
+work due to a missing library symbol.</li>
+</ul>
+</li>
+</ul>
+<p>Newer versions generally contain fewer bugs and are therefore
+recommended.  XML Schema support is also still worked on in libxml2,
+so newer versions will give you better compliance with the W3C spec.</p>
+<p>To install the required development packages of these dependencies
+on Linux systems, use your distribution specific installation tool,
+e.g. apt-get on Debian/Ubuntu:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxslt</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>For Debian based systems, it should be enough to install the known
+build dependencies of the provided lxml package, e.g.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">build</span><span class="o">-</span><span class="n">dep</span> <span class="n">python3</span><span class="o">-</span><span class="n">lxml</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>If your system does not provide binary packages or you want to install
+a newer version, the best way is to get the <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a> package management tool
+(or use a <a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenv</a>) and
+run the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>If you are not using pip in a virtualenv and want to install lxml globally
+instead, you have to run the above command as admin, e.g. on Linux:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>To install a specific version, either download the distribution
+manually and let pip install that, or pass the desired version
+to pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span><span class="o">==</span><span class="mf">3.4</span><span class="o">.</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>To speed up the build in test environments, e.g. on a continuous
+integration server, disable the C compiler optimisations by setting
+the <code class="docutils literal"><span class="pre">CFLAGS</span></code> environment variable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-O0&quot;</span>  <span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>(The option reads &#8220;minus Oh Zero&#8221;, i.e. zero optimisations.)</p>
+<div class="section" id="ms-windows">
+<h3>MS Windows<a class="headerlink" href="#ms-windows" title="Permalink to this headline">¶</a></h3>
+<p>For MS Windows, recent lxml releases feature community donated
+binary distributions, although you might still want to take a look
+at the related <a class="reference external" href="FAQ.html#where-are-the-binary-builds">FAQ entry</a>.
+If you fail to build lxml on your MS Windows system from the signed
+and tested sources that we release, consider using the binary builds
+from PyPI or the <a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml">unofficial Windows binaries</a>
+that Christoph Gohlke generously provides.</p>
+</div>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>On Linux (and most other well-behaved operating systems), <code class="docutils literal"><span class="pre">pip</span></code> will
+manage to build the source distribution as long as libxml2 and libxslt
+are properly installed, including development packages, i.e. header files,
+etc.  See the requirements section above and use your system package
+management tool to look for packages like <code class="docutils literal"><span class="pre">libxml2-dev</span></code> or
+<code class="docutils literal"><span class="pre">libxslt-devel</span></code>.  If the build fails, make sure they are installed.</p>
+<p>Alternatively, setting <code class="docutils literal"><span class="pre">STATIC_DEPS=true</span></code> will download and build
+both libraries automatically in their latest version, e.g.
+<code class="docutils literal"><span class="pre">STATIC_DEPS=true</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">lxml</span></code>.</p>
+</div>
+<div class="section" id="macos-x">
+<h3>MacOS-X<a class="headerlink" href="#macos-x" title="Permalink to this headline">¶</a></h3>
+<p>On MacOS-X, use the following to build the source distribution,
+and make sure you have a working Internet connection, as this will
+download libxml2 and libxslt in order to build them:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">STATIC_DEPS</span><span class="o">=</span><span class="n">true</span> <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="building-lxml-from-dev-sources">
+<h2>Building lxml from dev sources<a class="headerlink" href="#building-lxml-from-dev-sources" title="Permalink to this headline">¶</a></h2>
+<p>If you want to build lxml from the GitHub repository, you should read
+<a class="reference external" href="build.html">how to build lxml from source</a> (or the file <code class="docutils literal"><span class="pre">doc/build.txt</span></code> in the
+source tree).  Building from developer sources or from modified
+distribution sources requires <a class="reference external" href="http://www.cython.org">Cython</a> to translate the lxml sources
+into C code.  The source distribution ships with pre-generated C
+source files, so you do not need Cython installed to build from
+release sources.</p>
+<p>If you have read these instructions and still cannot manage to install lxml,
+you can check the archives of the <a class="reference external" href="http://lxml.de/mailinglist/">mailing list</a> to see if your problem is
+known or otherwise send a mail to the list.</p>
+</div>
+<div class="section" id="using-lxml-with-python-libxml2">
+<h2>Using lxml with python-libxml2<a class="headerlink" href="#using-lxml-with-python-libxml2" title="Permalink to this headline">¶</a></h2>
+<p>If you want to use lxml together with the official libxml2 Python
+bindings (maybe because one of your dependencies uses it), you must
+build lxml statically.  Otherwise, the two packages will interfere in
+places where the libxml2 library requires global configuration, which
+can have any kind of effect from disappearing functionality to crashes
+in either of the two.</p>
+<p>To get a static build, either pass the <code class="docutils literal"><span class="pre">--static-deps</span></code> option to the
+setup.py script, or run <code class="docutils literal"><span class="pre">pip</span></code> with the <code class="docutils literal"><span class="pre">STATIC_DEPS</span></code> or
+<code class="docutils literal"><span class="pre">STATICBUILD</span></code> environment variable set to true, i.e.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">STATIC_DEPS</span><span class="o">=</span><span class="n">true</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">lxml</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">STATICBUILD</span></code> environment variable is handled equivalently to
+the <code class="docutils literal"><span class="pre">STATIC_DEPS</span></code> variable, but is used by some other extension
+packages, too.</p>
+</div>
+<div class="section" id="source-builds-on-ms-windows">
+<h2>Source builds on MS Windows<a class="headerlink" href="#source-builds-on-ms-windows" title="Permalink to this headline">¶</a></h2>
+<p>Most MS Windows systems lack the necessarily tools to build software,
+starting with a C compiler already.  Microsoft leaves it to users to
+install and configure them, which is usually not trivial and means
+that distributors cannot rely on these dependencies being available
+on a given system.  In a way, you get what you&#8217;ve paid for and make
+others pay for it.</p>
+<p>Due to the additional lack of package management of this platform,
+it is best to link the library dependencies statically if you decide
+to build from sources, rather than using a binary installer.  For
+that, lxml can use the <a class="reference external" href="http://www.zlatkovic.com/libxml.en.html">binary distribution of libxml2 and libxslt</a>, which it downloads
+automatically during the static build.  It needs both libxml2 and
+libxslt, as well as iconv and zlib, which are available from the
+same download site.  Further build instructions are in the
+<a class="reference external" href="build.html">source build documentation</a>.</p>
+</div>
+<div class="section" id="source-builds-on-macos-x">
+<h2>Source builds on MacOS-X<a class="headerlink" href="#source-builds-on-macos-x" title="Permalink to this headline">¶</a></h2>
+<p>If you are not using macports or want to use a more recent lxml
+release, you have to build it yourself.  While the pre-installed system
+libraries of libxml2 and libxslt are less outdated in recent MacOS-X
+versions than they used to be, so lxml should work with them out of the
+box, it is still recommended to use a static build with the most recent
+library versions.</p>
+<p>Luckily, lxml&#8217;s <code class="docutils literal"><span class="pre">setup.py</span></code> script has built-in support for building
+and integrating these libraries statically during the build.  Please
+read the
+<a class="reference external" href="build.html#building-lxml-on-macos-x">MacOS-X build instructions</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, lxml project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.7.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <h1>This is my RTD theme copy</h1>
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
